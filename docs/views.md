@@ -6,17 +6,15 @@
 ## New Session
 ![new-session]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## SongIndex
+![songs]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## SongIndexItem
+![songIndexItem]
 
-## NotebookForm
-![notebook-form]
 
 [new-user]: ./wireframes/new_user.png
 [new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[songs]: ./wireframes/SongIndex.png
+[songIndexItem]: ./wireframes/SongIndexItem.png
+
