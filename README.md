@@ -1,12 +1,12 @@
-# Chill (name in progress)
+# ChillSound
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Heroku link][heroku]
 
 [heroku]: http://www.herokuapp.com
 
 ## Minimum Viable Product
 
-Chill is a web application inspired by Soundcloud to listen and share chill music that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+ChillSound is a web application inspired by Soundcloud to listen and share chill music that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
 - [ ] New account creation, login, and guest/demo login
 - [ ] Smooth, bug-free navigation
@@ -18,10 +18,11 @@ Chill is a web application inspired by Soundcloud to listen and share chill musi
 
 ## Product Goals and Priorities
 
-Chill will allow users to do the following:
+ChillSound will allow users to do the following:
 
 - [ ] Create an account (MVP)
 - [ ] Log in / Log out, including as a Guest/Demo User (MVP)
+- [ ] Create and delete songs (MVP)
 - [ ] Create, play, edit, and delete playlists (MVP)
 - [ ] Like and leave comments on songs (MVP)
 - [ ] Tag songs with multiple tags (expected feature, but not MVP)
@@ -52,34 +53,40 @@ Chill will allow users to do the following:
 - [ ] user signup/signin pages
 - [ ] blank landing page after signin
 
-### Phase 2: Notes Model, API, and basic APIUtil (1.5 days)
+### Phase 2: Song Model, API, and basic APIUtil (1.5 days)
 
-**Objective:** Notes can be created, read, edited and destroyed through
+**Objective:** Songs can be created, read, edited and destroyed through
 the API.
 
-- [ ] create `Note` model
+- [ ] create `Song` model
 - [ ] seed the database with a small amount of test data
-- [ ] CRUD API for notes (`NotesController`)
-- [ ] jBuilder views for notes
+- [ ] CRUD API for notes (`SongsController`)
+- [ ] jBuilder views for songs
 - [ ] setup Webpack & Flux scaffold
 - [ ] setup `APIUtil` to interact with the API
 - [ ] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
-**Objective:** Notes can be created, read, edited and destroyed with the
+**Objective:** Songs can be created, read, edited and destroyed with the
 user interface.
 
 - [ ] setup the flux loop with skeleton files
 - [ ] setup React Router
 - implement each note component, building out the flux loop as needed.
-  - [ ] `NotesIndex`
-  - [ ] `NoteIndexItem`
-  - [ ] `NoteForm`
-- [ ] save Notes to the DB when the form loses focus or is left idle
+  - [ ] `SongIndex`
+  - [ ] `SongIndexItem`
+  - [ ] `SongForm`
+- [ ] save Songs to the DB when the form loses focus or is left idle
   after editing.
 
-### Phase 4: Start Styling (0.5 days)
+### Phase 4: Music Player (1 day)
+
+**Objective** Build docked music player that will play and queue songs
+- [ ] Dock player at bottom
+- [ ] Continuously play music in queue
+
+### Phase 5: Start Styling (0.5 days)
 
 **Objective:** Existing pages (including singup/signin) will look good.
 
@@ -87,42 +94,41 @@ user interface.
 - [ ] position elements on the page
 - [ ] add basic colors & styles
 
-### Phase 5: Notebooks (1 day)
+### Phase 6: Playlists (1 day)
 
-**Objective:** Notes belong to Notebooks, and can be viewed by notebook.
+**Objective:** Songs belong to Playlists, and can be viewed by playlist.
 
-- [ ] create `Notebook` model
+- [ ] create `Playlist` model
 - build out API, Flux loop, and components for:
-  - [ ] Notebook CRUD
-  - [ ] adding notes requires a notebook
-  - [ ] moving notes to a different notebook
-  - [ ] viewing notes by notebook
+  - [ ] Playlist CRUD
+  - [ ] adding songs requires a playlist
+  - [ ] moving songs to a different playlist
+  - [ ] viewing songs by playlist
 - Use CSS to style new views
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook,
+Phase 3 adds organization to the Songs. Songs belong to a Playlist,
 which has its own `Index` view.
 
-### Phase 6: Tags (1.5 days)
+### Phase 7: Tags (1.5 days)
 
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
+**Objective:** Songs can be tagged with multiple tags, and tags are searchable.
 
 - [ ] create `Tag` model and join table
 - build out API, Flux loop, and components for:
-  - [ ] fetching tags for notebook
-  - [ ] adding tags to notebook
-  - [ ] creating tags while adding to notebooks
-  - [ ] searching notebooks by tag
+  - [ ] fetching tags for playlist
+  - [ ] adding tags to playlist
+  - [ ] creating tags while adding to playlists
+  - [ ] searching playlists by tag
 - [ ] Style new elements
 
-### Phase 7: Allow Complex Styling in Notes (0.5 days)
+### Phase 8: Search (0.5 days)
 
-**objective:** Enable complex styling of notes.
+**objective:** Enable live searching of songs.
 
-- [ ] Integrate `react-quill` (based on Quill.js).
-- [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new Quill elements.
+- [ ] Create Searchbar component
+- [ ] Live search by song title, artist, or tag
 
-### Phase 8: Styling Cleanup and Seeding (1 day)
+### Phase 9 Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more cohesive and awesome.
 
@@ -131,10 +137,8 @@ which has its own `Index` view.
 - [ ] Add modals, transitions, and other styling flourishes.
 
 ### Bonus Features (TBD)
-- [ ] Search through notes for blocks of text
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
+- [ ] Infinite scroll for Songs/Playlist Index
+- [ ] Changelogs for Songs
 - [ ] Multiple sessions
 
 [phase-one]: ./docs/phases/phase1.md
