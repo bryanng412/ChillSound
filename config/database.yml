@@ -83,11 +83,3 @@ test:
 #   database: chill_production
 #   username: chill
 #   password: <%= ENV['CHILL_DATABASE_PASSWORD'] %>
-# production:
-#   adapter: postgresql
-#   encoding: utf8
-#   database: chillsound
-#   pool: 5
-#   username: chillsound
-#   password: <%= ENV['CHILL_DATABASE_PASSWORD'] %>
-#   host: 127.0.0.1

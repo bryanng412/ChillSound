@@ -12,7 +12,7 @@
 #
 
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: trueB
+  validates :username, presence: true, uniqueness: true
   validates :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
