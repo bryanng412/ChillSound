@@ -109,26 +109,15 @@ user interface.
 Phase 3 adds organization to the Songs. Songs belong to a Playlist,
 which has its own `Index` view.
 
-### Phase 7: Tags (1.5 days)
 
-**Objective:** Songs can be tagged with multiple tags, and tags are searchable.
-
-- [ ] create `Tag` model and join table
-- build out API, Flux loop, and components for:
-  - [ ] fetching tags for playlist
-  - [ ] adding tags to playlist
-  - [ ] creating tags while adding to playlists
-  - [ ] searching playlists by tag
-- [ ] Style new elements
-
-### Phase 8: Search (0.5 days)
+### Phase 7: Search (0.5 days)
 
 **objective:** Enable live searching of songs.
 
 - [ ] Create Searchbar component
 - [ ] Live search by song title, artist, or tag
 
-### Phase 9 Styling Cleanup and Seeding (1 day)
+### Phase 8 Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more cohesive and awesome.
 
@@ -140,6 +129,13 @@ which has its own `Index` view.
 - [ ] Infinite scroll for Songs/Playlist Index
 - [ ] Changelogs for Songs
 - [ ] Multiple sessions
+- [ ] create `Tag` model and join table
+- build out API, Flux loop, and components for:
+- [ ] fetching tags for playlist
+- [ ] adding tags to playlist
+- [ ] creating tags while adding to playlists
+- [ ] searching playlists by tag
+- [ ] Style new elements
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
