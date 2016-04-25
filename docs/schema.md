@@ -5,17 +5,17 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 title       | string    | not null
+artist      | string    | not null
 description | text      | not null
 user_id     | integer   | not null, foreign key (references users), indexed
-archived    | boolean   | not null, default: false
 
 ## playlists
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
+title       | text      | not null
+description | string    | not null
 
 ## playlistings
 column name | data type | details
@@ -36,6 +36,7 @@ user_id     | integer   | not null, foreign key (references users), indexed
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
+content     | text      | not null
 song_id     | integer   | not null, foreign key (references songs), indexed
 user_id     | integer   | not null, foreign key (references users), indexed
 
