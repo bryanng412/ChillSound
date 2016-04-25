@@ -11,3 +11,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+
+bundle.js
+bundle.js.map
+
+node_modules

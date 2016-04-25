@@ -1,0 +1,32 @@
+{
+  "name": "ChillSound",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bryanng412/ChillSound.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bryanng412/ChillSound/issues"
+  },
+  "dependencies": {
+    "react-dom": "~15.0.1",
+    "babel-loader": "~6.2.4",
+    "react-router": "~2.3.0",
+    "react": "~15.0.1",
+    "flux": "~2.1.1",
+    "babel-preset-react": "~6.5.0",
+    "webpack": "~1.13.0",
+    "babel-core": "~6.7.7"
+  }
+}
