@@ -48,6 +48,6 @@ group :development do
 end
 
 group :production do
-  gem 'rails_12factor' #error feedback
   gem 'newrelic_rpm'
+  gem 'rails_12factor' #error feedback
 end
