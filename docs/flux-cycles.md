@@ -22,7 +22,7 @@ what you'll need to do.
   0. `receiveAllSongs` is set as the callback.
 
 * `createSong`
-  0. invoked from new note button `onClick`
+  0. invoked from new song button `onClick`
   0. `POST /api/songs` is called.
   0. `receiveSingleSong` is set as the callback.
 
@@ -37,7 +37,7 @@ what you'll need to do.
   0. `receiveSingleSong` is set as the callback.
 
 * `destroySong`
-  0. invoked from delete note button `onClick`
+  0. invoked from delete song button `onClick`
   0. `DELETE /api/songs/:id` is called.
   0. `removeSong` is set as the callback.
 
@@ -71,7 +71,7 @@ what you'll need to do.
   0. `receiveAllPlaylists` is set as the callback.
 
 * `createPlaylist`
-  0. invoked from new notebook button `onClick`
+  0. invoked from new playlist button `onClick`
   0. `POST /api/playlists` is called.
   0. `receiveSinglePlaylist` is set as the callback.
 
@@ -86,7 +86,7 @@ what you'll need to do.
   0. `receiveSinglePlaylist` is set as the callback.
 
 * `destroyPlaylist`
-  0. invoked from delete notebook button `onClick`
+  0. invoked from delete playlist button `onClick`
   0. `DELETE /api/playlists/:id` is called.
   0. `removePlaylist` is set as the callback.
 
