@@ -49,7 +49,7 @@ ChillSound will allow users to do the following:
 
 - [ ] create new project
 - [ ] create `User` model
-- [ ] authentication
+- [ ] authentication (including frontend auth)
 - [ ] user signup/signin pages
 - [ ] blank landing page after signin
 
