@@ -22,10 +22,44 @@ var ServerAuthApiUtil = {
     });
   },
 
+  logout: function() {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/session",
+      success: function() {
+        AuthActions.deleteSession();
+        ErrorActions.resetErrors();
+      },
+      error: function(response) {
+        ErrorActions.receiveErrors(response.responseJSON.errors);
+      }
+    });
+  },
+
   fetchCurrentUser: function() {
     $.ajax({
       method: "GET",
       url: "/api/session",
+      success: function(user) {
+        AuthActions.receiveUser(user);
+        ErrorActions.resetErrors();
+      },
+      error: function(response) {
+        ErrorActions.receiveErrors(response.responseJSON.errors);
+      }
+    });
+  },
+
+  signUp: function(signUpParams) {
+    $.ajax({
+      method: "POST",
+      url: "/api/user",
+      data: { user:
+              {
+                username: signUpParams.username,
+                password: signUpParams.password
+              }
+            },
       success: function(user) {
         AuthActions.receiveUser(user);
         ErrorActions.resetErrors();

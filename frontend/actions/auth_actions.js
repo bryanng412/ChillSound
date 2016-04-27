@@ -7,6 +7,12 @@ var AuthActions = {
       actionType: AuthConstants.LOGIN,
       user: user
     });
+  },
+
+  deleteSession: function() {
+    AppDispatcher.dispatch({
+      actionType: AuthConstants.LOGOUT
+    });
   }
 };
 

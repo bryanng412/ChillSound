@@ -5,6 +5,14 @@ var ClientActions = {
     ServerAuthApiUtil.login(loginParams);
   },
 
+  logout: function() {
+    ServerAuthApiUtil.logout();
+  },
+
+  signUp: function(signUpParams) {
+    ServerAuthApiUtil.signUp(signUpParams);
+  },
+
   fetchCurrentUser: function() {
     ServerAuthApiUtil.fetchCurrentUser();
   }

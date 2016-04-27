@@ -10,6 +10,10 @@ function setCurrentUser(user) {
   _currentUser = user;
 }
 
+function resetCurrentUser() {
+  _currentUser = null;
+}
+
 UserStore.currentUser = function() {
   if (_currentUser) {
     return $.extend({}, _currentUser);
@@ -20,6 +24,10 @@ UserStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case AuthConstants.LOGIN:
       setCurrentUser(payload.user);
+      this.__emitChange();
+      break;
+    case AuthConstants.LOGOUT:
+      resetCurrentUser();
       this.__emitChange();
       break;
   }

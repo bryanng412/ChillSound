@@ -25,11 +25,19 @@ var Navbar = React.createClass({
     this.setState({ currentUser: UserStore.currentUser() });
   },
 
-  login: function() {
+  login: function(e) {
+    e.preventDefault();
     HashHistory.push("login/");
   },
 
-  signUp: function() {
+  logout: function(e) {
+    e.preventDefault();
+    ClientActions.logout();
+    HashHistory.push("/");
+  },
+
+  signUp: function(e) {
+    e.preventDefault();
     HashHistory.push("signup/");
   },
 
@@ -37,7 +45,7 @@ var Navbar = React.createClass({
     var navBarItems = this.state.currentUser ?
       (<ul className="navbarList">
         <li className="navbarListItem">Profile</li>
-        <li className="navbarListItem">Sign Out</li>
+        <li className="navbarListItem" onClick={this.logout}>Sign Out</li>
       </ul>)
       :
       (<ul className="navbarList">

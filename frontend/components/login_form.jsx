@@ -1,10 +1,26 @@
 var React = require('react');
+var HashHistory = require('react-router').hashHistory;
 var ClientActions = require('../actions/client_actions.js');
 var Errors = require('./errors.jsx');
+var UserStore = require('../stores/user_store.js');
 
 var LoginForm = React.createClass({
   getInitialState: function() {
     return { username: "", password: ""};
+  },
+
+  componentDidMount: function() {
+    this.loginListenerToken = UserStore.addListener(this._onLogin);
+  },
+
+  componentWillUnmount: function() {
+    this.loginListenerToken.remove();
+  },
+
+  _onLogin: function() {
+    if (UserStore.currentUser()) {
+      HashHistory.push("/");
+    }
   },
 
   handleUsernameChange: function(e) {
@@ -24,7 +40,6 @@ var LoginForm = React.createClass({
       username: this.state.username,
       password: this.state.password
     });
-
   },
 
   render: function() {
