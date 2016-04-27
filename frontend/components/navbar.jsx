@@ -15,6 +15,7 @@ var Navbar = React.createClass({
 
   componentDidMount: function() {
     this.sessionListenerToken = UserStore.addListener(this._onSessionChange);
+    this.setState({ currentUser: UserStore.currentUser() });
   },
 
   componentWillUnmount: function() {
@@ -53,13 +54,9 @@ var Navbar = React.createClass({
         <li className="navbarListItem" onClick={this.signUp}>Sign Up</li>
       </ul>);
 
-      if (this.state.currentUser) {
-        var greeting = <h2>Hi {this.state.currentUser.username}!</h2>;
-      }
     return (
       <nav className="navbar">
         {navBarItems}
-        {greeting}
       </nav>
     );
   }

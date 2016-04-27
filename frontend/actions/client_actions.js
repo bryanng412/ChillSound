@@ -1,4 +1,5 @@
 var ServerAuthApiUtil = require('../util/server_auth_api_util.js');
+var ServerSongApiUtil = require('../util/server_song_api_util.js');
 
 var ClientActions = {
   login: function(loginParams) {
@@ -15,6 +16,10 @@ var ClientActions = {
 
   fetchCurrentUser: function() {
     ServerAuthApiUtil.fetchCurrentUser();
+  },
+
+  fetchAllSongs: function() {
+    ServerSongApiUtil.fetchAllSongs();
   }
 };
 

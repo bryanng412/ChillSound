@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'cloudinary'
+
+User.create!(username: "asdf",
+            password: "password")
+
+title = "Counting Stars"
+artist = "Nujabes"
+description = "chill"
+audio_url = "http://res.cloudinary.com/chillsound/video/upload/v1461784358/Nujabes_-_Counting_Stars_qdd7sa.mp3"
+user_id = 1
+
+Song.create!(title: title,
+            artist: artist,
+            description: description,
+            audio_url: audio_url,
+            user_id: user_id)
