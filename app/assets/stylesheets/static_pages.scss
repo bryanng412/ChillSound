@@ -1,3 +1,50 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#app-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbarList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 10px;
+  margin: 5px;
+}
+
+.navbarListItem {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.navbarListItem:hover {
+  background-color: orange;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userInputField {
+  padding: 15px;
+  margin: 10px;
+  border: solid 1px black;
+}
+
+.userSubmit {
+  width: 200px;
+  padding: 15px;
+  margin: 10px;
+}
+
+.userSubmit:hover {
+  background-color: orange;
+}
