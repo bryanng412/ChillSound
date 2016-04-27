@@ -63,7 +63,7 @@ var LoginForm = React.createClass({
               onChange={this.handlePasswordChange}
             />
           </label>
-          <input className="userSubmit" type="submit"/>
+          <input className="userSubmit" type="submit" value="Log In"/>
         </form>
         <Errors/>
       </div>
