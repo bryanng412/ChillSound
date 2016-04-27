@@ -9,10 +9,8 @@ var SongIndexItem = React.createClass({
 
   render: function() {
     return (
-      <li>
-        <button onClick={this.playSong}>
-          Play {this.props.song.title}
-        </button>
+      <li className="songIndexItem" onClick={this.playSong}>
+        {this.props.song.artist} - {this.props.song.title}
       </li>
     );
   }

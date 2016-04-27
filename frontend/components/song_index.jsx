@@ -27,7 +27,7 @@ var SongIndex = React.createClass({
     });
 
     return (
-      <ul>
+      <ul className="songIndex">
         {songs}
       </ul>
     );
