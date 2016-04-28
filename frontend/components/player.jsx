@@ -65,10 +65,10 @@ var Player = React.createClass({
     }
 
     if (this.state.isPlaying) {
-      playPauseButton = <button onClick={this.pause}>PAUSE</button>;
+      playPauseButton = <button onClick={this.pause}>▌▌</button>;
     } else {
       if (this.state.currentSong) {
-        playPauseButton = <button onClick={this.play}>PLAY</button>;
+        playPauseButton = <button onClick={this.play}>▶</button>;
       }
     }
 
