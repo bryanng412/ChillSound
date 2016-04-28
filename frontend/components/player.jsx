@@ -14,6 +14,13 @@ var Player = React.createClass({
     this.playerListenerToken.remove();
   },
 
+  componentDidUpdate: function() {
+    var song = document.getElementsByTagName('audio')[0];
+    if (song) {
+      song.volume = 0.55;
+    }
+  },
+
   _onChange: function() {
     if (PlayerStore.nowPlaying()){
       this.setState({
@@ -21,6 +28,10 @@ var Player = React.createClass({
         isPlaying: true
       });
     }
+  },
+
+  _onSongEnd: function() {
+    this.setState({ currentSong: null, isPlaying: false });
   },
 
   pause: function(e) {
@@ -34,7 +45,7 @@ var Player = React.createClass({
 
   play: function(e) {
     e.preventDefault();
-    document.getElementsByTagName('audio')[0].play();
+    var song = document.getElementsByTagName('audio')[0].play();
     this.setState({
       currentSong: this.state.currentSong,
       isPlaying: true
@@ -42,9 +53,10 @@ var Player = React.createClass({
   },
 
   render: function() {
-    var song, playPauseButton;
+    var song, playPauseButton, player;
     if (this.state.currentSong) {
       song = (<audio
+                onEnded={this._onSongEnd}
                 src={this.state.currentSong.audio_url}
                 autoPlay
               />);
@@ -60,14 +72,19 @@ var Player = React.createClass({
       }
     }
 
-    return (
-      <div className="musicPlayer">
-        {song}
-        {playPauseButton}
-      </div>
-    );
-  }
+    if (this.state.currentSong) {
+      player = (
+        <div className="musicPlayer">
+          {song}
+          {playPauseButton}
+        </div>
+      );
+    } else {
+      player = <div/>;
+    }
 
+    return player;
+  }
 });
 
 module.exports = Player;

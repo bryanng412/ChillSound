@@ -42,6 +42,12 @@ var Navbar = React.createClass({
     HashHistory.push("signup/");
   },
 
+  splashPage: function(e) {
+    e.preventDefault();
+    HashHistory.push("/");
+  },
+
+
   render: function() {
     var navBarItems = this.state.currentUser ?
       (<ul className="navbarList">
@@ -56,7 +62,12 @@ var Navbar = React.createClass({
 
     return (
       <nav className="navbar">
-        {navBarItems}
+        <div className="logo" onClick={this.splashPage}>
+          <img src="http://res.cloudinary.com/chillsound/image/upload/v1461803060/Chill-logo_izvdav.png"/>
+        </div>
+        <div className="navBarItems">
+          {navBarItems}
+        </div>
       </nav>
     );
   }
