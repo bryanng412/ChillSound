@@ -1,10 +1,8 @@
 #app-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-content: space-around;
   position: fixed;
-  width: 100%;
-  height: 100%;
 }
 
 .navbar {
@@ -15,6 +13,8 @@
   max-height: 75px;
   margin-bottom: 10px;
   background-color: DarkSlateGray;
+  color: Ivory;
+  opacity: .65;
 }
 
 .navbarList {
@@ -99,13 +99,13 @@ video {
   height: 200px;
   padding: 20px;
   margin: 30px;
-  border: 1px solid Ivory;
+  border: 1px solid;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 25px;
-  color: Ivory;
+  color: AntiqueWhite;
 }
 
 .musicPlayer {
@@ -116,4 +116,5 @@ video {
   min-width: 100%;
   height: 20px;
   justify-content: center;
+  opacity: .65;
 }
