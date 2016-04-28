@@ -16,9 +16,9 @@ var Player = React.createClass({
 
   componentDidUpdate: function() {
     var song = document.getElementsByTagName('audio')[0];
-    if (song) {
-      song.volume = 0.55;
-    }
+    // if (song) {
+    //   song.volume = 0.55;
+    // }
   },
 
   _onChange: function() {
