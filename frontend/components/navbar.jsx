@@ -63,7 +63,7 @@ var Navbar = React.createClass({
     return (
       <nav className="navbar">
         <div className="logo" onClick={this.splashPage}>
-          <img src="http://res.cloudinary.com/chillsound/image/upload/v1461803060/Chill-logo_izvdav.png"/>
+          <img src="http://res.cloudinary.com/chillsound/image/upload/v1461816117/Chill-logo_freakm.png"/>
         </div>
         <div className="navBarItems">
           {navBarItems}
