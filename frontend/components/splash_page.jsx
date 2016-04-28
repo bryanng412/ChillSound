@@ -8,7 +8,7 @@ var SplashPage = React.createClass({
       <div className="splashWrapper">
         <video className="videoBg" autoPlay loop>
           <source
-            src="http://res.cloudinary.com/chillsound/video/upload/v1461805151/Lightmirror_frzgxe.mp4"
+            src="https://res.cloudinary.com/chillsound/video/upload/v1461805151/Lightmirror_frzgxe.mp4"
             type="video/mp4"/>
         </video>
         <SongIndex/>
