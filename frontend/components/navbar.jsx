@@ -3,8 +3,11 @@ var UserStore = require('../stores/user_store.js');
 var ClientActions = require('../actions/client_actions.js');
 var HashHistory = require('react-router').hashHistory;
 var CurrentUserState = require('../mixins/current_user_state.js');
+var Navbar = require('react-bootstrap').Navbar;
+var Nav = require('react-bootstrap').Nav;
+var NavItem = require('react-bootstrap').NavItem;
 
-var Navbar = React.createClass({
+module.exports = React.createClass({
   mixins: [CurrentUserState],
 
   getInitialState: function() {
@@ -50,27 +53,40 @@ var Navbar = React.createClass({
 
   render: function() {
     var navBarItems = this.state.currentUser ?
-      (<ul className="navbarList">
-        <li className="navbarListItem">Profile</li>
-        <li className="navbarListItem" onClick={this.logout}>Sign Out</li>
-      </ul>)
+      (<Nav bsStyle="pills" pullRight>
+        <NavItem className="navItem" eventKey={1}>Hi {this.state.currentUser.username}</NavItem>
+        <NavItem className="navItem" eventKey={2}>Upload</NavItem>
+        <NavItem className="navItem" eventKey={3}>Profile</NavItem>
+        <NavItem className="navItem" eventKey={4}>Sign Out</NavItem>
+      </Nav>)
       :
-      (<ul className="navbarList">
-        <li className="navbarListItem" onClick={this.login}>Login</li>
-        <li className="navbarListItem" onClick={this.signUp}>Sign Up</li>
-      </ul>);
+      (<Nav bsStyle="pills" pullRight>
+        <NavItem className="navItem" eventKey={5}>Login</NavItem>
+        <NavItem className="navItem" eventKey={6}>Sign Up</NavItem>
+      </Nav>);
 
     return (
-      <nav className="navbar">
-        <div className="logo" onClick={this.splashPage}>
-          <img src="https://res.cloudinary.com/chillsound/image/upload/v1461816117/Chill-logo_freakm.png"/>
-        </div>
-        <div className="navBarItems">
+      <Navbar inverse fixedTop>
+        <Navbar.Header>
+          <div className="logo" onClick={this.splashPage}>
+            <img src="https://res.cloudinary.com/chillsound/image/upload/v1461816117/Chill-logo_freakm.png"/>
+          </div>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
           {navBarItems}
-        </div>
-      </nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 });
 
-module.exports = Navbar;
+
+// <nav className="navbar">
+//   <div className="logo" onClick={this.splashPage}>
+//     <img src="https://res.cloudinary.com/chillsound/image/upload/v1461816117/Chill-logo_freakm.png"/>
+//   </div>
+//   <div className="navBarItems">
+//     {navBarItems}
+//   </div>
+// </nav>

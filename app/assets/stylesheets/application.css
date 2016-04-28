@@ -13,9 +13,6 @@
  *= require_tree .
  *= require_self
  */
-body {
-  overflow: scroll;
-}
 
  html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,

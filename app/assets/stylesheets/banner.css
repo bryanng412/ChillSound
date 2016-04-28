@@ -1,0 +1,20 @@
+.banner {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  padding-top: 75px;
+  flex-direction: column;
+  align-items: center;
+  color: AntiqueWhite;
+}
+
+.bannerItem {
+  padding: 30px;
+}
+
+.bannerButton {
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 20px;
+  color: AntiqueWhite;
+}

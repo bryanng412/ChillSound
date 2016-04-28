@@ -1,0 +1,26 @@
+.fade-appear {
+  opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.translate-appear {
+  transform: translateY(100vw);
+}
+
+.translate-appear.translate-appear-active {
+  transform: translatY(0);
+  transition: all 500ms ease-in-out;
+}
+
+.translate-leave {
+    transform: translateY(0);
+}
+
+.translate-leave.translate-leave-active {
+    transform: translateY(-100vw);
+  transition: all 1000ms ease-in-out;
+}

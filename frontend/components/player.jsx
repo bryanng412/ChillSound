@@ -1,5 +1,7 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+
 
 var Player = React.createClass({
   getInitialState: function() {
@@ -12,13 +14,6 @@ var Player = React.createClass({
 
   componentWillUnmount: function() {
     this.playerListenerToken.remove();
-  },
-
-  componentDidUpdate: function() {
-    var song = document.getElementsByTagName('audio')[0];
-    if (song.volume) {
-      song.volume = 0.55;
-    }
   },
 
   _onChange: function() {
@@ -74,10 +69,18 @@ var Player = React.createClass({
 
     if (this.state.currentSong) {
       player = (
-        <div className="musicPlayer">
-          {song}
-          {playPauseButton}
-        </div>
+        <ReactCSSTransitionGroup
+          className="musicPlayer"
+          transitionName="translate"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+          transitionAppear={true}
+          transitionAppearTimeout={1000}>
+          <div>
+            {song}
+            {playPauseButton}
+          </div>
+        </ReactCSSTransitionGroup>
       );
     } else {
       player = <div/>;
