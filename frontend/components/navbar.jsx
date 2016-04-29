@@ -9,6 +9,7 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var LoginModal = require('./login_modal.jsx');
 var SignUpModal = require('./signup_modal.jsx');
+var Player = require('./player.jsx');
 
 module.exports = React.createClass({
   mixins: [CurrentUserState],
@@ -53,6 +54,7 @@ module.exports = React.createClass({
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
+          <Player/>
           {navBarItems}
         </Navbar.Collapse>
       </Navbar>

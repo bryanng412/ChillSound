@@ -1,7 +1,7 @@
 class Api::SongsController < ApplicationController
   def index
     #get top 25 songs
-    @songs = Song.includes(:user).order(:plays).first(25)
+    @songs = Song.includes(:user).order(:plays).first(12)
 
     render "api/songs/index"
   end

@@ -1,4 +1,6 @@
 .navbar {
+  display: flex;
+  justify-content: center;
   opacity: .75;
   background-color: GhostWhite;
 }
@@ -16,7 +18,11 @@
 }
 
 .navbar-collapse {
-  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   margin: 15px;
   color: Ivory;
   font-size: 20px;
@@ -24,8 +30,8 @@
 
 .nav-pills {
   display: flex;
-  margin-right: 15px;
   justify-content: center;
+  margin-right: 15px;
 }
 
 .navGreeting {
@@ -71,8 +77,8 @@
 }
 
 .logo {
-  width: 65px;
-  height: 65px;
+  width: 75px;
+  height: 75px;
   margin-left: 15px;
   cursor: pointer;
 }

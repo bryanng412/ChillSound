@@ -1,7 +1,11 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-
+var Glyphicon = require('react-bootstrap').Glyphicon;
+var Nav = require('react-bootstrap').Nav;
+var NavItem = require('react-bootstrap').NavItem;
+var Image = require('react-bootstrap').Image;
+var ProgressBar = require('react-bootstrap').ProgressBar;
 
 var Player = React.createClass({
   getInitialState: function() {
@@ -60,27 +64,25 @@ var Player = React.createClass({
     }
 
     if (this.state.isPlaying) {
-      playPauseButton = <button onClick={this.pause}>▌▌</button>;
+      playPauseButton = <Glyphicon onClick={this.pause} glyph="pause"/>;
     } else {
       if (this.state.currentSong) {
-        playPauseButton = <button onClick={this.play}>▶</button>;
+        playPauseButton = <Glyphicon onClick={this.play} glyph="play"/>;
       }
     }
 
     if (this.state.currentSong) {
       player = (
-        <ReactCSSTransitionGroup
-          className="musicPlayer"
-          transitionName="translate"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-          transitionAppear={true}
-          transitionAppearTimeout={1000}>
-          <div>
-            {song}
-            {playPauseButton}
-          </div>
-        </ReactCSSTransitionGroup>
+        <Nav className="musicPlayer">
+          {song}
+          <NavItem><Glyphicon glyph="backward"/></NavItem>
+          <NavItem>{playPauseButton}</NavItem>
+          <NavItem><Glyphicon glyph="forward"/></NavItem>
+          <Image
+            className="playerIcon"
+            src={this.state.currentSong.image_url}
+          />
+        </Nav>
       );
     } else {
       player = <div/>;

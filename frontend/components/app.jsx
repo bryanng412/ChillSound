@@ -10,7 +10,6 @@ var App = React.createClass({
         <Navbar/>
         <Banner/>
         {this.props.children}
-        <Player/>
       </div>
     );
   }
