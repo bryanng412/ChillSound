@@ -1,9 +1,11 @@
 var React = require('react');
 var ClientActions = require('../actions/client_actions.js');
+var ErrorActions = require('../actions/error_actions.js');
 var HashHistory = require('react-router').hashHistory;
 var Errors = require('./errors.jsx');
 var UserStore = require('../stores/user_store.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var NavItem = require('react-bootstrap').NavItem;
 var Modal = require('react-bootstrap').Modal;
 var FormGroup = require('react-bootstrap').FormGroup;
 var ControlLabel = require('react-bootstrap').ControlLabel;
@@ -46,6 +48,8 @@ var SignUpModal = React.createClass({
         password: this.state.password1
       });
       this.close();
+    } else {
+      ErrorActions.receiveErrors(['Passwords must match']);
     }
   },
 
@@ -64,13 +68,13 @@ var SignUpModal = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <p onClick={this.open}>Sign Up</p>
+      <NavItem className="navItem" onClick={this.open}>
+        <p>Sign Up</p>
         <Modal
           show={this.state.show}
           onHide={this.close}
           >
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>Sign Up</Modal.Title>
           </Modal.Header>
           <form className="modal-form" onSubmit={this.handleSubmit}>
@@ -108,7 +112,7 @@ var SignUpModal = React.createClass({
             <Errors/>
           </form>
         </Modal>
-      </div>
+      </NavItem>
     );
   }
 

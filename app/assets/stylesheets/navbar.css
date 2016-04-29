@@ -1,5 +1,6 @@
 .navbar {
   opacity: .75;
+  background-color: GhostWhite;
 }
 
 .container{
@@ -27,6 +28,13 @@
   justify-content: center;
 }
 
+.navGreeting {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  color: black;
+}
+
 .navItem {
   display: inline-block;
   vertical-align: middle;
@@ -47,7 +55,7 @@
   left: 50%;
   right: 50%;
   bottom: 0;
-  background: Ivory;
+  background: black;
   height: 4px;
   -webkit-transition-property: left, right;
   transition-property: left, right;

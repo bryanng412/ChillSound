@@ -3,6 +3,7 @@ var ClientActions = require('../actions/client_actions.js');
 var Errors = require('./errors.jsx');
 var UserStore = require('../stores/user_store.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var NavItem = require('react-bootstrap').NavItem;
 var Modal = require('react-bootstrap').Modal;
 var FormGroup = require('react-bootstrap').FormGroup;
 var ControlLabel = require('react-bootstrap').ControlLabel;
@@ -47,13 +48,13 @@ var LoginModal = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <p onClick={this.open}>Login</p>
+      <NavItem className="navItem" onClick={this.open}>
+        <p>Login</p>
         <Modal
           show={this.state.show}
           onHide={this.close}
           >
-          <Modal.Header>
+          <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <form className="modal-form" onSubmit={this.handleSubmit}>
@@ -78,7 +79,7 @@ var LoginModal = React.createClass({
             <Errors/>
           </form>
         </Modal>
-      </div>
+      </NavItem>
     );
   }
 });
