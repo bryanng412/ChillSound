@@ -24,11 +24,11 @@ UserStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case AuthConstants.LOGIN:
       setCurrentUser(payload.user);
-      this.__emitChange();
+      UserStore.__emitChange();
       break;
     case AuthConstants.LOGOUT:
       resetCurrentUser();
-      this.__emitChange();
+      UserStore.__emitChange();
       break;
   }
 };
