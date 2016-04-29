@@ -8,9 +8,9 @@
 
 ChillSound is a web application inspired by Soundcloud to listen and share chill music that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
-- [ ] New account creation, login, and guest/demo login
-- [ ] Smooth, bug-free navigation
-- [ ] Adequate seed data to demonstrate the site's features
+- [X] New account creation, login, and guest/demo login
+- [X] Smooth, bug-free navigation
+- [X] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for a Soundcloud-inspired site: Docked music player, playlist creation and editing, song comments and likes, song/artist search, and song uploading
 - [ ] Hosting on Heroku
 - [ ] CSS styling that is satisfactorily visually appealing
@@ -47,35 +47,35 @@ ChillSound will allow users to do the following:
 
 **Objective:** Functioning rails project with Authentication
 
-- [ ] create new project
-- [ ] create `User` model
-- [ ] authentication (including frontend auth)
-- [ ] user signup/signin pages
-- [ ] blank landing page after signin
+- [X] create new project
+- [X] create `User` model
+- [X] authentication (including frontend auth)
+- [X] user signup/signin pages
+- [X] blank landing page after signin
 
 ### Phase 2: Song Model, API, and basic APIUtil (1.5 days)
 
 **Objective:** Songs can be created, read, edited and destroyed through
 the API.
 
-- [ ] create `Song` model
-- [ ] seed the database with a small amount of test data
-- [ ] CRUD API for notes (`SongsController`)
-- [ ] jBuilder views for songs
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [X] create `Song` model
+- [X] seed the database with a small amount of test data
+- [X] CRUD API for songs (`SongsController`)
+- [X] jBuilder views for songs
+- [X] setup Webpack & Flux scaffold
+- [X] setup `APIUtil` to interact with the API
+- [X] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
 **Objective:** Songs can be created, read, edited and destroyed with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [X] setup the flux loop with skeleton files
+- [X] setup React Router
 - implement each note component, building out the flux loop as needed.
-  - [ ] `SongIndex`
-  - [ ] `SongIndexItem`
+  - [X] `SongIndex`
+  - [X] `SongIndexItem`
   - [ ] `SongForm`
 - [ ] save Songs to the DB when the form loses focus or is left idle
   after editing.
@@ -83,7 +83,7 @@ user interface.
 ### Phase 4: Music Player (1 day)
 
 **Objective** Build docked music player that will play and queue songs
-- [ ] Dock player at bottom
+- [X] Dock player at top
 - [ ] Continuously play music in queue
 
 ### Phase 5: Start Styling (0.5 days)
