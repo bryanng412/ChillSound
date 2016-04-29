@@ -78,6 +78,7 @@ var Player = React.createClass({
           <NavItem><Glyphicon glyph="backward"/></NavItem>
           <NavItem>{playPauseButton}</NavItem>
           <NavItem><Glyphicon glyph="forward"/></NavItem>
+          <NavItem><Glyphicon glyph="list"/></NavItem>
           <Image
             className="playerIcon"
             src={this.state.currentSong.image_url}

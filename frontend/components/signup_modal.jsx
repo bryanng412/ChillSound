@@ -3,6 +3,7 @@ var ClientActions = require('../actions/client_actions.js');
 var ErrorActions = require('../actions/error_actions.js');
 var HashHistory = require('react-router').hashHistory;
 var Errors = require('./errors.jsx');
+var ErrorStore = require('../stores/error_store.js');
 var UserStore = require('../stores/user_store.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var NavItem = require('react-bootstrap').NavItem;
@@ -47,9 +48,12 @@ var SignUpModal = React.createClass({
         username: this.state.username,
         password: this.state.password1
       });
-      this.close();
+      if (ErrorStore.all().length === 0){
+        this.close();
+        this.setState({ show: false, username: "", password1: "", password2: ""});
+      }
     } else {
-      ErrorActions.receiveErrors(['Passwords must match']);
+      ErrorActions.receiveErrors(['Passwords must match and be 6 or more characters']);
     }
   },
 
