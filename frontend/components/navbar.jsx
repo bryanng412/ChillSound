@@ -4,6 +4,7 @@ var UserStore = require('../stores/user_store.js');
 var ClientActions = require('../actions/client_actions.js');
 var HashHistory = require('react-router').hashHistory;
 var CurrentUserState = require('../mixins/current_user_state.js');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var Navbar = require('react-bootstrap').Navbar;
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
@@ -12,7 +13,7 @@ var SignUpModal = require('./signup_modal.jsx');
 var Player = require('./player.jsx');
 
 module.exports = React.createClass({
-  mixins: [CurrentUserState],
+  mixins: [LinkedStateMixin, CurrentUserState],
 
   handleSelect: function(eventKey) {
     switch (eventKey) {

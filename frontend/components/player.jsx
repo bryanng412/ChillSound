@@ -6,6 +6,7 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var Image = require('react-bootstrap').Image;
 var ProgressBar = require('react-bootstrap').ProgressBar;
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var Player = React.createClass({
   getInitialState: function() {
@@ -73,17 +74,25 @@ var Player = React.createClass({
 
     if (this.state.currentSong) {
       player = (
-        <Nav className="musicPlayer">
-          {song}
-          <NavItem><Glyphicon glyph="backward"/></NavItem>
-          <NavItem>{playPauseButton}</NavItem>
-          <NavItem><Glyphicon glyph="forward"/></NavItem>
-          <NavItem><Glyphicon glyph="list"/></NavItem>
-          <Image
-            className="playerIcon"
-            src={this.state.currentSong.image_url}
-          />
-        </Nav>
+        <ReactCSSTransitionGroup
+          transitionName="translate"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+        >
+          <Nav className="musicPlayer">
+            {song}
+            <NavItem><Glyphicon glyph="backward"/></NavItem>
+            <NavItem>{playPauseButton}</NavItem>
+            <NavItem><Glyphicon glyph="forward"/></NavItem>
+            <NavItem><Glyphicon glyph="list"/></NavItem>
+            <Image
+              className="playerIcon"
+              src={this.state.currentSong.image_url}
+              />
+          </Nav>
+        </ReactCSSTransitionGroup>
       );
     } else {
       player = <div/>;
