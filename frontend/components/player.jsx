@@ -12,7 +12,8 @@ var Player = React.createClass({
       currentSong: null,
       isPlaying: false,
       currentTime: 0,
-      percentPlayed: 0
+      percentPlayed: 0,
+      muted: false
     };
   },
 
@@ -40,8 +41,6 @@ var Player = React.createClass({
     var date = new Date(null);
     var timeInSeconds = Math.round(player.currentTime);
     date.setSeconds(timeInSeconds);
-    var utc = date.toUTCString();
-    var time = utc.substr(utc.indexOf(":"), 8);
     var parsedTime = date.toISOString().substr(14, 5);
 
     if (player.currentTime > 0) {
@@ -64,6 +63,13 @@ var Player = React.createClass({
     player.play();
   },
 
+  seek: function(e) {
+    e.preventDefault();
+    var player = document.getElementById('player');
+    var targetTime = (e.target.value / 100) * player.duration;
+    player.currentTime = targetTime;
+  },
+
   pause: function(e) {
     e.preventDefault();
     document.getElementById('player').pause();
@@ -80,6 +86,12 @@ var Player = React.createClass({
       currentSong: this.state.currentSong,
       isPlaying: true
     });
+  },
+
+  toggleMute: function(e) {
+    e.preventDefault();
+    document.getElementById('player').muted ^= true;
+    this.setState({muted: !this.state.muted});
   },
 
   render: function() {
@@ -106,6 +118,17 @@ var Player = React.createClass({
                             <Glyphicon glyph="play"/>
                           </NavItem>);
       }
+    }
+
+    var volumeIcon;
+    if (this.state.muted) {
+      volumeIcon = (
+        <NavItem onClick={this.toggleMute}><Glyphicon glyph="volume-off"/></NavItem>
+      );
+    } else {
+      volumeIcon = (
+        <NavItem onClick={this.toggleMute}><Glyphicon glyph="volume-up"/></NavItem>
+      );
     }
 
     if (this.state.currentSong) {
@@ -137,7 +160,10 @@ var Player = React.createClass({
               min="0"
               max="100"
               step="1"
+              onChange={this.seek}
+              onInput={this.seek}
             />
+          {volumeIcon}
           </Nav>
         </ReactCSSTransitionGroup>
       );
