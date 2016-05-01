@@ -2,7 +2,6 @@ var React = require('react');
 var ClientActions = require('../actions/client_actions.js');
 var Errors = require('./errors.jsx');
 var UserStore = require('../stores/user_store.js');
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var NavItem = require('react-bootstrap').NavItem;
 var Modal = require('react-bootstrap').Modal;
 var FormGroup = require('react-bootstrap').FormGroup;
@@ -85,36 +84,3 @@ var LoginModal = React.createClass({
 });
 
 module.exports = LoginModal;
-
-// <ReactCSSTransitionGroup
-//   transitionName="fade"
-//   transitionEnterTimeout={500}
-//   transitionLeaveTimeout={500}
-//   transitionAppear={true}
-//   transitionAppearTimeout={1000}>
-//   <div className="formWrapper">
-//     <h1>Log In</h1>
-//     <form className="userForm" onSubmit={this.handleSubmit}>
-//       <label className="userLabel">Username
-//         <input
-//           className="userInputField"
-//           type="text"
-//           value={this.state.username}
-//           onChange={this.handleUsernameChange}
-//           />
-//       </label>
-//       <label className="userLabel">Password
-//         <input
-//           className="userInputField"
-//           type="password"
-//           value={this.state.password}
-//           onChange={this.handlePasswordChange}
-//           />
-//       </label>
-//       <input className="userSubmit" type="submit" value="Log In"/>
-//     </form>
-//     <Errors/>
-//   </div>
-// </ReactCSSTransitionGroup>
-// );
-// }

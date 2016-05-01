@@ -11,6 +11,7 @@ var NavItem = require('react-bootstrap').NavItem;
 var LoginModal = require('./login_modal.jsx');
 var SignUpModal = require('./signup_modal.jsx');
 var Player = require('./player.jsx');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, CurrentUserState],
@@ -34,14 +35,14 @@ module.exports = React.createClass({
 
   render: function() {
     var navBarItems = this.state.currentUser ?
-      (<Nav bsStyle="pills" onSelect={this.handleSelect} pullRight>
+      (<Nav key="loggedIn" bsStyle="pills" onSelect={this.handleSelect} pullRight>
         <p className="navGreeting">Hi {this.state.currentUser.username}</p>
         <NavItem className="navItem" eventKey={1}>Upload</NavItem>
         <NavItem className="navItem" eventKey={2}>Profile</NavItem>
         <NavItem className="navItem" eventKey={3}>Sign Out</NavItem>
       </Nav>)
       :
-      (<Nav bsStyle="pills" pullRight>
+      (<Nav key="loggedOut" bsStyle="pills" pullRight>
         <LoginModal/>
         <SignUpModal/>
       </Nav>);
@@ -56,7 +57,16 @@ module.exports = React.createClass({
         </Navbar.Header>
         <Navbar.Collapse>
           <Player/>
-          {navBarItems}
+          <ReactCSSTransitionGroup
+            transitionName="translate"
+            transitionLeaveTimeout={500}
+            transitionEnterTimeout={500}
+            transitionEnter={true}
+            transitionAppear={false}
+            transitionLeave={false}
+          >
+            {navBarItems}
+          </ReactCSSTransitionGroup>
         </Navbar.Collapse>
       </Navbar>
     );

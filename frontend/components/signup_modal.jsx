@@ -5,7 +5,6 @@ var HashHistory = require('react-router').hashHistory;
 var Errors = require('./errors.jsx');
 var ErrorStore = require('../stores/error_store.js');
 var UserStore = require('../stores/user_store.js');
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var NavItem = require('react-bootstrap').NavItem;
 var Modal = require('react-bootstrap').Modal;
 var FormGroup = require('react-bootstrap').FormGroup;
