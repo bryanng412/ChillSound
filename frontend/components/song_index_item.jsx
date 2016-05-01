@@ -16,7 +16,7 @@ var SongIndexItem = React.createClass({
           <h3>{this.props.song.title}</h3>
           <p>{this.props.song.artist}</p>
           <div className="playIcon">
-            <Glyphicon glyph="play-circle" />
+            <Glyphicon onClick={this.playSong} glyph="play-circle" />
           </div>
           <div className="icons">
             <Glyphicon glyph="heart-empty" />

@@ -9,6 +9,13 @@
   min-width: 100%;
 }
 
+.navbar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 .navbar-collapse {
   display: flex;
   flex-direction: column;
@@ -17,20 +24,16 @@
   align-content: center;
   color: Ivory;
   font-size: 20px;
-  padding: 10px;
+  overflow: hidden;
 }
 
 .nav-pills {
   display: flex;
-  justify-content: center;
-  margin-right: 15px;
-}
-
-.navGreeting {
-  display: flex;
+  flex-direction: row;
   align-items: center;
-  padding-right: 10px;
-  color: black;
+  justify-content: center;
+  margin-top: 10px;
+  margin-right: 15px;
 }
 
 .navItem {
@@ -72,6 +75,7 @@
   width: 70px;
   height: 70px;
   margin-left: 15px;
+  margin-right: 40px;
   margin-bottom: 10px;
   cursor: pointer;
 }

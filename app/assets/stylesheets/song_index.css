@@ -4,16 +4,16 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 
 .songIndexItem {
   position: relative;
   overflow: hidden;
-  height: auto;
-  width: auto;
-  max-width: 275px;
-  max-height: 275px;
-  margin: 75px;
+  width: 325px;
+  height: 325px;
+  margin: 25px;
   color: white;
   font-size: 16px;
 }
@@ -75,6 +75,7 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .songIndexItem h3,
 .songIndexItem p,
@@ -113,6 +114,7 @@
   padding-left: 45px;
   padding-right: 45px;
   justify-content: space-between;
+  align-self: baseline;
 }
 
 .songIndexItem .glyphicon {
@@ -125,17 +127,17 @@
 }
 
 .glyphicon-heart-empty {
-  font-size: 35px;
+  font-size: 40px;
   opacity: .65;
 }
 
 .glyphicon-heart {
-  font-size: 35px;
+  font-size: 40px;
   opacity: .65;
 }
 
 .glyphicon-plus {
-  font-size: 35px;
+  font-size: 40px;
   opacity: .65;
 }
 

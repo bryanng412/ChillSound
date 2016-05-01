@@ -1,8 +1,11 @@
 .musicPlayer {
+  width: auto;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  margin-left: 40px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .glyphicon {
@@ -24,6 +27,7 @@
 .progressBar {
   -webkit-appearance: none;
   min-width: 350px;
+  max-width: 350px;
   height: 10px;
   border-radius: 5px;
   background: #d7dcdf;

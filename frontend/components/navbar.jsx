@@ -36,7 +36,7 @@ module.exports = React.createClass({
   render: function() {
     var navBarItems = this.state.currentUser ?
       (<Nav key="loggedIn" bsStyle="pills" onSelect={this.handleSelect} pullRight>
-        <p className="navGreeting">Hi {this.state.currentUser.username}</p>
+        <Navbar.Text>Hi {this.state.currentUser.username}</Navbar.Text>
         <NavItem className="navItem" eventKey={1}>Upload</NavItem>
         <NavItem className="navItem" eventKey={2}>Profile</NavItem>
         <NavItem className="navItem" eventKey={3}>Sign Out</NavItem>
