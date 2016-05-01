@@ -9,23 +9,15 @@
   min-width: 100%;
 }
 
-.navbar-header {
-  align-self: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .navbar-collapse {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-  margin: 15px;
   color: Ivory;
   font-size: 20px;
+  padding: 10px;
 }
 
 .nav-pills {
@@ -80,5 +72,6 @@
   width: 70px;
   height: 70px;
   margin-left: 15px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
