@@ -7,11 +7,187 @@
 }
 
 .songIndexItem {
+  position: relative;
+  overflow: hidden;
   height: auto;
   width: auto;
   max-width: 275px;
   max-height: 275px;
   margin: 75px;
+  color: white;
+  font-size: 16px;
+}
+
+.songIndexItem * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.songIndexItem img {
+  opacity: .9;
+  width: 100%;
+}
+.songIndexItem:after,
+.songIndexItem:before,
+.songIndexItem figcaption:after,
+.songIndexItem figcaption:before {
+  background: #0a0a0a;
+  width: 25%;
+  position: absolute;
+  content: '';
+  opacity: 0;
+  -webkit-transition: all 0.3s steps(4);
+  transition: all 0.3s steps(4);
+  z-index: 1;
+  bottom: 100%;
+  top: 0;
+}
+.songIndexItem:before {
+  left: 0;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+}
+.songIndexItem:after {
+  left: 25%;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+.songIndexItem figcaption:before {
+  left: 50%;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  z-index: -1;
+}
+.songIndexItem figcaption:after {
+  left: 75%;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+  z-index: -1;
+}
+.songIndexItem figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.songIndexItem h3,
+.songIndexItem p,
+.songIndexItem .playIcon,
+.songIndexItem .icons {
+  margin: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.songIndexItem h3 {
+  font-weight: 900;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.songIndexItem p {
+  font-weight: 300;
+}
+
+.songIndexItem .playIcon {
+  height: auto;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.songIndexItem .icons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-left: 45px;
+  padding-right: 45px;
+  justify-content: space-between;
+}
+
+.songIndexItem .glyphicon {
   cursor: pointer;
+}
+
+.glyphicon-play-circle {
+  font-size: 100px;
+  opacity: .65;
+}
+
+.glyphicon-heart-empty {
+  font-size: 35px;
+  opacity: .65;
+}
+
+.glyphicon-heart {
+  font-size: 35px;
+  opacity: .65;
+}
+
+.glyphicon-plus {
+  font-size: 35px;
+  opacity: .65;
+}
+
+.glyphicon:hover {
+  opacity: 1;
+}
+
+
+.songIndexItem:hover:after,
+.songIndexItem.hover:after,
+.songIndexItem:hover:before,
+.songIndexItem.hover:before,
+.songIndexItem:hover figcaption:after,
+.songIndexItem.hover figcaption:after,
+.songIndexItem:hover figcaption:before,
+.songIndexItem.hover figcaption:before {
+  bottom: 0;
+  opacity: 0.8;
+}
+.songIndexItem:hover figcaption h3,
+.songIndexItem.hover figcaption h3,
+.songIndexItem:hover figcaption p,
+.songIndexItem.hover figcaption p,
+.songIndexItem.hover figcaption .playIcon,
+.songIndexItem:hover figcaption .playIcon,
+.songIndexItem.hover figcaption .icons,
+.songIndexItem:hover figcaption .icons {
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+
+.songIndexItem figcaption h3:hover {
+  white-space: pre-wrap;
+  overflow: visible;
+}
+
+.songIndexItem:hover figcaption h3,
+.songIndexItem.hover figcaption h3{
+  opacity: .9;
+}
+
+.songIndexItem:hover figcaption p,
+.songIndexItem.hover figcaption p {
+  opacity: 0.7;
+}
+
+.songIndexItem:hover figcaption .playIcon,
+.songIndexItem.hover figcaption .playIcon {
+  opacity: 1;
+}
+
+.songIndexItem:hover figcaption .icons,
+.songIndexItem.hover figcaption .icons {
   opacity: .9;
 }

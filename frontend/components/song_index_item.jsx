@@ -1,6 +1,6 @@
 var React = require('react');
 var PlayerActions = require('../actions/player_actions.js');
-var Image = require('react-bootstrap').Image;
+var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var SongIndexItem = React.createClass({
   playSong: function(e) {
@@ -10,19 +10,23 @@ var SongIndexItem = React.createClass({
 
   render: function() {
     return (
-      <Image
-        className="songIndexItem"
-        src={this.props.song.image_url}
-        onClick={this.playSong}
-        responsive
-      />
+      <figure className="songIndexItem">
+        <img src={this.props.song.image_url}/>
+        <figcaption>
+          <h3>{this.props.song.title}</h3>
+          <p>{this.props.song.artist}</p>
+          <div className="playIcon">
+            <Glyphicon glyph="play-circle" />
+          </div>
+          <div className="icons">
+            <Glyphicon glyph="heart-empty" />
+            <Glyphicon glyph="plus" />
+          </div>
+        </figcaption>
+      </figure>
     );
   }
 
 });
 
 module.exports = SongIndexItem;
-
-// <li className="songIndexItem" onClick={this.playSong}>
-//   {this.props.song.artist} - {this.props.song.title}
-// </li>
