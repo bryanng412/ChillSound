@@ -1,5 +1,6 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
+var PlayerActions = require('../actions/player_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
@@ -94,6 +95,11 @@ var Player = React.createClass({
     this.setState({muted: !this.state.muted});
   },
 
+  toggleSidebar: function(e) {
+    e.preventDefault();
+    PlayerActions.toggleSidebar();
+  },
+
   render: function() {
     var song, playPauseButton, player;
     if (this.state.currentSong) {
@@ -131,6 +137,8 @@ var Player = React.createClass({
       );
     }
 
+    var sidebarContent = <div>asdf</div>;
+
     if (this.state.currentSong) {
       player = (
         <ReactCSSTransitionGroup
@@ -139,13 +147,14 @@ var Player = React.createClass({
           transitionAppearTimeout={500}
           transitionLeaveTimeout={500}
           transitionAppear={true}
+          transitionLeave={true}
         >
           <Nav key="musicPlayer" className="musicPlayer">
             {song}
             <NavItem onClick={this.backward}><Glyphicon glyph="backward"/></NavItem>
             {playPauseButton}
             <NavItem><Glyphicon glyph="forward"/></NavItem>
-            <NavItem><Glyphicon glyph="list"/></NavItem>
+            <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
             <Image
               className="playerIcon"
               src={this.state.currentSong.image_url}

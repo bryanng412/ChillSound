@@ -7,7 +7,14 @@ var PlayerActions = {
       actionType: PlayerConstants.AUDIO_URL_RECEIVED,
       song: song
     });
+  },
+
+  toggleSidebar: function() {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.TOGGLE_SIDEBAR
+    });
   }
+
 };
 
 module.exports = PlayerActions;

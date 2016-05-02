@@ -60,3 +60,18 @@
 	transform:   translate(250px,0);
 	transform: translate3d(250px,0,0);
 }
+
+
+.scroll-appear {
+  opacity: 0;
+  transform: translate(0,-250px);
+  transform: translate3d(0,-250px,0);
+}
+
+.scroll-appear.scroll-appear-active {
+  opacity: .75;
+	transform: translate3d(0,0,0);
+	transition-property: transform, opacity;
+	transition-duration: 500ms;
+	transition-timing-function: cubic-bezier(0.175, 0.665, 0.320, 1), linear;
+}

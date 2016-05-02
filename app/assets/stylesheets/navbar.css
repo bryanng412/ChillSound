@@ -3,6 +3,7 @@
   justify-content: center;
   opacity: .75;
   background-color: GhostWhite;
+  border-style: none;
 }
 
 .container{
