@@ -53,15 +53,27 @@ var Player = React.createClass({
   },
 
   _onSongEnd: function() {
-    this.setState({ currentSong: null, isPlaying: false });
+    if (PlayerStore.queue().length === 0) {
+      this.setState({ currentSong: null, isPlaying: false });
+    } else {
+      PlayerActions.playNextSong();
+      this.backward();
+    }
   },
 
   backward: function(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     var player = document.getElementById('player');
     player.pause();
     player.currentTime = 0;
     player.play();
+  },
+
+  forward: function(e){
+    e.preventDefault();
+    this._onSongEnd();
   },
 
   seek: function(e) {
@@ -82,7 +94,7 @@ var Player = React.createClass({
 
   play: function(e) {
     e.preventDefault();
-    var song = document.getElementById('player').play();
+    document.getElementById('player').play();
     this.setState({
       currentSong: this.state.currentSong,
       isPlaying: true
@@ -153,7 +165,7 @@ var Player = React.createClass({
             {song}
             <NavItem onClick={this.backward}><Glyphicon glyph="backward"/></NavItem>
             {playPauseButton}
-            <NavItem><Glyphicon glyph="forward"/></NavItem>
+            <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
             <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
             <Image
               className="playerIcon"

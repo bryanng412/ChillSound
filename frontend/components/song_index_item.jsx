@@ -8,6 +8,11 @@ var SongIndexItem = React.createClass({
     PlayerActions.playSong(this.props.song);
   },
 
+  addToQueue: function(e) {
+    e.preventDefault();
+    PlayerActions.addToQueue(this.props.song);
+  },
+
   render: function() {
     return (
       <figure className="songIndexItem">
@@ -20,7 +25,7 @@ var SongIndexItem = React.createClass({
           </div>
           <div className="icons">
             <Glyphicon glyph="heart-empty" />
-            <Glyphicon glyph="plus" />
+            <Glyphicon onClick={this.addToQueue} glyph="plus" />
           </div>
         </figcaption>
       </figure>
