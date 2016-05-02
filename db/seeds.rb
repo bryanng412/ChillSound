@@ -1,6 +1,9 @@
 User.create!(username: "asdf",
             password: "password")
 
+User.create!(username: "likeTest",
+            password: "password")
+
 song_params = [
   {
     title: "Counting Stars",
@@ -62,4 +65,8 @@ song_params.each { |params| Song.create!(params) }
     audio_url: "asdf",
     user_id: 1
   })
+end
+
+(1..3).each do |i|
+  Like.create!({user_id: 2, song_id: i})
 end

@@ -19,4 +19,8 @@ class Song < ActiveRecord::Base
             :user_id, :plays, presence: true
 
   belongs_to :user
+  has_many :likes
+  has_many :likers,
+    through: :likes,
+    source: :user
 end
