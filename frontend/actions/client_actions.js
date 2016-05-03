@@ -33,6 +33,7 @@ var ClientActions = {
 
   uploadSong: function(songParams) {
     ServerSongApiUtil.uploadSong(songParams);
+    this.fetchAllSongs();
   }
 };
 
