@@ -50,7 +50,6 @@ var UploadModal = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, results){
       if (!error) {
-        console.log(results);
         this.setState({image_url: results[0].secure_url});
       }
     }.bind(this));
@@ -62,7 +61,6 @@ var UploadModal = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, results){
       if (!error) {
-        console.log(results);
         this.setState({audio_url: results[0].secure_url});
       }
     }.bind(this));
@@ -75,7 +73,6 @@ var UploadModal = React.createClass({
     if (UserStore.currentUser()) {
       songParams["user_id"] = UserStore.currentUser().id;
     }
-    debugger;
     ClientActions.uploadSong(songParams);
     this.close();
   },

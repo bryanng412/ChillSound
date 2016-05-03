@@ -7,7 +7,7 @@ class Api::SongsController < ApplicationController
   end
 
   def create
-    @song = new Song(song_params)
+    @song = Song.new(song_params)
 
     if @song.save
       render "api/songs/show"
