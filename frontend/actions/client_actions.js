@@ -15,27 +15,24 @@ var ClientActions = {
     ServerAuthApiUtil.signUp(signUpParams);
   },
 
-  fetchCurrentUser: function() {
-    ServerAuthApiUtil.fetchCurrentUser();
-  },
-
   fetchAllSongs: function() {
     ServerSongApiUtil.fetchAllSongs();
   },
 
   like: function(userId, songId) {
     ServerUserApiUtil.like(userId, songId);
-    this.fetchCurrentUser();
   },
 
   unlike: function(likeId) {
     ServerUserApiUtil.unlike(likeId);
-    this.fetchCurrentUser();
   },
 
   uploadSong: function(songParams) {
     ServerSongApiUtil.uploadSong(songParams);
-    this.fetchAllSongs();
+  },
+
+  increasePlayCount: function(song) {
+    ServerSongApiUtil.increasePlayCount(song);
   }
 };
 

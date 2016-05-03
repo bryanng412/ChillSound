@@ -11,7 +11,7 @@ var SongActions = {
 
   receiveSong: function(song) {
     AppDispatcher.dispatch({
-      actionType: SongConstants.SONGS_RECEIVED,
+      actionType: SongConstants.SINGLE_SONG_RECEIVED,
       song: song
     });
   }

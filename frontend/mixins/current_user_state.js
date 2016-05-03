@@ -1,5 +1,5 @@
 var UserStore = require('../stores/user_store.js');
-var ClientActions = require('../actions/client_actions.js');
+var UserActions = require('../actions/user_actions.js');
 
 var CurrentUserState = {
   getInitialState: function() {
@@ -9,7 +9,7 @@ var CurrentUserState = {
   componentDidMount: function() {
     UserStore.addListener(this.updateUser);
     if (!UserStore.currentUser()) {
-      ClientActions.fetchCurrentUser();
+      UserActions.fetchCurrentUser();
     }
   },
 

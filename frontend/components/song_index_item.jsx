@@ -20,6 +20,8 @@ var SongIndexItem = React.createClass({
 
   playSong: function(e) {
     e.preventDefault();
+    ClientActions.increasePlayCount(this.props.song);
+    this.props.song.plays = parseInt(this.props.song.plays) + 1;
     PlayerActions.playSong(this.props.song);
   },
 

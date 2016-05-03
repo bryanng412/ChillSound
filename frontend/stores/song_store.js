@@ -22,7 +22,18 @@ SongStore.all = function() {
   Object.keys(_songs).forEach(function(id){
     songs.push(_songs[id]);
   });
-  return songs;
+  function sortByPlays(a, b) { //DESCENDING
+    a = parseInt(a["plays"]);
+    b = parseInt(b["plays"]);
+    if ( a < b ) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+  return songs.sort(sortByPlays);
 };
 
 SongStore.find = function(id) {
@@ -35,8 +46,9 @@ SongStore.__onDispatch = function(payload) {
       resetSongs(payload.songs);
       this.__emitChange();
       break;
-    case SongConstants.SONG_RECEIVED:
+    case SongConstants.SINGLE_SONG_RECEIVED:
       addSong(payload.song);
+      console.log(payload.song);
       this.__emitChange();
       break;
   }

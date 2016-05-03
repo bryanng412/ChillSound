@@ -1,8 +1,8 @@
+require 'byebug'
 class Api::SongsController < ApplicationController
   def index
     #get top 8 songs
-    @songs = Song.includes(:user).order(:plays).first(8)
-
+    @songs = Song.includes(:user).order(plays: :desc).first(8)
     render "api/songs/index"
   end
 
@@ -23,9 +23,10 @@ class Api::SongsController < ApplicationController
   end
 
   def update
-  end
-
-  def destroy
+    @song = Song.find(params[:id])
+    if @song.update(song_params)
+      render "api/songs/show"
+    end
   end
 
   private

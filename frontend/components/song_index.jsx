@@ -24,7 +24,7 @@ var SongIndex = React.createClass({
     this.setState({ songs: SongStore.all() });
   },
 
-  render: function() {
+  render: function() {    
     var songLikes = [];
     var songLikeIds = [];
     var songLikeIndex;

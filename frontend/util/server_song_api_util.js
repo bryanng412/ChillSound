@@ -38,6 +38,21 @@ var ServerSongApiUtil = {
         ErrorActions.receiveErrors(response.responseJSON.errors);
       }
     });
+  },
+
+  increasePlayCount: function(song){
+    $.ajax({
+      method: "PATCH",
+      url: "/api/songs/" + song.id,
+      data: { song:
+              {
+                plays: parseInt(song.plays) + 1
+              }
+            },
+      success: function(newSong) {
+        SongActions.receiveSong(newSong);
+      }
+    });
   }
 };
 
