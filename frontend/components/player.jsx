@@ -69,6 +69,7 @@ var Player = React.createClass({
     player.pause();
     player.currentTime = 0;
     player.play();
+    this.setState({isPlaying: true});
   },
 
   forward: function(e){

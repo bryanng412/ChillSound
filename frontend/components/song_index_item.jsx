@@ -33,7 +33,6 @@ var SongIndexItem = React.createClass({
     if (this.props.currentUser) {
       ClientActions.like(this.props.currentUser.id, this.props.song.id);
       this.setState( { liked: true });
-      ClientActions.fetchCurrentUser();
     } else {
       AuthActions.requireLogin();
     }
@@ -44,7 +43,6 @@ var SongIndexItem = React.createClass({
     if (this.props.currentUser) {
       ClientActions.unlike(this.props.likeId);
       this.setState( {liked: false });
-      ClientActions.fetchCurrentUser();
     } else {
       AuthActions.requireLogin();
     }

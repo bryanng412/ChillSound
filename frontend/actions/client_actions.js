@@ -25,10 +25,12 @@ var ClientActions = {
 
   like: function(userId, songId) {
     ServerUserApiUtil.like(userId, songId);
+    this.fetchCurrentUser();
   },
 
   unlike: function(likeId) {
     ServerUserApiUtil.unlike(likeId);
+    this.fetchCurrentUser();
   },
 
   uploadSong: function(songParams) {
