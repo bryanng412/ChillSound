@@ -73,7 +73,17 @@ var UploadModal = React.createClass({
     if (UserStore.currentUser()) {
       songParams["user_id"] = UserStore.currentUser().id;
     }
+    if (songParams["image_url"] === "") {
+      songParams["image_url"] = "https://res.cloudinary.com/chillsound/image/upload/v1462318674/music-placeholder_bfmdtw.png";
+    }
+
     ClientActions.uploadSong(songParams);
+    for (var key in songParams) {
+      if (songParams[key] === "") {
+        return;
+      }
+    }
+    this.state = this.getInitialState();
     this.close();
   },
 
