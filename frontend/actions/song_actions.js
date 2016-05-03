@@ -7,6 +7,13 @@ var SongActions = {
       actionType: SongConstants.SONGS_RECEIVED,
       songs: songs
     });
+  },
+
+  receiveSong: function(song) {
+    AppDispatcher.dispatch({
+      actionType: SongConstants.SONGS_RECEIVED,
+      song: song
+    });
   }
 };
 

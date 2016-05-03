@@ -21,6 +21,7 @@ var PlaylistBar = React.createClass({
     this.setState({ show: this.props.show });
   },
 
+
   onPlaylistChange: function() {
     this.setState({ playlistItems: PlayerStore.queue() });
   },
@@ -51,7 +52,7 @@ var PlaylistBar = React.createClass({
         transitionEnterTimeout={500}
         transitionLeaveTimeout={500}
         transitionAppear={true}
-        >
+      >
         {playlistBar}
       </ReactCSSTransitionGroup>
     );

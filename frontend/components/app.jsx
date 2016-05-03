@@ -1,9 +1,7 @@
 var React = require('react');
-var PlayerStore = require('../stores/player_store.js');
 var Navbar = require('./navbar.jsx');
-var Player = require('./player.jsx');
-var Banner = require('./banner.jsx');
 var PlaylistBar = require('./playlist_bar.jsx');
+var PlayerStore = require('../stores/player_store.js');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -34,7 +32,11 @@ var App = React.createClass({
       <div id="app-wrapper">
         <Navbar/>
         {playlistBar}
-        <Banner/>
+        <video preload autoPlay loop>
+          <source
+            src="https://res.cloudinary.com/chillsound/video/upload/v1461805151/Lightmirror_frzgxe.mp4"
+            type="video/mp4"/>
+        </video>
         {this.props.children}
       </div>
     );

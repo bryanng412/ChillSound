@@ -13,6 +13,10 @@ function resetSongs(songs) {
   });
 }
 
+function addSong(song) {
+  _songs[song.id] = song;
+}
+
 SongStore.all = function() {
   var songs = [];
   Object.keys(_songs).forEach(function(id){
@@ -29,6 +33,10 @@ SongStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case SongConstants.SONGS_RECEIVED:
       resetSongs(payload.songs);
+      this.__emitChange();
+      break;
+    case SongConstants.SONG_RECEIVED:
+      addSong(payload.song);
       this.__emitChange();
       break;
   }

@@ -30,6 +30,9 @@ UserStore.__onDispatch = function(payload) {
       resetCurrentUser();
       UserStore.__emitChange();
       break;
+    case AuthConstants.REQURE_LOGIN:
+      UserStore.__emitChange();
+      break;
   }
 };
 

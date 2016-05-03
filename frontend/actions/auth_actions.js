@@ -13,6 +13,12 @@ var AuthActions = {
     AppDispatcher.dispatch({
       actionType: AuthConstants.LOGOUT
     });
+  },
+
+  requireLogin: function() {
+    AppDispatcher.dispatch({
+      actionType: AuthConstants.REQURE_LOGIN
+    });
   }
 };
 

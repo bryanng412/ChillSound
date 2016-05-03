@@ -14,6 +14,18 @@ var LoginModal = React.createClass({
     return { show: false, username: "", password: ""};
   },
 
+  componentDidMount: function() {
+    this.listenerToken = UserStore.addListener(this.require_login);
+  },
+
+  componentWillUnmount: function() {
+    this.listenerToken.remove();
+  },
+
+  require_login: function() {
+    this.setState({ show: true });
+  },
+
   close: function() {
     this.setState({ show: false });
   },

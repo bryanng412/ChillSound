@@ -1,12 +1,13 @@
 var React = require('react');
 var ClientActions = require('../actions/client_actions.js');
 var PlayerActions = require('../actions/player_actions.js');
+var AuthActions = require('../actions/auth_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Modal = require('react-bootstrap').Modal;
 
 var SongIndexItem = React.createClass({
   getInitialState: function() {
-    return { liked: false, modalVisible: false };
+    return { liked: false };
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -34,7 +35,7 @@ var SongIndexItem = React.createClass({
       this.setState( { liked: true });
       ClientActions.fetchCurrentUser();
     } else {
-      this.setState({ modalVisible: true });
+      AuthActions.requireLogin();
     }
   },
 
@@ -45,7 +46,7 @@ var SongIndexItem = React.createClass({
       this.setState( {liked: false });
       ClientActions.fetchCurrentUser();
     } else {
-      this.setState({ modalVisible: true });
+      AuthActions.requireLogin();
     }
   },
 
@@ -53,17 +54,6 @@ var SongIndexItem = React.createClass({
     var likeButton = this.state.liked ?
       <Glyphicon onClick={this.unlike} glyph="heart"/> :
       <Glyphicon onClick={this.like} glyph="heart-empty"/>;
-
-    var modal =
-      <Modal
-        show={this.state.modalVisible}
-        onHide={this.handleModalClose}
-        bsSize="small"
-      >
-        <Modal.Header closeButton>
-          <h3>You must be logged in to use that feature!</h3>
-        </Modal.Header>
-      </Modal>;
 
     return (
       <div>
@@ -81,7 +71,6 @@ var SongIndexItem = React.createClass({
             </div>
           </figcaption>
         </figure>
-        {modal}
       </div>
     );
   }

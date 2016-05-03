@@ -29,6 +29,10 @@ var ClientActions = {
 
   unlike: function(likeId) {
     ServerUserApiUtil.unlike(likeId);
+  },
+
+  uploadSong: function(songParams) {
+    ServerSongApiUtil.uploadSong(songParams);
   }
 };
 

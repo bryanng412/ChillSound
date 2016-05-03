@@ -7,10 +7,12 @@ var HashHistory = require('react-router').hashHistory;
 
 var App = require('./components/app.jsx');
 var SplashPage = require('./components/splash_page.jsx');
+var ProfilePage = require('./components/profile_page.jsx');
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={SplashPage}/>
+    <Route path="profile" component={ProfilePage}/>
   </Route>
 );
 

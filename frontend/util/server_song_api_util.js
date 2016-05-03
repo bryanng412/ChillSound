@@ -14,6 +14,30 @@ var ServerSongApiUtil = {
         ErrorActions.receiveErrors(response.responseJSON.errors);
       }
     });
+  },
+
+  uploadSong: function(songParams) {
+    $.ajax({
+      method: "POST",
+      url: "/api/songs",
+      data: { song:
+              {
+                title: songParams["title"],
+                artist: songParams["artist"],
+                description: songParams["description"],
+                image_url: songParams["image_url"],
+                audio_url: songParams["audio_url"],
+                user_id: parseInt(songParams["user_id"])
+              }
+            },
+      success: function(song) {
+        SongActions.receiveSong(song);
+        ErrorActions.resetErrors();
+      },
+      error: function(response) {
+        ErrorActions.receiveErrors(response.responseJSON.errors);
+      }
+    });
   }
 };
 

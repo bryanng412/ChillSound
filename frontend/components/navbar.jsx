@@ -10,6 +10,7 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var LoginModal = require('./login_modal.jsx');
 var SignUpModal = require('./signup_modal.jsx');
+var UploadModal = require('./upload_modal.jsx');
 var Player = require('./player.jsx');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
@@ -19,10 +20,9 @@ module.exports = React.createClass({
   handleSelect: function(eventKey) {
     switch (eventKey) {
       case 1:
+        HashHistory.push("profile");
         break;
       case 2:
-        break;
-      case 3:
         ClientActions.logout();
         break;
     }
@@ -37,9 +37,9 @@ module.exports = React.createClass({
     var navBarItems = this.state.currentUser ?
       (<Nav key="loggedIn" bsStyle="pills" onSelect={this.handleSelect} pullRight>
         <Navbar.Text>Hi {this.state.currentUser.username}</Navbar.Text>
-        <NavItem className="navItem" eventKey={1}>Upload</NavItem>
-        <NavItem className="navItem" eventKey={2}>Profile</NavItem>
-        <NavItem className="navItem" eventKey={3}>Sign Out</NavItem>
+        <UploadModal/>
+        <NavItem className="navItem" eventKey={1}>Profile</NavItem>
+        <NavItem className="navItem" eventKey={2}>Sign Out</NavItem>
       </Nav>)
       :
       (<Nav key="loggedOut" bsStyle="pills" pullRight>
