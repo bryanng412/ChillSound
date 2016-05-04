@@ -15,8 +15,7 @@ var Player = React.createClass({
       isPlaying: false,
       currentTime: 0,
       percentPlayed: 0,
-      muted: false,
-      url: ""
+      muted: false
     };
   },
 
@@ -32,9 +31,7 @@ var Player = React.createClass({
     if (PlayerStore.nowPlaying()){
       this.setState({
         currentSong: PlayerStore.nowPlaying(),
-        isPlaying: true,
-        url: PlayerStore.nowPlaying().audio_url +
-          "?cb=" + new Date().getTime()
+        isPlaying: true
       });
     }
   },
@@ -129,7 +126,7 @@ var Player = React.createClass({
                 onPlaying={this._onAudioRender}
                 onTimeUpdate={this._onTimeUpdate}
                 onEnded={this._onSongEnd}
-                src={this.state.url}
+                src={this.state.currentSong.audio_url}
                 crossOrigin="anonymous"
                 autoPlay
               />);
