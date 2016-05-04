@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   opacity: .75;
-  background-color: GhostWhite;
   border-style: none;
+  background: LightCyan;
 }
 
 .container{
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  color: Ivory;
+  color: LightCyan;
   font-size: 20px;
   overflow: hidden;
 }

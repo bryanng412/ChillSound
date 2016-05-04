@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var Glyphicon = require('react-bootstrap').Glyphicon;
 var PlayerStore = require('../stores/player_store.js');
 var PlaylistBarItem = require('./playlist_bar_item.jsx');
+var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var PlaylistBar = React.createClass({
   getInitialState: function() {
@@ -37,7 +37,7 @@ var PlaylistBar = React.createClass({
     if (this.state.show) {
       playlistBar = (
         <div key="playlistBar" className="playlistBar">
-          <Glyphicon glyph="floppy-save"/>
+          <Glyphicon glyph="cd"/>
           {playlistBarItems}
         </div>
       );
