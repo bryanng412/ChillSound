@@ -1,0 +1,10 @@
+.profileWrapper {
+  padding: 20px;
+  margin: 150px;
+  width: 50%;
+  opacity: .90;
+}
+
+.profileWrapper a {
+  color: GhostWhite;
+}

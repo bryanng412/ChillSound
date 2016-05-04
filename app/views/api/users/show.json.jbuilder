@@ -5,3 +5,11 @@ json.likes do
     json.extract! like, :id, :song_id
   end
 end
+
+json.songs do
+  json.array! @user.songs
+end
+
+json.likedSongs do
+  json.array! @user.liked_songs
+end
