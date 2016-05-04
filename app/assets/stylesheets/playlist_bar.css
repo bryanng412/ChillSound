@@ -8,7 +8,7 @@
   padding-top: 30px;
   padding-bottom: 75px;
   background-color: GhostWhite;
-  margin-top: 80px;
+  margin-top: inherit;
   opacity: .75;
   display: flex;
   flex-direction: column;

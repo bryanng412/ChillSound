@@ -138,6 +138,12 @@ var Player = React.createClass({
       playPauseButton = (<NavItem onClick={this.pause}>
                           <Glyphicon glyph="pause"/>
                         </NavItem>);
+
+      var audioEl = document.getElementById('player');
+      if (audioEl && audioEl.paused &&
+          audioEl.src === this.state.currentSong.audio_url) {
+        audioEl.play();
+      }
     } else {
       if (this.state.currentSong) {
         playPauseButton = (<NavItem onClick={this.play}>
