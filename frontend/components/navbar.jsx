@@ -51,7 +51,7 @@ module.exports = React.createClass({
       <Navbar fixedTop>
         <Navbar.Header>
           <div className="logo" onClick={this.splashPage}>
-            <img src="https://res.cloudinary.com/chillsound/image/upload/v1461803060/Chill-logo_izvdav.png"/>
+            <img src="/assets/Chill-logo.png"/>
           </div>
           <Navbar.Toggle/>
         </Navbar.Header>

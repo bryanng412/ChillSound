@@ -34,7 +34,7 @@ var App = React.createClass({
         {playlistBar}
         <video preload autoPlay loop>
           <source
-            src="https://res.cloudinary.com/chillsound/video/upload/v1461805151/Lightmirror_frzgxe.mp4"
+            src="/assets/Lightmirror.mp4"
             type="video/mp4"/>
         </video>
         {this.props.children}
