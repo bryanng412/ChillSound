@@ -48,7 +48,6 @@ SongStore.__onDispatch = function(payload) {
       break;
     case SongConstants.SINGLE_SONG_RECEIVED:
       addSong(payload.song);
-      console.log(payload.song);
       this.__emitChange();
       break;
   }

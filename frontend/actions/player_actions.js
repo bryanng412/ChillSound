@@ -34,7 +34,6 @@ var PlayerActions = {
       actionType: PlayerConstants.TOGGLE_SIDEBAR
     });
   }
-
 };
 
 module.exports = PlayerActions;

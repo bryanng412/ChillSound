@@ -4,6 +4,7 @@ var PlayerActions = require('../actions/player_actions.js');
 var AuthActions = require('../actions/auth_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Modal = require('react-bootstrap').Modal;
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var SongIndexItem = React.createClass({
   getInitialState: function() {
@@ -56,22 +57,30 @@ var SongIndexItem = React.createClass({
       <Glyphicon onClick={this.like} glyph="heart-empty"/>;
 
     return (
-      <div>
-        <figure className="songIndexItem">
-          <img src={this.props.song.image_url}/>
-          <figcaption>
-            <h3>{this.props.song.title}</h3>
-            <p>{this.props.song.artist}</p>
-            <div className="playIcon">
-              <Glyphicon onClick={this.playSong} glyph="play-circle" />
-            </div>
-            <div className="icons">
-              {likeButton}
-              <Glyphicon onClick={this.addToQueue} glyph="plus" />
-            </div>
-          </figcaption>
-        </figure>
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="scroll"
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppear={true}
+      >
+        <div>
+          <figure className="songIndexItem">
+            <img src={this.props.song.image_url}/>
+            <figcaption>
+              <h3>{this.props.song.title}</h3>
+              <p>{this.props.song.artist}</p>
+              <div className="playIcon">
+                <Glyphicon onClick={this.playSong} glyph="play-circle" />
+              </div>
+              <div className="icons">
+                {likeButton}
+                <Glyphicon onClick={this.addToQueue} glyph="plus" />
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </ReactCSSTransitionGroup>
     );
   }
 

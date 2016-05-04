@@ -50,7 +50,7 @@ var UploadModal = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, results){
       if (!error) {
-        this.setState({image_url: results[0].secure_url});
+        this.setState({image_url: results[0].url});
       }
     }.bind(this));
   },
@@ -61,7 +61,7 @@ var UploadModal = React.createClass({
       window.CLOUDINARY_OPTIONS,
       function(error, results){
       if (!error) {
-        this.setState({audio_url: results[0].secure_url});
+        this.setState({audio_url: results[0].url});
       }
     }.bind(this));
   },
