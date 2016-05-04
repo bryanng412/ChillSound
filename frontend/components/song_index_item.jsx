@@ -64,7 +64,6 @@ var SongIndexItem = React.createClass({
         transitionLeaveTimeout={500}
         transitionAppear={true}
       >
-        <div>
           <figure className="songIndexItem">
             <img src={this.props.song.image_url}/>
             <figcaption>
@@ -79,7 +78,6 @@ var SongIndexItem = React.createClass({
               </div>
             </figcaption>
           </figure>
-        </div>
       </ReactCSSTransitionGroup>
     );
   }
