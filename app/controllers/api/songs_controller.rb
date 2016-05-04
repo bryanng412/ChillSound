@@ -1,4 +1,3 @@
-require 'byebug'
 class Api::SongsController < ApplicationController
   def index
     #get top 8 songs
