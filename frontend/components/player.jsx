@@ -33,6 +33,7 @@ var Player = React.createClass({
         currentSong: PlayerStore.nowPlaying(),
         isPlaying: true
       });
+      document.getElementById('player').play();
     }
   },
 
