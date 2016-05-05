@@ -3,12 +3,12 @@ var Navbar = require('react-bootstrap').Navbar;
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var NavSongItem = require('./nav_song_item.jsx');
-var LinkedStateMixin = require('react-addons-linked-state-mixin');
+// var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var CurrentUserState = require('../mixins/current_user_state.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var UserNav = React.createClass({
-  mixins: [LinkedStateMixin, CurrentUserState],
+  mixins: [CurrentUserState],
 
   getInitialState: function() {
     return { activeKey: 1 };
