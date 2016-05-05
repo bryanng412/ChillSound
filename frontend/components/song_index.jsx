@@ -1,6 +1,7 @@
 var React = require('react');
 var SongStore = require('../stores/song_store.js');
 var ClientActions = require('../actions/client_actions.js');
+var UserActions = require('../actions/user_actions.js');
 var SongIndexItem = require('./song_index_item.jsx');
 var CurrentUserState = require('../mixins/current_user_state.js');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
@@ -23,6 +24,7 @@ var SongIndex = React.createClass({
 
   _onChange: function() {
     this.setState({ songs: SongStore.all() });
+    UserActions.fetchCurrentUser();
   },
 
   render: function() {
