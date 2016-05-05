@@ -3,9 +3,10 @@ var SongStore = require('../stores/song_store.js');
 var ClientActions = require('../actions/client_actions.js');
 var SongIndexItem = require('./song_index_item.jsx');
 var CurrentUserState = require('../mixins/current_user_state.js');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 var SongIndex = React.createClass({
-  mixins: [CurrentUserState],
+  mixins: [LinkedStateMixin, CurrentUserState],
 
   getInitialState: function() {
     return { songs: [] };
@@ -24,7 +25,7 @@ var SongIndex = React.createClass({
     this.setState({ songs: SongStore.all() });
   },
 
-  render: function() {    
+  render: function() {
     var songLikes = [];
     var songLikeIds = [];
     var songLikeIndex;
