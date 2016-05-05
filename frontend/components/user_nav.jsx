@@ -15,7 +15,6 @@ var UserNav = React.createClass({
   },
 
   handleSelect: function(eventKey){
-    event.preventDefault();
     this.setState({activeKey: eventKey});
   },
 
