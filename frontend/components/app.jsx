@@ -28,17 +28,17 @@ var App = React.createClass({
     } else {
       playlistBar = <div/>;
     }
-    // <Visualizer/>
+    // <video preload autoPlay loop>
+    //   <source
+    //     src="/assets/Lightmirror.mp4"
+    //     type="video/mp4"/>
+    // </video>
 
     return (
       <div id="app-wrapper">
         <Navbar/>
-        <video preload autoPlay loop>
-          <source
-            src="/assets/Lightmirror.mp4"
-            type="video/mp4"/>
-        </video>
         {playlistBar}
+        <Visualizer/>
         {this.props.children}
       </div>
     );

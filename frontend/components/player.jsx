@@ -123,7 +123,7 @@ var Player = React.createClass({
     if (this.state.currentSong) {
       song = (<audio
                 id="player"
-                onPlaying={this._onAudioRender}
+                onLoadedData={this._onAudioRender}
                 onTimeUpdate={this._onTimeUpdate}
                 onEnded={this._onSongEnd}
                 src={this.state.currentSong.audio_url}

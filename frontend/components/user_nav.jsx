@@ -1,9 +1,7 @@
 var React = require('react');
-var Navbar = require('react-bootstrap').Navbar;
-var Nav = require('react-bootstrap').Nav;
-var NavItem = require('react-bootstrap').NavItem;
+var Tabs = require('react-bootstrap').Tabs;
+var Tab = require('react-bootstrap').Tab;
 var NavSongItem = require('./nav_song_item.jsx');
-// var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var CurrentUserState = require('../mixins/current_user_state.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
@@ -40,10 +38,10 @@ var UserNav = React.createClass({
         transitionLeaveTimeout={500}
         transitionAppear={true}
       >
-        <Nav bsStyle="tabs" activeKey={this.state.activeKey} onSelect={this.handleSelect}>
-          <NavItem eventKey={1}>Likes</NavItem>
-          <NavItem eventKey={2}>Uploaded Songs</NavItem>
-        </Nav>
+        <Tabs defaultActiveKey={1} id="userTabs" onSelect={this.handleSelect}>
+          <Tab eventKey={1} title="Likes"></Tab>
+          <Tab eventKey={2} title="Uploaded Songs"></Tab>
+        </Tabs>
         <div className="userSongIndex">
           {songs}
         </div>

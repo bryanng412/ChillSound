@@ -20,7 +20,7 @@ var Visualizer = React.createClass({
   _onSongStart: function() {
     if (document.getElementById("player")) {
       var player = document.getElementById("player");
-      player.crossOrigin = "anonymous";
+      // player.crossOrigin = "anonymous";
       //different for multiple browsers
       var audioCtx = new (window.AudioContext || window.webkitAudioContext);
       var analyser = audioCtx.createAnalyser();
@@ -30,11 +30,9 @@ var Visualizer = React.createClass({
       var bufferLength = analyser.frequencyBinCount;
 
       //hook <audio> element up with ctx
-      if (!this.dataArray) { //check if source has already been created
-        var source = audioCtx.createMediaElementSource(player);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-      }
+      var source = audioCtx.createMediaElementSource(player);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
       var sampleAudioStream = function() {
         //this closure samples the audio data and
         //updates the dataArray and volume in real time
@@ -53,29 +51,18 @@ var Visualizer = React.createClass({
       //use these in animations
       this.dataArray = new window.Uint8Array(bufferLength);
       this.volume = 0;
-      player.play();
     }
   },
 
   cameraPosition: function() {
-    var rotate = 5;
-    // if(this.dataArray) {
-    //   rotate = Math.sin(this.dataArray[0]) * 5;
-    // }
-    return new THREE.Vector3(0, 0, rotate);
+    return new THREE.Vector3(0, 0, 5);
   },
 
   _onAnimate: function() {
-    var rotate;
-    if (this.volume) {
-      rotate = Math.abs(Math.sin(this.volume));
-    } else {
-      rotate = 0.1;
-    }
     this.setState({
       cubeRotation: new THREE.Euler(
-        this.state.cubeRotation.x + rotate,
-        this.state.cubeRotation.y + rotate,
+        this.state.cubeRotation.x + 0.1,
+        this.state.cubeRotation.y + 0.1,
         0
       ),
     });
