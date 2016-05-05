@@ -15,7 +15,9 @@ var UserNav = React.createClass({
   },
 
   handleSelect: function(eventKey){
-    this.setState({activeKey: eventKey});
+    if (this.isMounted()){
+      this.setState({activeKey: eventKey});
+    }
   },
 
   render: function() {
