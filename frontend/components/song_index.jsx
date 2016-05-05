@@ -23,7 +23,9 @@ var SongIndex = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({ songs: SongStore.all() });
+    if (this.isMounted()) {
+      this.setState({ songs: SongStore.all() });
+    }
     UserActions.fetchCurrentUser();
   },
 
