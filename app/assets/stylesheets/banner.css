@@ -9,6 +9,14 @@
   opacity: .75;
 }
 
+.jumbotron h1 {
+  font-size: 100px;
+}
+
+.jumbotron h3 {
+  font-size: 36px;
+}
+
 .bannerButton {
   width: 175px;
   height: 65px;
