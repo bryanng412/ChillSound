@@ -1,10 +1,22 @@
 .profileWrapper {
   padding: 20px;
-  margin: 150px;
-  width: 50%;
+  margin: 100px;
+  width: 65%;
   opacity: .90;
 }
 
 .profileWrapper a {
   color: GhostWhite;
+}
+
+.userSongIndex {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#userPlusIcon {
+  justify-content: center;
 }
