@@ -45,7 +45,7 @@ var App = React.createClass({
           loop
           autoPlay
           controls="true"
-          src='https://www.youtube.com/watch?v=R0N_Z4VXhe8'
+          src='https://s3-us-west-1.amazonaws.com/chillsound/Lightmirror.mp4'
           type='video/mp4'
         >
         </video>
