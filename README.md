@@ -1,144 +1,73 @@
 # ChillSound
 
-[Heroku link][heroku]
+[ChillSound live][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://chillsound.herokuapp.com/
 
-## Minimum Viable Product
+ChillSound is a full-stack web application inspired by SoundCloud.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
-ChillSound is a web application inspired by Soundcloud to listen and share chill music that will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
-
-- [X] New account creation, login, and guest/demo login
-- [X] Smooth, bug-free navigation
-- [X] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for a Soundcloud-inspired site: Docked music player, playlist creation and editing, song comments and likes, song/artist search, and song uploading
-- [ ] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README
-
-## Product Goals and Priorities
-
-ChillSound will allow users to do the following:
-
-- [ ] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Create and delete songs (MVP)
-- [ ] Create, play, edit, and delete playlists (MVP)
-- [ ] Like and leave comments on songs (MVP)
-- [ ] Tag songs with multiple tags (expected feature, but not MVP)
-- [ ] Search songs/artists/tags
-
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-
-[views]: ./docs/views.md
-[components]: ./docs/components.md
-[flux-cycles]: ./docs/flux-cycles.md
-[api-endpoints]: ./docs/api-endpoints.md
-[schema]: ./docs/schema.md
-
-## Implementation Timeline
-
-### Phase 1: Backend setup and User Authentication (0.5 days)
-
-**Objective:** Functioning rails project with Authentication
-
-- [X] create new project
-- [X] create `User` model
-- [X] authentication (including frontend auth)
-- [X] user signup/signin pages
-- [X] blank landing page after signin
-
-### Phase 2: Song Model, API, and basic APIUtil (1.5 days)
-
-**Objective:** Songs can be created, read, edited and destroyed through
-the API.
-
-- [X] create `Song` model
-- [X] seed the database with a small amount of test data
-- [X] CRUD API for songs (`SongsController`)
-- [X] jBuilder views for songs
-- [X] setup Webpack & Flux scaffold
-- [X] setup `APIUtil` to interact with the API
-- [X] test out API interaction in the console.
-
-### Phase 3: Flux Architecture and Router (1.5 days)
-
-**Objective:** Songs can be created, read, edited and destroyed with the
-user interface.
-
-- [X] setup the flux loop with skeleton files
-- [X] setup React Router
-- implement each note component, building out the flux loop as needed.
-  - [X] `SongIndex`
-  - [X] `SongIndexItem`
-  - [ ] `SongForm`
-- [ ] save Songs to the DB when the form loses focus or is left idle
-  after editing.
-
-### Phase 4: Music Player (1 day)
-
-**Objective** Build docked music player that will play and queue songs
-- [X] Dock player at top
-- [ ] Continuously play music in queue
-
-### Phase 5: Start Styling (0.5 days)
-
-**Objective:** Existing pages (including singup/signin) will look good.
-
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
-
-### Phase 6: Playlists (1 day)
-
-**Objective:** Songs belong to Playlists, and can be viewed by playlist.
-
-- [ ] create `Playlist` model
-- build out API, Flux loop, and components for:
-  - [ ] Playlist CRUD
-  - [ ] adding songs requires a playlist
-  - [ ] moving songs to a different playlist
-  - [ ] viewing songs by playlist
-- Use CSS to style new views
-
-Phase 3 adds organization to the Songs. Songs belong to a Playlist,
-which has its own `Index` view.
+## Features & Implementation
 
 
-### Phase 7: Search (0.5 days)
+### Single-Page App
 
-**objective:** Enable live searching of songs.
+ChillSound is truly a single-page; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app by making an API call to `SessionsController#get_user`.
 
-- [ ] Create Searchbar component
-- [ ] Live search by song title, artist, or tag
+```ruby
+class Api::SessionsController < ApplicationController
+    def get_user
+      if current_user
+        render :current_user
+      else
+        render json: errors.full_messages
+      end
+    end
+ end
+  ```
 
-### Phase 8 Styling Cleanup and Seeding (1 day)
+### Note Rendering and Editing
 
-**objective:** Make the site feel more cohesive and awesome.
+  On the database side, the notes are stored in one table in the database, which contains columns for `id`, `user_id`, `content`, and `updated_at`.  Upon login, an API call is made to the database which joins the user table and the note table on `user_id` and filters by the current user's `id`.  These notes are held in the `NoteStore` until the user's session is destroyed.  
 
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
+  Notes are rendered in two different components: the `CondensedNote` components, which show the title and first few words of the note content, and the `ExpandedNote` components, which are editable and show all note text.  The `NoteIndex` renders all of the `CondensedNote`s as subcomponents, as well as one `ExpandedNote` component, which renders based on `NoteStore.selectedNote()`. The UI of the `NoteIndex` is taken directly from Evernote for a professional, clean look:  
 
-### Bonus Features (TBD)
-- [ ] Infinite scroll for Songs/Playlist Index
-- [ ] Changelogs for Songs
-- [ ] Multiple sessions
-- [ ] create `Tag` model and join table
-- build out API, Flux loop, and components for:
-- [ ] fetching tags for playlist
-- [ ] adding tags to playlist
-- [ ] creating tags while adding to playlists
-- [ ] searching playlists by tag
-- [ ] Style new elements
+![image of notebook index](https://github.com/appacademy/sample-project-proposal/blob/master/docs/noteIndex.png)
 
-[phase-one]: ./docs/phases/phase1.md
-[phase-two]: ./docs/phases/phase2.md
-[phase-three]: ./docs/phases/phase3.md
-[phase-four]: ./docs/phases/phase4.md
-[phase-five]: ./docs/phases/phase5.md
+Note editing is implemented using the Quill.js library, allowing for a Word-processor-like user experience.
+
+### Notebooks
+
+Implementing Notebooks started with a notebook table in the database.  The `Notebook` table contains two columns: `title` and `id`.  Additionally, a `notebook_id` column was added to the `Note` table.  
+
+The React component structure for notebooks mirrored that of notes: the `NotebookIndex` component renders a list of `CondensedNotebook`s as subcomponents, along with one `ExpandedNotebook`, kept track of by `NotebookStore.selectedNotebook()`.  
+
+`NotebookIndex` render method:
+
+```javascript
+render: function () {
+  return ({this.state.notebooks.map(function (notebook) {
+    return <CondensedNotebook notebook={notebook} />
+  }
+  <ExpandedNotebook notebook={this.state.selectedNotebook} />)
+}
+```
+
+### Tags
+
+As with notebooks, tags are stored in the database through a `tag` table and a join table.  The `tag` table contains the columns `id` and `tag_name`.  The `tagged_notes` table is the associated join table, which contains three columns: `id`, `tag_id`, and `note_id`.  
+
+Tags are maintained on the frontend in the `TagStore`.  Because creating, editing, and destroying notes can potentially affect `Tag` objects, the `NoteIndex` and the `NotebookIndex` both listen to the `TagStore`.  It was not necessary to create a `Tag` component, as tags are simply rendered as part of the individual `Note` components.  
+
+![tag screenshot](https://github.com/appacademy/sample-project-proposal/blob/master/docs/tagScreenshot.png)
+
+## Future Directions for the Project
+
+In addition to the features already implemented, I plan to continue work on this project.  The next steps for ChillSound are outlined below.
+
+### Search
+
+Searching notes is a standard feature of Evernote.  I plan to utilize the Fuse.js library to create a fuzzy search of notes and notebooks.  This search will look go through tags, note titles, notebook titles, and note content.  
+
+### Direct Messaging
+
+Although this is less essential functionality, I also plan to implement messaging between ChillSound users.  To do this, I will use WebRTC so that notifications of messages happens seamlessly.  
