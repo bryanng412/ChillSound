@@ -9,6 +9,7 @@ var _player = {
   queue: []
 };
 var _showPlaylistBar = false;
+var _showFullScreen = false;
 
 function setNowPlaying(song) {
   _player.nowPlaying = song;
@@ -34,6 +35,10 @@ PlayerStore.showPlaylistBar = function() {
   return _showPlaylistBar;
 };
 
+PlayerStore.showFullScreen = function() {
+  return _showFullScreen;
+};
+
 PlayerStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PlayerConstants.AUDIO_URL_RECEIVED:
@@ -55,6 +60,10 @@ PlayerStore.__onDispatch = function(payload) {
       break;
     case PlayerConstants.TOGGLE_SIDEBAR:
       _showPlaylistBar ^= true;
+      this.__emitChange();
+      break;
+    case PlayerConstants.TOGGLE_FULLSCREEN:
+      _showFullScreen ^= true;
       this.__emitChange();
       break;
   }

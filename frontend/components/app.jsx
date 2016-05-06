@@ -6,19 +6,24 @@ var PlayerStore = require('../stores/player_store.js');
 
 var App = React.createClass({
   getInitialState: function() {
-    return { showPlaylistBar: false };
+    return { showPlaylistBar: false, showFullScreen: false };
   },
 
   componentDidMount: function() {
-    this.listenerToken = PlayerStore.addListener(this.togglePlaylistBar);
+    this.playlistBarListenerToken = PlayerStore.addListener(this.togglePlaylistBar);
+    this.fullScreenListenerToken = PlayerStore.addListener(this.toggleFullScreen);
   },
 
   componentWillUnmount: function() {
-    this.listenerToken.remove();
+    this.playlistBarlistenerToken.remove();
   },
 
   togglePlaylistBar: function() {
     this.setState({ showPlaylistBar: PlayerStore.showPlaylistBar() });
+  },
+
+  toggleFullScreen: function() {
+    this.setState({ showFullScreen: PlayerStore.showFullScreen() });
   },
 
   render: function() {
@@ -28,6 +33,8 @@ var App = React.createClass({
     } else {
       playlistBar = <div/>;
     }
+
+    var children = this.state.showFullScreen ? <div/> : this.props.children;
 
     // <Visualizer/>
     return (
@@ -39,7 +46,7 @@ var App = React.createClass({
             src="/assets/Lightmirror.mp4"
             type="video/mp4"/>
         </video>
-        {this.props.children}
+        {children}
       </div>
     );
   }

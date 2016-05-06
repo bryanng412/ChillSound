@@ -33,6 +33,12 @@ var PlayerActions = {
     AppDispatcher.dispatch({
       actionType: PlayerConstants.TOGGLE_SIDEBAR
     });
+  },
+
+  toggleFullScreen: function() {
+    AppDispatcher.dispatch({
+      actionType: PlayerConstants.TOGGLE_FULLSCREEN
+    });
   }
 };
 
