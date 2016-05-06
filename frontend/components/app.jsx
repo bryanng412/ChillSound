@@ -42,8 +42,9 @@ var App = React.createClass({
         <Navbar/>
         {playlistBar}
         <video
-          autoPlay
           loop
+          autoPlay
+          controls="true"
           src="/assets/Lightmirror.mp4"
           type="video/mp4"
         >
