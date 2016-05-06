@@ -31,9 +31,9 @@ var Player = React.createClass({
     if (PlayerStore.nowPlaying()){
       this.setState({
         currentSong: PlayerStore.nowPlaying(),
+        isPlaying: true
       });
     }
-    // isPlaying: true
   },
 
   _onTimeUpdate: function(e) {
