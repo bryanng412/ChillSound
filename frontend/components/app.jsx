@@ -45,8 +45,8 @@ var App = React.createClass({
           loop
           autoPlay
           controls="true"
-          src="/assets/Lightmirror.mp4"
-          type="video/mp4"
+          src='/assets/Lightmirror.mp4'
+          type='video/mp4'
         >
         </video>
         {children}
