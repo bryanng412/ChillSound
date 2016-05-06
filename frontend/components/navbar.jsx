@@ -23,6 +23,7 @@ module.exports = React.createClass({
         HashHistory.push("profile");
         break;
       case 2:
+        HashHistory.push("/");
         ClientActions.logout();
         break;
     }
@@ -48,10 +49,10 @@ module.exports = React.createClass({
       </Nav>);
 
     return (
-      <Navbar fixedTop>
+      <Navbar inverse fixedTop>
         <Navbar.Header>
           <div className="logo" onClick={this.splashPage}>
-            <img src="/assets/Chill-logo.png"/>
+            <img src="/assets/Chill-logo-white.png"/>
           </div>
           <Navbar.Toggle/>
         </Navbar.Header>

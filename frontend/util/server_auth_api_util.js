@@ -41,7 +41,9 @@ var ServerAuthApiUtil = {
       method: "GET",
       url: "/api/session",
       success: function(user) {
-        AuthActions.receiveUser(user);
+        if (user["id"]) {
+          AuthActions.receiveUser(user);
+        }
         ErrorActions.resetErrors();
       },
       error: function(response) {

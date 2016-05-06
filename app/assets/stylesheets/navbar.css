@@ -3,8 +3,9 @@
   justify-content: center;
   opacity: .75;
   border-style: none;
-  background: LightCyan;
+  background: DarkSlateGray;
   box-shadow: 0 -7px 12px -7px rgba(0,0,0,0.75);
+  color: GhostWhite;
 }
 
 .container{
@@ -17,14 +18,14 @@
   align-items: center;
 }
 
-
 .navbar-collapse.collapse {
+  min-width: 1350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-  color: LightCyan;
+  color: DarkSlateGray;
   font-size: 20px;
   overflow: hidden;
 }
@@ -58,7 +59,7 @@
   left: 50%;
   right: 50%;
   bottom: 0;
-  background: black;
+  background: GhostWhite;
   height: 4px;
   -webkit-transition-property: left, right;
   transition-property: left, right;

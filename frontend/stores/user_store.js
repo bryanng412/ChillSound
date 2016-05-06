@@ -21,10 +21,12 @@ UserStore.currentUser = function() {
 UserStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case AuthConstants.LOGIN:
+      window.localStorage.setItem("currentUser", JSON.stringify(payload.user));
       setCurrentUser(payload.user);
       UserStore.__emitChange();
       break;
     case AuthConstants.LOGOUT:
+      window.localStorage.setItem("currentUser", "false");
       resetCurrentUser();
       UserStore.__emitChange();
       break;

@@ -69,6 +69,15 @@ var SignUpModal = React.createClass({
     }
   },
 
+  demoSignIn: function(e) {
+    e.preventDefault();
+    ClientActions.login({
+      username: "guest",
+      password: "password"
+    });
+    this.close();
+  },
+
   render: function() {
     return (
       <NavItem className="navItem" onClick={this.open}>
@@ -112,6 +121,7 @@ var SignUpModal = React.createClass({
               <FormControl.Feedback/>
             </FormGroup>
             <Button type="submit">Submit</Button>
+            <Button onClick={this.demoSignIn}>Demo Sign In</Button>
             <Errors/>
           </form>
         </Modal>

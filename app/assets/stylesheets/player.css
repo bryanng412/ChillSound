@@ -21,7 +21,7 @@
 }
 
 .songTime {
-  color: black;
+  color: GhostWhite;
 }
 
 .progressBar {
@@ -39,7 +39,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #4c4c4c;
+  background: GhostWhite;
   cursor: pointer;
   -webkit-transition: background .15s ease-in-out;
   transition: background .15s ease-in-out;
@@ -55,7 +55,7 @@
   height: 20px;
   border: 0;
   border-radius: 50%;
-  background: #4c4c4c;
+  background: GhostWhite;
   cursor: pointer;
   -webkit-transition: background .15s ease-in-out;
   transition: background .15s ease-in-out;

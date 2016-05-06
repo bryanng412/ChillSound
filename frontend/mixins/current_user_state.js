@@ -14,7 +14,9 @@ var CurrentUserState = {
   },
 
   updateUser: function() {
-    this.setState({ currentUser: UserStore.currentUser() });
+    if (this.isMounted()) {
+      this.setState({ currentUser: UserStore.currentUser() });
+    }
   }
 };
 
