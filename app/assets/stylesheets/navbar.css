@@ -22,9 +22,9 @@
   min-width: 1350px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
   color: DarkSlateGray;
   font-size: 20px;
   overflow: hidden;
