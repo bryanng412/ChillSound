@@ -41,10 +41,12 @@ var App = React.createClass({
       <div id="app-wrapper">
         <Navbar/>
         {playlistBar}
-        <video preload autoPlay loop>
-          <source
-            src="/assets/Lightmirror.mp4"
-            type="video/mp4"/>
+        <video
+          autoPlay
+          loop
+          src="/assets/Lightmirror.mp4"
+          type="video/mp4"
+        >
         </video>
         {children}
       </div>
