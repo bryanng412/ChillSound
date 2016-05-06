@@ -28,8 +28,8 @@ class Api::SessionsController < ApplicationController
       @user = current_user
       render "api/users/show"
     else
-      @errors = []
-      render "api/shared/error", status: 404
+      @errors = nil
+      render "api/shared/error", status: 401
     end
   end
 end

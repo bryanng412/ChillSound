@@ -15,9 +15,7 @@ function resetCurrentUser() {
 }
 
 UserStore.currentUser = function() {
-  if (_currentUser) {
-    return $.extend({}, _currentUser);
-  }
+  return _currentUser;
 };
 
 UserStore.__onDispatch = function(payload) {

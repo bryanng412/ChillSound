@@ -2,7 +2,7 @@ var React = require('react');
 var Navbar = require('./navbar.jsx');
 var PlaylistBar = require('./playlist_bar.jsx');
 var PlayerStore = require('../stores/player_store.js');
-var Visualizer = require('./visualizer.jsx');
+// var Visualizer = require('./visualizer.jsx');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -28,8 +28,8 @@ var App = React.createClass({
     } else {
       playlistBar = <div/>;
     }
-    // <Visualizer/>
 
+    // <Visualizer/>
     return (
       <div id="app-wrapper">
         <Navbar/>

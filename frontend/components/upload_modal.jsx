@@ -74,7 +74,7 @@ var UploadModal = React.createClass({
       songParams["user_id"] = UserStore.currentUser().id;
     }
     if (songParams["image_url"] === "") {
-      songParams["image_url"] = "https://res.cloudinary.com/chillsound/image/upload/v1462318674/music-placeholder_bfmdtw.png";
+      songParams["image_url"] = "https://res.cloudinary.com/djfvxhjdy/image/upload/v1462550057/music-placeholder_thaeet.png";
     }
 
     ClientActions.uploadSong(songParams);

@@ -1,7 +1,7 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
 var PlayerActions = require('../actions/player_actions.js');
-var VisualizerActions = require('../actions/visualizer_actions.js');
+// var VisualizerActions = require('../actions/visualizer_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
@@ -62,9 +62,9 @@ var Player = React.createClass({
     }
   },
 
-  _onAudioRender: function(){
-    VisualizerActions.audioRendered();
-  },
+  // _onAudioRender: function(){
+  //   VisualizerActions.audioRendered();
+  // },
 
   backward: function(e) {
     if (e) {
@@ -123,7 +123,6 @@ var Player = React.createClass({
     if (this.state.currentSong) {
       song = (<audio
                 id="player"
-                onLoadedData={this._onAudioRender}
                 onTimeUpdate={this._onTimeUpdate}
                 onEnded={this._onSongEnd}
                 src={this.state.currentSong.audio_url}
