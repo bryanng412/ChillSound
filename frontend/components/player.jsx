@@ -12,7 +12,7 @@ var Player = React.createClass({
   getInitialState: function() {
     return {
       currentSong: null,
-      isPlaying: false,
+      isPlaying: true,
       currentTime: 0,
       percentPlayed: 0,
       muted: false
@@ -31,9 +31,9 @@ var Player = React.createClass({
     if (PlayerStore.nowPlaying()){
       this.setState({
         currentSong: PlayerStore.nowPlaying(),
-        isPlaying: true
       });
     }
+    // isPlaying: true
   },
 
   _onTimeUpdate: function(e) {
@@ -55,6 +55,9 @@ var Player = React.createClass({
 
   _onSongEnd: function() {
     if (PlayerStore.queue().length === 0) {
+      if (PlayerStore.showFullScreen()) {
+        PlayerActions.toggleFullScreen();
+      }
       this.setState({ currentSong: null, isPlaying: false });
     } else {
       PlayerActions.playNextSong();

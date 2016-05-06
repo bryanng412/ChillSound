@@ -6,7 +6,7 @@ var PlayerStore = new Store(AppDispatcher);
 
 var _player = {
   nowPlaying: null,
-  queue: []
+  queue: [],
 };
 var _showPlaylistBar = false;
 var _showFullScreen = false;
@@ -38,6 +38,7 @@ PlayerStore.showPlaylistBar = function() {
 PlayerStore.showFullScreen = function() {
   return _showFullScreen;
 };
+
 
 PlayerStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
