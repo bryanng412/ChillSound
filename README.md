@@ -39,6 +39,6 @@ ChillSound is a single-page app; all content is delivered on one static page.
 ### User Profile
 ![userProfile]
 
-[splash]: ./docs/screenshots/splash
-[player]: ./docs/screenshots/player
-[userProfile]:./docs/screenshots/userProfile
+[splash]: ./docs/screenshots/splash.png
+[player]: ./docs/screenshots/player.png
+[userProfile]:./docs/screenshots/userProfile.png
