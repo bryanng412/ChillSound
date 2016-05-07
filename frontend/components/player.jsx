@@ -34,6 +34,8 @@ var Player = React.createClass({
         currentSong: PlayerStore.nowPlaying(),
         isPlaying: true
       });
+    } else {
+
     }
   },
 
@@ -60,7 +62,7 @@ var Player = React.createClass({
         PlayerActions.toggleFullScreen();
       }
       PlayerActions.playSong(null);
-      this.setState({ currentSong: null, isPlaying: false });
+      this.setState({ currentSong: null, isPlaying: true });
     } else {
       PlayerActions.playNextSong();
       this.backward();
