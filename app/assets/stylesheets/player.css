@@ -12,6 +12,12 @@
   font-size: 25px;
 }
 
+.queueBadge {
+  position: relative;
+  top: -10px;
+  left: -20px;
+}
+
 .playerIcon {
   width: 35px;
   height: 35px;

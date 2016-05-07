@@ -6,6 +6,7 @@ var Glyphicon = require('react-bootstrap').Glyphicon;
 var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var Image = require('react-bootstrap').Image;
+var Badge = require('react-bootstrap').Badge;
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var Player = React.createClass({
@@ -184,6 +185,7 @@ var Player = React.createClass({
             {playPauseButton}
             <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
             <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
+            <Badge className="queueBadge">{PlayerStore.queue().length}</Badge>
             <Image
               className="playerIcon"
               src={this.state.currentSong.image_url}
