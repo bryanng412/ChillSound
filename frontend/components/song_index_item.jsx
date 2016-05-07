@@ -15,10 +15,6 @@ var SongIndexItem = React.createClass({
     this.setState({ liked: nextProps.liked });
   },
 
-  handleModalClose: function() {
-    this.setState({ modalVisible: false });
-  },
-
   playSong: function(e) {
     e.preventDefault();
     ClientActions.increasePlayCount(this.props.song);

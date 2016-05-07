@@ -29,7 +29,7 @@ var Player = React.createClass({
   },
 
   _onChange: function() {
-    if (PlayerStore.nowPlaying()){
+    if (PlayerStore.nowPlaying() && this.state.isPlaying){
       this.setState({
         currentSong: PlayerStore.nowPlaying(),
         isPlaying: true
