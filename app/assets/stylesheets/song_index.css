@@ -20,6 +20,13 @@
   font-size: 16px;
 }
 
+.playCounter p {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .songIndexItem * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

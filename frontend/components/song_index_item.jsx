@@ -76,6 +76,9 @@ var SongIndexItem = React.createClass({
                 {likeButton}
                 <Glyphicon onClick={this.addToQueue} glyph="plus" />
               </div>
+              <div className="playCounter">
+                <p>Plays: {this.props.song.plays}</p>
+              </div>
             </figcaption>
           </figure>
       </ReactCSSTransitionGroup>
