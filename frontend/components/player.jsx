@@ -29,13 +29,11 @@ var Player = React.createClass({
   },
 
   _onChange: function() {
-    if (PlayerStore.nowPlaying() && this.state.isPlaying){
+    if (PlayerStore.nowPlaying()){
       this.setState({
         currentSong: PlayerStore.nowPlaying(),
         isPlaying: true
       });
-    } else {
-
     }
   },
 
@@ -61,7 +59,6 @@ var Player = React.createClass({
       if (PlayerStore.showFullScreen()) {
         PlayerActions.toggleFullScreen();
       }
-      
       PlayerActions.playSong(null);
       this.setState({ currentSong: null, isPlaying: true });
     } else {
