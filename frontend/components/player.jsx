@@ -59,8 +59,8 @@ var Player = React.createClass({
       if (PlayerStore.showFullScreen()) {
         PlayerActions.toggleFullScreen();
       }
+      this.setState({ currentSong: null, isPlaying: false });
       PlayerActions.playSong(null);
-      this.setState({ currentSong: null, isPlaying: true });
     } else {
       PlayerActions.playNextSong();
       this.backward();
