@@ -57,13 +57,44 @@ var LoginModal = React.createClass({
     }
   },
 
+
   demoSignIn: function(e) {
     e.preventDefault();
-    ClientActions.login({
-      username: "guest",
-      password: "password"
+    this.setState({username: "", password: ""});
+
+    var username = "guest".split("");
+    var password = "password".split("");
+    var time = 50;
+    var self = this;
+
+    $(".demo").addClass("disabled");
+    $(".demo").attr("disabled", true);
+
+    username.forEach(function(letter) {
+      time += 50;
+      setTimeout(function() {
+        self.setState({username: self.state.username + letter});
+      }, time);
     });
-    this.close();
+
+    time += 500;
+
+    password.forEach(function(letter) {
+      time += 50;
+      setTimeout(function() {
+        self.setState({password: self.state.password + letter});
+      }, time);
+    });
+
+    time += 500;
+
+    setTimeout(function() {
+      ClientActions.login({
+        username: self.state.username,
+        password: self.state.password
+      });
+      self.close();
+    }, time);
   },
 
   render: function() {
@@ -96,7 +127,7 @@ var LoginModal = React.createClass({
               <FormControl.Feedback/>
             </FormGroup>
             <Button type="submit">Submit</Button>
-            <Button onClick={this.demoSignIn}>Demo Sign In</Button>
+            <Button className="demo" onClick={this.demoSignIn}>Demo Sign In</Button>
             <Errors/>
           </form>
         </Modal>
