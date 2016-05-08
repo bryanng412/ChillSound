@@ -11,6 +11,8 @@ var PlaylistBar = React.createClass({
 
   componentDidMount: function() {
     this.listenerToken = PlayerStore.addListener(this.onPlaylistChange);
+    this.updateSize();
+    $(window).resize(this.updateSize);
   },
 
   componentWillUnmount: function() {
@@ -21,6 +23,9 @@ var PlaylistBar = React.createClass({
     this.setState({ show: this.props.show });
   },
 
+  updateSize: function() {
+    $(".playlistBar").css("top", $(".navbar").height());
+  },
 
   onPlaylistChange: function() {
     this.setState({ playlistItems: PlayerStore.queue() });

@@ -19,12 +19,12 @@
 }
 
 .navbar-collapse.collapse {
-  min-width: 1350px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+  flex-wrap: nowrap;
   color: DarkSlateGray;
   font-size: 20px;
   overflow: hidden;
