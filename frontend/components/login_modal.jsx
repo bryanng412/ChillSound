@@ -69,6 +69,7 @@ var LoginModal = React.createClass({
 
     $(".demo").addClass("disabled");
     $(".demo").attr("disabled", true);
+    $("input").attr("disabled", true);
 
     username.forEach(function(letter) {
       time += 50;
