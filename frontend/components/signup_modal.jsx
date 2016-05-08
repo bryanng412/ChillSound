@@ -78,8 +78,8 @@ var SignUpModal = React.createClass({
     var time = 50;
     var self = this;
 
-    $(".demo").addClass("disabled");
-    $(".demo").attr("disabled", true);
+    $(".btn").addClass("disabled");
+    $(".btn").attr("disabled", true);
     $("input").attr("disabled", true);
 
     username.forEach(function(letter) {
@@ -161,7 +161,7 @@ var SignUpModal = React.createClass({
               <FormControl.Feedback/>
             </FormGroup>
             <Button type="submit">Submit</Button>
-            <Button className="demo" onClick={this.demoSignIn}>Demo Sign In</Button>
+            <Button onClick={this.demoSignIn}>Demo Sign In</Button>
             <Errors/>
           </form>
         </Modal>
