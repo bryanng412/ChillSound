@@ -19,6 +19,10 @@ var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, CurrentUserState],
 
+  componentDidUpdate: function() {
+    $(".playlistBar").css("top", $(".navbar").height());
+  },
+
   handleSelect: function(eventKey) {
     switch (eventKey) {
       case 1:
