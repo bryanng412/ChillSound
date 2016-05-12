@@ -9,6 +9,7 @@ var Banner = React.createClass({
   handleClick: function(e) {
     e.preventDefault();
     PlayerActions.playSong(SongStore.all()[0]);
+    PlayerActions.toggleFullScreen();
   },
 
   render: function() {

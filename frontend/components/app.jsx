@@ -2,7 +2,7 @@ var React = require('react');
 var Navbar = require('./navbar.jsx');
 var PlaylistBar = require('./playlist_bar.jsx');
 var PlayerStore = require('../stores/player_store.js');
-// var Visualizer = require('./visualizer.jsx');
+var Visualizer = require('./visualizer.jsx');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -34,9 +34,8 @@ var App = React.createClass({
       playlistBar = <div/>;
     }
 
-    var children = this.state.showFullScreen ? <div/> : this.props.children;
+    var children = this.state.showFullScreen ? <Visualizer/> : this.props.children;
 
-    // <Visualizer/>
     return (
       <div id="app-wrapper">
         <Navbar/>

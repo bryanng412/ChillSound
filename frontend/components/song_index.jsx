@@ -4,7 +4,6 @@ var ClientActions = require('../actions/client_actions.js');
 var UserActions = require('../actions/user_actions.js');
 var SongIndexItem = require('./song_index_item.jsx');
 var CurrentUserState = require('../mixins/current_user_state.js');
-// var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 var SongIndex = React.createClass({
   mixins: [CurrentUserState],
