@@ -4,7 +4,7 @@ var VisualizerConstants = require('../constants/visualizer_constants.js');
 
 var VisualizerStore = new Store(AppDispatcher);
 
-var _songUrl;
+var _songUrl = null;
 
 VisualizerStore.songUrl = function() {
   return _songUrl;

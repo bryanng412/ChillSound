@@ -27,27 +27,29 @@ var App = React.createClass({
   },
 
   render: function() {
-    var playlistBar;
-    if (this.state.showPlaylistBar) {
-      playlistBar = <PlaylistBar show={this.state.showPlaylistBar}/>;
-    } else {
-      playlistBar = <div/>;
-    }
+    var playlistBar = this.state.showPlaylistBar ?
+      <PlaylistBar show={this.state.showPlaylistBar}/> : <div/>;
 
-    var children = this.state.showFullScreen ? <Visualizer/> : this.props.children;
+    var bg = this.state.showFullScreen ?
+    <div/>
+    :
+    <video
+      loop
+      autoPlay
+      controls="true"
+      src='https://s3-us-west-1.amazonaws.com/chillsound/Lightmirror.mp4'
+      type='video/mp4'
+      >
+    </video>;
+
+    var children = this.state.showFullScreen ? <div/> : this.props.children;
 
     return (
       <div id="app-wrapper">
         <Navbar/>
         {playlistBar}
-        <video
-          loop
-          autoPlay
-          controls="true"
-          src='https://s3-us-west-1.amazonaws.com/chillsound/Lightmirror.mp4'
-          type='video/mp4'
-        >
-        </video>
+        <Visualizer/>
+        {bg}
         {children}
       </div>
     );
