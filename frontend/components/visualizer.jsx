@@ -89,8 +89,7 @@ var Visualizer = React.createClass({
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      //var intensityVal = this.volume > 12000 ? Math.sin(this.volume) * Math.sin(this.volume) : 0.8;
-      var intensityVal = Math.sin(this.volume) * Math.sin(this.volume);
+      var intensityVal = this.volume > 12000 ? 0.2 + Math.sin(this.volume) * Math.sin(this.volume) : 0.8;
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
