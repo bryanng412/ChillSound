@@ -89,12 +89,18 @@ var Visualizer = React.createClass({
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      var freqSample = this.dataArray[i*2] + this.dataArray[i*2 + 1];
+      var freqSample;
+      if (this.dataArray) {
+        freqSample = this.dataArray[i*2] + this.dataArray[i*2 + 1];
+      } else {
+        freqSample = this.volume;
+      }
+      
       var intensityVal = this.volume > 12000 ? 0.2 + Math.sin(freqSample) * Math.sin(freqSample) : 0.8;
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
-      if ((this.volume < 10000) || !this.dataArray) {
+      if (this.volume < 10000) {
          this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
         r = Math.floor(Math.sin(freqSample) * Math.sin(freqSample) * 255);
