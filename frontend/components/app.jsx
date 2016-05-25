@@ -36,7 +36,6 @@ var App = React.createClass({
     <video
       loop
       autoPlay
-      controls="true"
       src='https://s3-us-west-1.amazonaws.com/chillsound/Lightmirror.mp4'
       type='video/mp4'
       >

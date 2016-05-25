@@ -20,35 +20,90 @@ var Visualizer = React.createClass({
 
     this.renderer = new THREE.WebGLRenderer();
     document.body.appendChild(this.renderer.domElement);
+
+    this.createWalls();
     this.createParticles();
     this.updateParticles();
 
     return { songUrl: VisualizerStore.songUrl() };
   },
 
-  createParticles: function() {
-    var particle;
-    var geometry = new THREE.SphereGeometry(4,8,8);
-    var material = new THREE.MeshBasicMaterial();
+  createWalls: function() {
+    var floor;
+    var geometry = new THREE.PlaneBufferGeometry(20000, 30000);
+    var material = new THREE.MeshPhongMaterial({
+       color: 0xffffff,
+       shininess: 100,
+       specular: 0xffffff
+     });
 
-    for (var zPos = -2000; zPos < 1000; zPos+=10) {
-      particle = new THREE.Mesh(geometry, material);
-      particle.position.x = Math.random() * 4000 - 2000;
-      particle.position.y = Math.random() * 2500 - 1250;
-      particle.position.z = zPos;
-      this.scene.add(particle);
-      this.particles.push(particle);
+    floor = new THREE.Mesh(geometry, material);
+    floor.receiveShadow = false;
+    floor.rotation.x = -19 * Math.PI / 36.0;
+    floor.position.y = -400;
+
+    var leftWall = new THREE.Mesh(geometry, material);
+    leftWall.receiveShadow = false;
+    leftWall.rotation.y = 19 * Math.PI / 36.0;
+    leftWall.rotation.z = Math.PI / 2.0;
+    leftWall.position.x = -1325;
+
+    var rightWall = new THREE.Mesh(geometry, material);
+    rightWall.receiveShadow = false;
+    rightWall.rotation.y = -19 * Math.PI / 36.0;
+    rightWall.rotation.z = Math.PI / 2.0;
+    rightWall.position.x = 1300;
+
+    this.scene.add(floor);
+    this.scene.add(leftWall);
+    this.scene.add(rightWall);
+  },
+
+  createParticles: function() {
+    var light;
+    var geometry = new THREE.SphereGeometry(4,8,8);
+    var material = new THREE.MeshPhongMaterial({
+       color: 0x80ff80,
+       shininess: 100,
+       specular: 0xffffff
+     });
+      // 0x80ff80
+    for (var zPos = -1000; zPos < 1000; zPos+=40) {
+      light = new THREE.PointLight(0xffffff, 1, 550, 1);
+      light.castShadow = false;
+
+      light.add(new THREE.Mesh(geometry, material));
+      light.position.x = Math.random() * 2000 - 1000;
+      light.position.y = Math.random() * 700 - 150;
+      light.position.z = zPos;
+      this.scene.add(light);
+      this.particles.push(light);
     }
   },
 
   updateParticles: function() {
-    var zInc = this.volume > 10000 ? this.volume * 0.001 : 1;
+    // console.log(this.volume);
+    var zInc = this.volume > 10000 ? this.volume * 0.003 : 1;
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
 
-    this.camera.aspect = window.innerWidth/window.innerHeight;
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
+      var intensityVal = this.volume > 14000 ? Math.sin(this.volume) : 1;
+      this.particles[i].intensity = intensityVal;
+
+      var r, g, b;
+      // if (this.volume < 12000) {
+      //   this.particles[i].color = new THREE.Color(0x80ff80);
+      // } else {
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+        this.particles[i].color =
+          new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
+      // }
+
 
       this.particles[i].position.z += zInc;
 
