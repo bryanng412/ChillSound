@@ -108,6 +108,8 @@ var Visualizer = React.createClass({
       this.particles[i].position.z += zInc;
 
       if (this.particles[i].position.z > 1000) {
+        this.particles[i].position.x = Math.random() * 2000 - 1000;
+        this.particles[i].position.y = Math.random() * 700 - 150;
         this.particles[i].position.z -= 2500;
       }
     }
