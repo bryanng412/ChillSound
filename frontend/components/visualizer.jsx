@@ -79,10 +79,19 @@ var Visualizer = React.createClass({
       this.scene.add(light);
       this.particles.push(light);
     }
+
+    this.zInc = 1;
   },
 
   updateParticles: function() {
-    var zInc = this.volume > 11000 ? this.volume * 0.003 : 1;
+    if (this.volume > 11000) {
+      this.zInc += 5;
+    } else {
+      this.zInc -= 1;
+    }
+    if (this.zInc < 1) {
+      this.zInc = 1;
+    }
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
 
@@ -112,7 +121,7 @@ var Visualizer = React.createClass({
       }
 
 
-      this.particles[i].position.z += zInc;
+      this.particles[i].position.z += this.zInc;
 
       if (this.particles[i].position.z > 1000) {
         this.particles[i].position.x = Math.random() * 2000 - 1000;
