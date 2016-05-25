@@ -102,7 +102,7 @@ var Visualizer = React.createClass({
         b = Math.floor(Math.random() * 255);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
-      // }
+      }
 
 
       this.particles[i].position.z += zInc;
