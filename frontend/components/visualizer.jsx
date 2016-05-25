@@ -63,12 +63,12 @@ var Visualizer = React.createClass({
     var light;
     var geometry = new THREE.SphereGeometry(4,8,8);
     var material = new THREE.MeshPhongMaterial({
-       color: 0x80ff80,
+       color: 0xffffff,
        shininess: 100,
        specular: 0xffffff
      });
       // 0x80ff80
-    for (var zPos = -1000; zPos < 1000; zPos+=40) {
+    for (var zPos = -1000; zPos < 1000; zPos+=31.25) {
       light = new THREE.PointLight(0xffffff, 1, 550, 1);
       light.castShadow = false;
 
@@ -83,20 +83,20 @@ var Visualizer = React.createClass({
 
   updateParticles: function() {
     // console.log(this.volume);
-    var zInc = this.volume > 10000 ? this.volume * 0.003 : 1;
+    var zInc = this.volume > 11000 ? this.volume * 0.003 : 1;
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      var intensityVal = this.volume > 14000 ? Math.sin(this.volume) : 1;
+      var intensityVal = this.volume > 14000 ? Math.sin(this.volume) * Math.sin(this.volume) : 1;
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
-      // if (this.volume < 12000) {
-      //   this.particles[i].color = new THREE.Color(0x80ff80);
-      // } else {
+      if (this.volume < 12000) {
+         this.particles[i].color = new THREE.Color(0x80ff80);
+      } else {
         r = Math.floor(Math.random() * 255);
         g = Math.floor(Math.random() * 255);
         b = Math.floor(Math.random() * 255);
