@@ -95,17 +95,18 @@ var Visualizer = React.createClass({
       } else {
         freqSample = this.volume;
       }
-      
+
       var intensityVal = this.volume > 12000 ? 0.2 + Math.sin(freqSample) * Math.sin(freqSample) : 0.8;
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
       if (this.volume < 10000) {
-         this.particles[i].color = new THREE.Color(0x06ee01);
+        this.particles[i].color = new THREE.Color(0xffffff);
+        //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
         r = Math.floor(Math.sin(freqSample) * Math.sin(freqSample) * 255);
         g = Math.floor(Math.cos(freqSample) * Math.cos(freqSample) * 128);
-        b = Math.floor((Math.cos(freqSample) + 1) * Math.random() * 255);
+        b = Math.floor((Math.cos(freqSample) + 1) * 100);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
