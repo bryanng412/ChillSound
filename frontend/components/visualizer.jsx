@@ -155,7 +155,7 @@ var Visualizer = React.createClass({
         total += this.dataArray[i];
       }
       this.volume = total;
-    }.bind(this), 50);
+    }.bind(this), 35);
     //use these in animations
     //size is fftSize/2
     this.dataArray = new window.Uint8Array(bufferLength);
