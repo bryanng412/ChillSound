@@ -82,8 +82,8 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    // console.log(this.volume);
-    var zInc = this.volume > 11000 ? this.volume * 0.003 : 1;
+    // console.log(this.dataArray.length);
+    var zInc = this.volume > 12000 ? this.volume * 0.003 : 1;
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
 
@@ -97,9 +97,10 @@ var Visualizer = React.createClass({
       if (this.volume < 12000) {
          this.particles[i].color = new THREE.Color(0x80ff80);
       } else {
-        r = Math.floor(Math.random() * 255);
-        g = Math.floor(Math.random() * 255);
-        b = Math.floor(Math.random() * 255);
+        var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1])/1000;
+        r = Math.floor(freqSample * 255);
+        g = Math.floor(freqSample * 255);
+        b = Math.floor(freqSample * 255);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
