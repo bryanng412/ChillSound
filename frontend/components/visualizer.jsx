@@ -69,7 +69,7 @@ var Visualizer = React.createClass({
      });
       // 0x80ff80
     for (var zPos = -1000; zPos < 1000; zPos+=31.25) {
-      light = new THREE.PointLight(0xffffff, 1, 550, 1);
+      light = new THREE.PointLight(0xffffff, 0.8, 550, 1);
       light.castShadow = false;
 
       light.add(new THREE.Mesh(geometry, material));
@@ -90,7 +90,7 @@ var Visualizer = React.createClass({
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      var intensityVal = this.volume > 14000 ? Math.sin(this.volume) * Math.sin(this.volume) : 1;
+      var intensityVal = this.volume > 14000 ? Math.sin(this.volume) * Math.sin(this.volume) : 0.8;
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
