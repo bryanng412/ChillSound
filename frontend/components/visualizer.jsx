@@ -94,7 +94,7 @@ var Visualizer = React.createClass({
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
-      if (this.volume < 12000) {
+      if ((this.volume < 12000) || !this.dataArray) {
          this.particles[i].color = new THREE.Color(0x80ff80);
       } else {
         var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1])/1000;
