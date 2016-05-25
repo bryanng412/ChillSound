@@ -69,7 +69,7 @@ var Visualizer = React.createClass({
      });
       // 0x06ee01
     for (var zPos = -1000; zPos < 1000; zPos+=31.25) {
-      light = new THREE.PointLight(0xffffff, 0.8, 550, 1);
+      light = new THREE.PointLight(0xffffff, 1, 550, 1);
       light.castShadow = false;
 
       light.add(new THREE.Mesh(geometry, material));
@@ -80,19 +80,19 @@ var Visualizer = React.createClass({
       this.particles.push(light);
     }
 
-    this.zInc = 1;
+    this.zInc = 2;
   },
 
   updateParticles: function() {
     if (this.volume > 11000) {
-      this.zInc += 3;
+      this.zInc += 5;
     } else {
-      this.zInc -= 0.5;
+      this.zInc -= 1;
     }
     if (this.zInc < 2) {
       this.zInc = 2;
-    } else if (this.zInc > 60) {
-      this.zInc = 60;
+    } else if (this.zInc > 70) {
+      this.zInc = 70;
     }
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
@@ -107,8 +107,15 @@ var Visualizer = React.createClass({
         freqSample = this.volume;
       }
 
-      var intensityVal = this.volume > 12000 ? 0.2 + Math.sin(freqSample) * Math.sin(freqSample) : 0.8;
-      this.particles[i].intensity = intensityVal;
+      if (this.volume > 12000) {
+        this.particles[i].intensity = 0.2 + Math.sin(freqSample) * Math.sin(freqSample);
+      } else {
+        this.particles[i].intensity += 0.01;
+      }
+
+      if (this.particles[i].intensity > 1) {
+        this.particles[i].intensity = 1;
+      }
 
       var r, g, b;
       if ((this.volume < 10000) || !freqSample) {
