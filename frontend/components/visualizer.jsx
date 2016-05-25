@@ -82,7 +82,7 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    var zInc = this.volume > 12000 ? this.volume * 0.003 : 1;
+    var zInc = this.volume > 11000 ? this.volume * 0.003 : 1;
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
 
@@ -93,7 +93,7 @@ var Visualizer = React.createClass({
       this.particles[i].intensity = intensityVal;
 
       var r, g, b;
-      if ((this.volume < 12000) || !this.dataArray) {
+      if ((this.volume < 10000) || !this.dataArray) {
          this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
         var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1]);
