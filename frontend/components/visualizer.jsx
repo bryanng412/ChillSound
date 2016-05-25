@@ -85,12 +85,14 @@ var Visualizer = React.createClass({
 
   updateParticles: function() {
     if (this.volume > 11000) {
-      this.zInc += 5;
+      this.zInc += 3;
     } else {
-      this.zInc -= 1;
+      this.zInc -= 0.5;
     }
-    if (this.zInc < 1) {
-      this.zInc = 1;
+    if (this.zInc < 2) {
+      this.zInc = 2;
+    } else if (this.zInc > 60) {
+      this.zInc = 60;
     }
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
