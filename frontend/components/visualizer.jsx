@@ -97,10 +97,10 @@ var Visualizer = React.createClass({
       if ((this.volume < 12000) || !this.dataArray) {
          this.particles[i].color = new THREE.Color(0x80ff80);
       } else {
-        var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1])/1000;
-        r = Math.floor(freqSample * 255);
-        g = Math.floor(freqSample * 255);
-        b = Math.floor(freqSample * 255);
+        var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1]);
+        r = Math.floor((freqSample-128) * 2);
+        g = Math.floor(freqSample);
+        b = Math.floor((freqSample-105) * 3);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
