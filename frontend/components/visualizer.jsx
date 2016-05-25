@@ -98,9 +98,9 @@ var Visualizer = React.createClass({
          this.particles[i].color = new THREE.Color(0x80ff80);
       } else {
         var freqSample = (this.dataArray[i*2] + this.dataArray[i*2 + 1]);
-        r = Math.floor((freqSample-128) * 2);
-        g = Math.floor(freqSample);
-        b = Math.floor((freqSample-105) * 3);
+        r = Math.floor(Math.sin(freqSample) * Math.sin(freqSample) * 255);
+        g = Math.floor(Math.cos(freqSample) * Math.cos(freqSample) * 128);
+        b = Math.floor((Math.cos(freqSample) + 1) * Math.random() * 255);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
