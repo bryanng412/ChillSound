@@ -9,6 +9,8 @@ var App = require('./components/app.jsx');
 var SplashPage = require('./components/splash_page.jsx');
 var ProfilePage = require('./components/profile_page.jsx');
 
+var THREE = require('three');
+
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={SplashPage}/>
@@ -17,6 +19,11 @@ var routes = (
 );
 
 document.addEventListener("DOMContentLoaded", function() {
+  
+  THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
+  	console.log( item, loaded, total );
+  };
+
   ReactDOM.render((
     <Router history={HashHistory}>
       {routes}
