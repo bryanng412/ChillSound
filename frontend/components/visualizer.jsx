@@ -46,7 +46,7 @@ var Visualizer = React.createClass({
     leftWall.receiveShadow = false;
     leftWall.rotation.y = 19 * Math.PI / 36.0;
     leftWall.rotation.z = Math.PI / 2.0;
-    leftWall.position.x = -1325;
+    leftWall.position.x = -1300;
 
     var rightWall = new THREE.Mesh(geometry, material);
     rightWall.receiveShadow = false;
