@@ -87,7 +87,7 @@ var Visualizer = React.createClass({
     console.log("low " + this.lowFreq);
     console.log("mid " + this.midFreq);
 
-    if (this.lowFreq > 2300) {
+    if (this.lowFreq > 1500) {
       this.zInc += 0.5;
     } else {
       this.zInc -= 0.5;
