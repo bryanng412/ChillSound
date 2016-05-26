@@ -190,11 +190,11 @@ var Visualizer = React.createClass({
         low += this.dataArray[i];
       }
 
-      for (var i=20; i<65; i++) {
+      for (var i=20; i<55; i++) {
         mid += this.dataArray[i];
       }
 
-      for (var i=65; i<this.dataArray.length; i++) {
+      for (var i=55; i<this.dataArray.length; i++) {
         high += this.dataArray[i];
       }
 
