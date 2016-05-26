@@ -180,7 +180,7 @@ var Visualizer = React.createClass({
         total += this.dataArray[i];
       }
       this.volume = total;
-    }.bind(this), 35);
+    }.bind(this), 20);
     //use these in animations
     //size is fftSize/2
     this.dataArray = new window.Uint8Array(bufferLength);
