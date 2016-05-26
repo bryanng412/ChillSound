@@ -89,7 +89,7 @@ var Visualizer = React.createClass({
     console.log("high " + this.highFreq);
 
 
-    if (this.lowFreq > 1500) {
+    if (this.lowFreq > 750) {
       this.zInc += 5;
     } else {
       this.zInc -= 1;
@@ -112,19 +112,21 @@ var Visualizer = React.createClass({
       //   freqSample = this.volume;
       // }
 
-      if (this.midFreq > 6000) {
+      if (this.midFreq > 7000) {
         // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
         this.particles[i].intensity += 0.01;
       } else {
         this.particles[i].intensity -= 0.01;
       }
 
-      if ((this.particles[i].intensity > 1) || (this.particles[i].intensity < 0)) {
+      if (this.particles[i].intensity > 1) {
         this.particles[i].intensity = 1;
+      } else if (this.particles[i].intensity < 0.5) {
+        this.particles[i].intensity = 0.5;
       }
 
       var r, g, b;
-      if ((this.lowFreq < 1500) || !this.lowFreq) {
+      if ((this.lowFreq < 750) || !this.lowFreq) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
@@ -184,15 +186,15 @@ var Visualizer = React.createClass({
       var mid = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i=0; i<10; i++) {
+      for (var i=0; i<5; i++) {
         low += this.dataArray[i];
       }
 
-      for (var i=10; i<70; i++) {
+      for (var i=5; i<65; i++) {
         mid += this.dataArray[i];
       }
 
-      for (var i=70; i<this.dataArray.length; i++) {
+      for (var i=65; i<this.dataArray.length; i++) {
         high += this.dataArray[i];
       }
 
