@@ -186,15 +186,15 @@ var Visualizer = React.createClass({
       var mid = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i=0; i<20; i++) {
+      for (var i=0; i<15; i++) {
         low += this.dataArray[i];
       }
 
-      for (var i=20; i<55; i++) {
+      for (var i=15; i<80; i++) {
         mid += this.dataArray[i];
       }
 
-      for (var i=55; i<this.dataArray.length; i++) {
+      for (var i=80; i<this.dataArray.length; i++) {
         high += this.dataArray[i];
       }
 
