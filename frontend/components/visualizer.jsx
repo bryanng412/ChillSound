@@ -87,7 +87,7 @@ var Visualizer = React.createClass({
     console.log("low " + this.lowFreq);
     console.log("mid " + this.midFreq);
 
-    if (this.lowFreq > 10000) {
+    if (this.lowFreq > 2300) {
       this.zInc += 0.5;
     } else {
       this.zInc -= 0.5;
@@ -110,17 +110,17 @@ var Visualizer = React.createClass({
       //   freqSample = this.volume;
       // }
 
-      if (this.midFreq > 11000) {
+      if (this.midFreq > 10000) {
         // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
-        this.particles[i].intensity += 0.001;
+        this.particles[i].intensity += 0.01;
       } else {
-        this.particles[i].intensity -= 0.001;
+        this.particles[i].intensity -= 0.01;
       }
 
       if (this.particles[i].intensity > 1) {
         this.particles[i].intensity = 1;
-      } else if (this.particles[i].intensity < 0.5) {
-        this.particles[i].intensity = 0.5;
+      } else if (this.particles[i].intensity < 0.4) {
+        this.particles[i].intensity = 0.4;
       }
 
       var r, g, b;
