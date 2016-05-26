@@ -90,7 +90,7 @@ var Visualizer = React.createClass({
     if ((this.lowFreq < 1500) || (this.midFreq < 8000)) {
       this.zInc -= 1;
     } else {
-      this.zInc += 1;
+      this.zInc += 5;
     }
     if (this.zInc < 2) {
       this.zInc = 2;
