@@ -84,15 +84,20 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    if (this.volume > 11000) {
+    console.log("low " + this.lowFreq);
+    console.log("mid " + this.midFreq);
+    console.log("high " + this.highFreq);
+
+
+    if (this.lowFreq > 11000) {
       this.zInc += 5;
     } else {
       this.zInc -= 1;
     }
     if (this.zInc < 2) {
       this.zInc = 2;
-    } else if (this.zInc > 70) {
-      this.zInc = 70;
+    } else if (this.zInc > 60) {
+      this.zInc = 60;
     }
 
     this.requestId = window.requestAnimationFrame(this.updateParticles);
@@ -100,15 +105,15 @@ var Visualizer = React.createClass({
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      var freqSample;
-      if (this.dataArray) {
-        freqSample = this.dataArray[i*2] + this.dataArray[i*2 + 1];
-      } else {
-        freqSample = this.volume;
-      }
+      // var freqSample;
+      // if (this.dataArray) {
+      //   freqSample = this.dataArray[i*2] + this.dataArray[i*2 + 1];
+      // } else {
+      //   freqSample = this.volume;
+      // }
 
-      if (this.volume > 12000) {
-        this.particles[i].intensity = 0.2 + Math.sin(freqSample) * Math.sin(freqSample);
+      if (this.lowFreq > 12000) {
+        this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
       } else {
         this.particles[i].intensity += 0.01;
       }
@@ -118,13 +123,13 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if ((this.volume < 10000) || !freqSample) {
+      if (this.lowFreq < 10000) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
-        r = Math.floor(Math.sin(freqSample) * Math.sin(freqSample) * 255);
-        g = Math.floor(Math.cos(freqSample) * Math.cos(freqSample) * 128);
-        b = Math.floor((Math.cos(freqSample) + 1) * 100);
+        r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
+        g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
+        b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
@@ -174,17 +179,32 @@ var Visualizer = React.createClass({
       //samples the audio data and
       //updates the dataArray and volume in real time
       analyser.getByteFrequencyData(this.dataArray);
-      var total = 0;
+      var low = 0;
+      var mid = 0;
+      var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i = 0; i < 80; i++) {
-        total += this.dataArray[i];
+      for (var i=0; i<30; i++) {
+        low += this.dataArray[i];
       }
-      this.volume = total;
+
+      for (var i=30; i<70; i++) {
+        mid += this.dataArray[i];
+      }
+
+      for (var i=70; i<this.dataArray.length; i++) {
+        high += this.dataArray[i];
+      }
+
+      this.lowFreq = low;
+      this.midFreq = mid;
+      this.highFreq = high;
     }.bind(this), 20);
     //use these in animations
     //size is fftSize/2
     this.dataArray = new window.Uint8Array(bufferLength);
-    this.volume = 0;
+    this.lowFreq = 0;
+    this.midFreq = 0;
+    this.highFreq = 0;
   },
 
   render: function() {
