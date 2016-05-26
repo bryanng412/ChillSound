@@ -89,7 +89,7 @@ var Visualizer = React.createClass({
     console.log("high " + this.highFreq);
 
 
-    if (this.lowFreq > 11000) {
+    if (this.lowFreq > 1500) {
       this.zInc += 5;
     } else {
       this.zInc -= 1;
@@ -112,18 +112,19 @@ var Visualizer = React.createClass({
       //   freqSample = this.volume;
       // }
 
-      if (this.lowFreq > 12000) {
-        this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
-      } else {
+      if (this.midFreq > 6000) {
+        // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
         this.particles[i].intensity += 0.01;
+      } else {
+        this.particles[i].intensity -= 0.01;
       }
 
-      if (this.particles[i].intensity > 1) {
+      if ((this.particles[i].intensity > 1) || (this.particles[i].intensity < 0)) {
         this.particles[i].intensity = 1;
       }
 
       var r, g, b;
-      if ((this.lowFreq < 10000) || !this.lowFreq) {
+      if ((this.lowFreq < 1500) || !this.lowFreq) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
