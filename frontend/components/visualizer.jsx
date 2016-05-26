@@ -88,7 +88,7 @@ var Visualizer = React.createClass({
     console.log("high " + this.highFreq);
 
 
-    if (this.volume > 11000) {
+    if (this.volume > 10000) {
       this.zInc += 0.5;
     } else {
       this.zInc -= 1;
@@ -125,7 +125,7 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if ((this.volume < 12000) || !this.volume) {
+      if ((this.volume < 10000) || !this.volume) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
