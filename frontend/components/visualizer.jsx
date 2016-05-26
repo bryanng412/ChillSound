@@ -103,18 +103,12 @@ var Visualizer = React.createClass({
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
     for (var i=0; i<this.particles.length; i++) {
-      // var freqSample;
-      // if (this.dataArray) {
-      //   freqSample = this.dataArray[i*2] + this.dataArray[i*2 + 1];
-      // } else {
-      //   freqSample = this.volume;
-      // }
 
       if (this.midFreq > 10000) {
-        // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
-        this.particles[i].intensity += 0.01;
+        this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
+        // this.particles[i].intensity += 0.01;
       } else {
-        this.particles[i].intensity -= 0.01;
+        this.particles[i].intensity += 0.01;
       }
 
       if (this.particles[i].intensity > 1) {
@@ -124,7 +118,7 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if ((this.midFreq < 10000) || !this.midFreq) {
+      if ((this.midFreq < 8000) || !this.midFreq) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
