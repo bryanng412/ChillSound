@@ -84,13 +84,12 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    console.log("low " + this.lowFreq);
-    console.log("mid " + this.midFreq);
+    console.log("vol " + this.volume);
     console.log("high " + this.highFreq);
 
 
-    if (this.lowFreq > 3000) {
-      this.zInc += 5;
+    if (this.volume > 11000) {
+      this.zInc += 0.5;
     } else {
       this.zInc -= 1;
     }
@@ -112,11 +111,11 @@ var Visualizer = React.createClass({
       //   freqSample = this.volume;
       // }
 
-      if (this.midFreq > 7000) {
+      if (this.volume > 11000) {
         // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
-        this.particles[i].intensity += 0.01;
+        this.particles[i].intensity += 0.001;
       } else {
-        this.particles[i].intensity -= 0.01;
+        this.particles[i].intensity -= 0.001;
       }
 
       if (this.particles[i].intensity > 1) {
@@ -126,13 +125,13 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if ((this.lowFreq < 750) || !this.lowFreq) {
+      if ((this.volume < 12000) || !this.volume) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
         r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
-        g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
-        b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
+        g = Math.floor(Math.cos(this.volume) * Math.cos(this.volume) * 128);
+        b = Math.floor((Math.cos(this.volume) + 1) * 100);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
@@ -182,31 +181,26 @@ var Visualizer = React.createClass({
       //samples the audio data and
       //updates the dataArray and volume in real time
       analyser.getByteFrequencyData(this.dataArray);
-      var low = 0;
-      var mid = 0;
+
+      var vol = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i=0; i<15; i++) {
-        low += this.dataArray[i];
-      }
 
-      for (var i=15; i<80; i++) {
-        mid += this.dataArray[i];
+      for (var i=0; i<80; i++) {
+        vol += this.dataArray[i];
       }
 
       for (var i=80; i<this.dataArray.length; i++) {
         high += this.dataArray[i];
       }
 
-      this.lowFreq = low;
-      this.midFreq = mid;
+      this.volume = vol;
       this.highFreq = high;
     }.bind(this), 20);
     //use these in animations
     //size is fftSize/2
     this.dataArray = new window.Uint8Array(bufferLength);
-    this.lowFreq = 0;
-    this.midFreq = 0;
+    this.volume = 0;
     this.highFreq = 0;
   },
 
