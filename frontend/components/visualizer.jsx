@@ -21,6 +21,9 @@ var Visualizer = React.createClass({
     this.renderer = new THREE.WebGLRenderer();
     document.body.appendChild(this.renderer.domElement);
 
+    this.light = new THREE.AmbientLight( 0x404040 );
+    this.scene.add(this.light);
+
     this.createWalls();
     this.createParticles();
     this.updateParticles();
@@ -84,9 +87,6 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    console.log("low " + this.lowFreq);
-    console.log("mid " + this.midFreq);
-
     if ((this.lowFreq < 1600) ||
         ((this.midFreq < 8500) && (this.lowFreq > 1600))) {
       this.zInc -= 1;
@@ -107,8 +107,10 @@ var Visualizer = React.createClass({
 
       if (this.midFreq > 10000) {
         this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
+        this.light.intensity = 0.6;
         // this.particles[i].intensity += 0.01;
       } else {
+        this.light.intensity = 0;
         this.particles[i].intensity += 0.01;
       }
 
