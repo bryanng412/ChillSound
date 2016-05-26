@@ -123,6 +123,11 @@ var Player = React.createClass({
     PlayerActions.toggleSidebar();
   },
 
+  showFullScreen: function(e) {
+    e.preventDefault();
+    PlayerActions.toggleFullScreen();
+  },
+
   render: function() {
     var song, playPauseButton, player;
     if (this.state.currentSong) {
@@ -205,6 +210,7 @@ var Player = React.createClass({
               onInput={this.seek}
             />
             {volumeIcon}
+            <NavItem onClick={this.showFullScreen}><Glyphicon glyph="equalizer"/></NavItem>
           </Nav>
         </ReactCSSTransitionGroup>
       );
