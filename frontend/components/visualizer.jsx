@@ -84,12 +84,9 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
-    console.log("vol " + this.volume);
-    console.log("high " + this.highFreq);
-
 
     if (this.volume > 10000) {
-      this.zInc += 0.5;
+      this.zInc += 5;
     } else {
       this.zInc -= 1;
     }
