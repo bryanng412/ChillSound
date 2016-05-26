@@ -84,11 +84,13 @@ var Visualizer = React.createClass({
   },
 
   updateParticles: function() {
+    console.log("low " + this.lowFreq);
+    console.log("mid " + this.midFreq);
 
-    if (this.volume > 10000) {
-      this.zInc += 5;
+    if (this.lowFreq > 10000) {
+      this.zInc += 0.5;
     } else {
-      this.zInc -= 1;
+      this.zInc -= 0.5;
     }
     if (this.zInc < 2) {
       this.zInc = 2;
@@ -108,7 +110,7 @@ var Visualizer = React.createClass({
       //   freqSample = this.volume;
       // }
 
-      if (this.volume > 11000) {
+      if (this.midFreq > 11000) {
         // this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
         this.particles[i].intensity += 0.001;
       } else {
@@ -122,13 +124,13 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if ((this.volume < 10000) || !this.volume) {
+      if ((this.midFreq < 10000) || !this.midFreq) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
         r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
-        g = Math.floor(Math.cos(this.volume) * Math.cos(this.volume) * 128);
-        b = Math.floor((Math.cos(this.volume) + 1) * 100);
+        g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
+        b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
         this.particles[i].color =
           new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
       }
@@ -179,25 +181,32 @@ var Visualizer = React.createClass({
       //updates the dataArray and volume in real time
       analyser.getByteFrequencyData(this.dataArray);
 
-      var vol = 0;
+      var low = 0;
+      var mid = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
 
-      for (var i=0; i<80; i++) {
-        vol += this.dataArray[i];
+      for (var i=0; i<10; i++) {
+        low += this.dataArray[i];
+      }
+
+      for (var i=10; i<80; i++) {
+        mid += this.dataArray[i];
       }
 
       for (var i=80; i<this.dataArray.length; i++) {
         high += this.dataArray[i];
       }
 
-      this.volume = vol;
+      this.lowFreq = low;
+      this.midFreq = mid;
       this.highFreq = high;
     }.bind(this), 20);
     //use these in animations
     //size is fftSize/2
     this.dataArray = new window.Uint8Array(bufferLength);
-    this.volume = 0;
+    this.lowFreq = 0;
+    this.midFreq = 0;
     this.highFreq = 0;
   },
 
