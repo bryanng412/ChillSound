@@ -123,7 +123,7 @@ var Visualizer = React.createClass({
       }
 
       var r, g, b;
-      if (this.lowFreq < 10000) {
+      if ((this.lowFreq < 10000) || !this.lowFreq) {
         this.particles[i].color = new THREE.Color(0x06ee01);
         //  this.particles[i].color = new THREE.Color(0x06ee01);
       } else {
@@ -183,11 +183,11 @@ var Visualizer = React.createClass({
       var mid = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i=0; i<30; i++) {
+      for (var i=0; i<10; i++) {
         low += this.dataArray[i];
       }
 
-      for (var i=30; i<70; i++) {
+      for (var i=10; i<70; i++) {
         mid += this.dataArray[i];
       }
 
