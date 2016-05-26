@@ -89,7 +89,7 @@ var Visualizer = React.createClass({
     console.log("high " + this.highFreq);
 
 
-    if (this.midFreq > 7000) {
+    if (this.lowFreq > 3000) {
       this.zInc += 5;
     } else {
       this.zInc -= 1;
@@ -186,11 +186,11 @@ var Visualizer = React.createClass({
       var mid = 0;
       var high = 0;
       //volume of first 80 bins, play around with this
-      for (var i=0; i<5; i++) {
+      for (var i=0; i<20; i++) {
         low += this.dataArray[i];
       }
 
-      for (var i=5; i<65; i++) {
+      for (var i=20; i<65; i++) {
         mid += this.dataArray[i];
       }
 
