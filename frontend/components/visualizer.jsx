@@ -203,7 +203,7 @@ var Visualizer = React.createClass({
   _onSongStart: function() {
     // this.setState({ songUrl: VisualizerStore.songUrl() });
     var player = document.getElementById("player");
-    // player.crossOrigin = "anonymous";
+    player.crossOrigin = "anonymous";
     //different for multiple browsers
     var audioCtx = new (window.AudioContext || window.webkitAudioContext);
     var analyser = audioCtx.createAnalyser();
