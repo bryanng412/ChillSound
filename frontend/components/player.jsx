@@ -222,10 +222,6 @@ var Player = React.createClass({
     } else {
       player = <audio
                 id="player"
-                onLoadedData={this._onAudioRender}
-                onTimeUpdate={this._onTimeUpdate}
-                onEnded={this._onSongEnd}
-                src={this.state.currentSong.audio_url}
                 crossOrigin = "anonymous"
               />;
     }
