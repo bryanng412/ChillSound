@@ -87,12 +87,12 @@ var Visualizer = React.createClass({
   createBars: function() {
     var light, bar;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
-    var material = new THREE.MeshNormalMaterial();
-    // var material = new THREE.MeshPhongMaterial({
-    //    color: 0xffffff,
-    //    shininess: 50,
-    //    specular: 0xffffff
-    //  });
+    // var material = new THREE.MeshNormalMaterial();
+    var material = new THREE.MeshPhongMaterial({
+       color: 0xffffff,
+       shininess: 50,
+       specular: 0xffffff
+     });
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
@@ -123,39 +123,9 @@ var Visualizer = React.createClass({
     this.camera.aspect = window.innerWidth/window.innerHeight;
   },
   updateParticles: function() {
-    // if ((this.lowFreq < 1600) ||
-    //     ((this.midFreq < 8500) && (this.lowFreq > 1600))) {
-    //   this.zInc -= 1;
-    // } else {
-    //   this.zInc += 5;
-    // }
-    // if (this.zInc < 2) {
-    //   this.zInc = 2;
-    // } else if (this.zInc > 60) {
-    //   this.zInc = 60;
-    // }
 
     var zInc = 2;
     for (var i=0; i<this.particles.length; i++) {
-
-      // if (this.particles[i].intensity > 1) {
-      //   this.particles[i].intensity = 1;
-      // } else if (this.particles[i].intensity < 0.4) {
-      //   this.particles[i].intensity = 0.4;
-      // }
-
-      // var r, g, b;
-      // if ((this.midFreq < 8000) || !this.midFreq) {
-      //   this.particles[i].color = new THREE.Color(0x06ee01);
-      //   //  this.particles[i].color = new THREE.Color(0x06ee01);
-      // } else {
-      //   r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
-      //   g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
-      //   b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
-      //   this.particles[i].color =
-      //     new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
-      // }
-
 
       this.particles[i].position.z += zInc;
 
