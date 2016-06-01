@@ -59,11 +59,6 @@ var Player = React.createClass({
       if (PlayerStore.showFullScreen()) {
         PlayerActions.toggleFullScreen();
       }
-      var player = document.getElementById('player');
-      player.pause();
-      player.currentTime = 0;
-      this.setState({ currentTime: 0, percentPlayed: 0, isPlaying: false });
-      // PlayerActions.playSong(null);
     } else {
       PlayerActions.playNextSong();
       this.backward();
