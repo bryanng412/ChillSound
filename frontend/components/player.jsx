@@ -132,7 +132,6 @@ var Player = React.createClass({
 
   render: function() {
     var song, playPauseButton, player;
-    // crossOrigin="anonymous"
     if (this.state.currentSong) {
       song = (<audio
                 id="player"
@@ -180,44 +179,50 @@ var Player = React.createClass({
 
     var sidebarContent = <div>asdf</div>;
 
-    player = (
-      <ReactCSSTransitionGroup
-        transitionName="translate"
-        transitionEnterTimeout={500}
-        transitionAppearTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionAppear={true}
-        transitionLeave={true}
-      >
-        <Nav key="musicPlayer" className="musicPlayer">
-          {song}
-          <NavItem onClick={this.backward}><Glyphicon glyph="backward"/></NavItem>
-          {playPauseButton}
-          <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
-          <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
-          <Badge className="queueBadge">{PlayerStore.queue().length}</Badge>
-          <Image
-            className="playerIcon"
-            src={this.state.currentSong.image_url}
+    if (this.state.currentSong) {
+      player = (
+        <ReactCSSTransitionGroup
+          transitionName="translate"
+          transitionEnterTimeout={500}
+          transitionAppearTimeout={500}
+          transitionLeaveTimeout={500}
+          transitionAppear={true}
+          transitionLeave={true}
+        >
+          <Nav key="musicPlayer" className="musicPlayer">
+            {song}
+            <NavItem onClick={this.backward}><Glyphicon glyph="backward"/></NavItem>
+            {playPauseButton}
+            <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
+            <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
+            <Badge className="queueBadge">{PlayerStore.queue().length}</Badge>
+            <Image
+              className="playerIcon"
+              src={this.state.currentSong.image_url}
+              />
+            <NavItem disabled>
+              <p className="songTime">{this.state.currentTime}</p>
+            </NavItem>
+            <input
+              className="progressBar"
+              type="range"
+              value={this.state.percentPlayed}
+              min="0"
+              max="100"
+              step="1"
+              onChange={this.seek}
+              onInput={this.seek}
             />
-          <NavItem disabled>
-            <p className="songTime">{this.state.currentTime}</p>
-          </NavItem>
-          <input
-            className="progressBar"
-            type="range"
-            value={this.state.percentPlayed}
-            min="0"
-            max="100"
-            step="1"
-            onChange={this.seek}
-            onInput={this.seek}
-          />
-          {volumeIcon}
-          <NavItem onClick={this.showFullScreen}><Glyphicon glyph="equalizer"/></NavItem>
-        </Nav>
-      </ReactCSSTransitionGroup>
-    );
+            {volumeIcon}
+            <NavItem onClick={this.showFullScreen}><Glyphicon glyph="equalizer"/></NavItem>
+          </Nav>
+        </ReactCSSTransitionGroup>
+      );
+    } else {
+      player = <audio
+                id="player"
+              />;
+    }
 
     return player;
   }
