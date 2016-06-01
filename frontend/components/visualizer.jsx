@@ -69,12 +69,13 @@ var Visualizer = React.createClass({
        specular: 0xffffff
      });
       // 0x06ee01
-    for (var zPos = -1000; zPos < 1000; zPos+=31.25) {
+    for (var zPos = -1000; zPos < 1000; zPos+=20) {
       // light = new THREE.PointLight(0xffffff, 1, 550, 1);
       // light.castShadow = false;
       //
       // light.add(new THREE.Mesh(geometry, material));
       particle = new THREE.Mesh(geometry, material);
+
       particle.position.x = Math.random() * 2000 - 1000;
       particle.position.y = Math.random() * 700 - 150;
       particle.position.z = zPos;
@@ -123,10 +124,9 @@ var Visualizer = React.createClass({
       0x540C84
     ];
 
-    var light, bar;
+    var light, bar, material;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
     // var material = new THREE.MeshNormalMaterial();
-    var material = new THREE.MeshStandardMaterial({color: colors[i]});
     // var material = new THREE.MeshPhongMaterial({
     //    color: colors[i],
     //    shininess: 50,
@@ -135,12 +135,14 @@ var Visualizer = React.createClass({
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
-      light = new THREE.PointLight(colors[i], 1, 600, 1);
+      material = new THREE.MeshStandardMaterial({color: colors[i]});
+      light = new THREE.PointLight(colors[i], 1, 600);
+
       bar = new THREE.Mesh(geometry, material);
 
       light.position.x = xPos + 25;
       light.position.y = -390;
-      // light.position.z = -100;
+      light.position.z = 150;
 
       bar.position.x = xPos;
       bar.position.y = -390;
@@ -158,12 +160,13 @@ var Visualizer = React.createClass({
     window.requestAnimationFrame(this.updateObjects);
     this.updateParticles();
     this.updateBars();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
   },
   updateParticles: function() {
+    var zInc = this.volume > 6000 ? 40 : 5;
 
-    var zInc = 2;
     for (var i=0; i<this.particles.length; i++) {
 
       this.particles[i].position.z += zInc;
@@ -182,9 +185,9 @@ var Visualizer = React.createClass({
       for (var i=0; i<this.bars.length; i++) {
         var dataVal = this.dataArray[i+16];
         var yScale = (dataVal / 255) * 40 + 1;
-        var lightInt = (dataVal / 255) * 1 + 0.05;
+        var lightInt = (dataVal / 255) * 1 + 0.2;
         this.bars[i].scale.set(1, yScale, 1);
-        this.lights[i].position.y = yScale;
+        this.lights[i].position.y = yScale + 100;
         this.lights[i].intensity = lightInt;
       }
     }
@@ -213,8 +216,14 @@ var Visualizer = React.createClass({
 
     setInterval(function() {
       analyser.getByteFrequencyData(this.dataArray);
+      var total = 0;
+      for(var i=0; i<40; i++) {
+        total += this.dataArray[i];
+      }
+      this.volume = total;
     }.bind(this), 20);
 
+    this.volume = 0;
     this.dataArray = new window.Uint8Array(bufferLength);
   },
 
