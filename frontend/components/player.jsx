@@ -78,7 +78,9 @@ var Player = React.createClass({
     var player = document.getElementById('player');
     player.pause();
     player.currentTime = 0;
-    player.play();
+    setTimeout(function() {
+      player.play();
+    }, 150);
     this.setState({isPlaying: true});
   },
 
