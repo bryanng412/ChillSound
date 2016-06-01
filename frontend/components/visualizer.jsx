@@ -171,8 +171,9 @@ var Visualizer = React.createClass({
   updateBars: function() {
     if (this.dataArray) {
       for (var i=0; i<this.bars.length; i++) {
-        var yScale = (this.dataArray[i] / 255) * 40 + 1;
-        var lightInt = (this.dataArray[i] / 255) * 1;
+        var dataVal = this.dataArray[i+16];
+        var yScale = (dataVal / 255) * 40 + 1;
+        var lightInt = (dataVal / 255) * 1;
         this.bars[i].scale.set(1, yScale, 1);
         this.lights[i].position.y = yScale;
         this.lights[i].intensity = lightInt;
@@ -192,7 +193,7 @@ var Visualizer = React.createClass({
     var audioCtx = new (window.AudioContext || window.webkitAudioContext);
     var analyser = audioCtx.createAnalyser();
     //Fast Fourier Transform size, must be power of 2
-    analyser.fftSize = 64;
+    analyser.fftSize = 128;
     //half the fft size, number of bins
     var bufferLength = analyser.frequencyBinCount;
 
