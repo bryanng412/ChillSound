@@ -220,7 +220,14 @@ var Player = React.createClass({
         </ReactCSSTransitionGroup>
       );
     } else {
-      player = <div/>;
+      player = <audio
+                id="player"
+                onLoadedData={this._onAudioRender}
+                onTimeUpdate={this._onTimeUpdate}
+                onEnded={this._onSongEnd}
+                src={this.state.currentSong.audio_url}
+                crossOrigin = "anonymous"
+              />;
     }
 
     return player;
