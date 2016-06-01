@@ -55,11 +55,11 @@ var Player = React.createClass({
   },
 
   _onSongEnd: function() {
-    if (PlayerStore.queue().length === 0) {
-      if (PlayerStore.showFullScreen()) {
-        PlayerActions.toggleFullScreen();
-      }
-    } else {
+    // if (PlayerStore.showFullScreen()) {
+    //   PlayerActions.toggleFullScreen();
+    // }
+  // } else {
+    if (PlayerStore.queue().length !== 0) {
       PlayerActions.playNextSong();
       this.backward();
     }
