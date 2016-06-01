@@ -123,14 +123,14 @@ var Visualizer = React.createClass({
     var light, bar, material;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
 
-    var xPos = -925;
+    var xPos = -900;
     for (var i=0; i<32; i++) {
       material = new THREE.MeshStandardMaterial({color: colors[i]});
       light = new THREE.PointLight(colors[i], 1, 600);
 
       bar = new THREE.Mesh(geometry, material);
 
-      light.position.x = xPos;
+      light.position.x = xPos + 60;
       light.position.y = -390;
       light.position.z = 150;
 
