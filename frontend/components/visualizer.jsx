@@ -151,7 +151,7 @@ var Visualizer = React.createClass({
     this.updateParticles();
     this.updateBars();
     this.camera.aspect = window.innerWidth/window.innerHeight;
-    //this.camera.updateProjectionMatrix();
+    this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   },
 
@@ -203,7 +203,7 @@ var Visualizer = React.createClass({
   _onSongStart: function() {
     // this.setState({ songUrl: VisualizerStore.songUrl() });
     var player = document.getElementById("player");
-    player.crossOrigin = "anonymous";
+    // player.crossOrigin = "anonymous";
     //different for multiple browsers
     var audioCtx = new (window.AudioContext || window.webkitAudioContext);
     var analyser = audioCtx.createAnalyser();
