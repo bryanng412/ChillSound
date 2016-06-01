@@ -60,7 +60,6 @@ var Visualizer = React.createClass({
   },
 
   createParticles: function() {
-    // var light;
     var particle;
     var geometry = new THREE.SphereGeometry(4,8,8);
     var material = new THREE.MeshPhongMaterial({
@@ -68,12 +67,8 @@ var Visualizer = React.createClass({
        shininess: 50,
        specular: 0xffffff
      });
-      // 0x06ee01
+
     for (var zPos = -1000; zPos < 1000; zPos+=20) {
-      // light = new THREE.PointLight(0xffffff, 1, 550, 1);
-      // light.castShadow = false;
-      //
-      // light.add(new THREE.Mesh(geometry, material));
       particle = new THREE.Mesh(geometry, material);
 
       particle.position.x = Math.random() * 2000 - 1000;
@@ -127,12 +122,6 @@ var Visualizer = React.createClass({
 
     var light, bar, material;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
-    // var material = new THREE.MeshNormalMaterial();
-    // var material = new THREE.MeshPhongMaterial({
-    //    color: colors[i],
-    //    shininess: 50,
-    //    specular: 0xffffff
-    //  });
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
@@ -162,7 +151,7 @@ var Visualizer = React.createClass({
     this.updateParticles();
     this.updateBars();
     this.camera.aspect = window.innerWidth/window.innerHeight;
-    this.camera.updateProjectionMatrix();
+    //this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   },
 
