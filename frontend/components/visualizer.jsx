@@ -85,6 +85,44 @@ var Visualizer = React.createClass({
   },
 
   createBars: function() {
+    var colors = [
+      0xD40502,
+      0xD82707,
+      0xDD490C,
+      0xE26B11,
+      0xE78E16,
+      0xECB01B,
+      0xF1D220,
+      0xF6F526,
+
+      0xD9F43A,
+      0xBDF44E,
+      0xA1F363,
+      0x85F377,
+      0x69F38B,
+      0x4DF2A0,
+      0x31F2B4,
+      0x15F2C9,
+
+      0x1AD8CB,
+      0x20BFCD,
+      0x26A6CF,
+      0x2C8DD1,
+      0x3173D3,
+      0x375AD5,
+      0x3D41D7,
+      0x4328DA,
+
+      0x4524CD,
+      0x4820C1,
+      0x4A1CB5,
+      0x4D18A9,
+      0x4F149C,
+      0x521090,
+      0x540C84,
+      0x540C84
+    ];
+
     var light, bar;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
     // var material = new THREE.MeshNormalMaterial();
@@ -96,7 +134,7 @@ var Visualizer = React.createClass({
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
-      light = new THREE.PointLight(0xffffff, 1, 600, 1);
+      light = new THREE.PointLight(colors[i], 1, 600, 1);
       bar = new THREE.Mesh(geometry, material);
 
       light.position.x = xPos + 25;
