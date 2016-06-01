@@ -139,6 +139,7 @@ var Visualizer = React.createClass({
       bar.position.y = -390;
 
       xPos += 60;
+      xLightPos += 60;
 
       this.scene.add(light);
       this.scene.add(bar);
