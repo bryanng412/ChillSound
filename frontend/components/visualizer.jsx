@@ -162,8 +162,8 @@ var Visualizer = React.createClass({
       this.zInc -= 1;
     }
 
-    if (this.zInc > 40) {
-      this.zInc = 40;
+    if (this.zInc > 45) {
+      this.zInc = 45;
     }
 
     if (this.zInc < 5) {
