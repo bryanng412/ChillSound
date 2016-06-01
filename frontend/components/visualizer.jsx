@@ -6,6 +6,8 @@ var VisualizerStore = require('../stores/visualizer_store.js');
 var Visualizer = React.createClass({
   getInitialState: function() {
     this.particles = [];
+    this.lights = [];
+    this.bars = [];
 
     this.camera = new THREE.PerspectiveCamera(
       80,
@@ -23,7 +25,8 @@ var Visualizer = React.createClass({
 
     this.createWalls();
     this.createParticles();
-    this.updateParticles();
+    this.createBars();
+    this.updateObjects();
 
     return { songUrl: VisualizerStore.songUrl() };
   },
@@ -38,18 +41,15 @@ var Visualizer = React.createClass({
      });
 
     floor = new THREE.Mesh(geometry, material);
-    floor.receiveShadow = false;
     floor.rotation.x = -19 * Math.PI / 36.0;
     floor.position.y = -400;
 
     var leftWall = new THREE.Mesh(geometry, material);
-    leftWall.receiveShadow = false;
     leftWall.rotation.y = 19 * Math.PI / 36.0;
     leftWall.rotation.z = Math.PI / 2.0;
     leftWall.position.x = -1300;
 
     var rightWall = new THREE.Mesh(geometry, material);
-    rightWall.receiveShadow = false;
     rightWall.rotation.y = -19 * Math.PI / 36.0;
     rightWall.rotation.z = Math.PI / 2.0;
     rightWall.position.x = 1300;
@@ -60,7 +60,8 @@ var Visualizer = React.createClass({
   },
 
   createParticles: function() {
-    var light;
+    // var light;
+    var particle;
     var geometry = new THREE.SphereGeometry(4,8,8);
     var material = new THREE.MeshPhongMaterial({
        color: 0xffffff,
@@ -69,66 +70,94 @@ var Visualizer = React.createClass({
      });
       // 0x06ee01
     for (var zPos = -1000; zPos < 1000; zPos+=31.25) {
-      light = new THREE.PointLight(0xffffff, 1, 550, 1);
-      light.castShadow = false;
-
-      light.add(new THREE.Mesh(geometry, material));
-      light.position.x = Math.random() * 2000 - 1000;
-      light.position.y = Math.random() * 700 - 150;
-      light.position.z = zPos;
-      this.scene.add(light);
-      this.particles.push(light);
+      // light = new THREE.PointLight(0xffffff, 1, 550, 1);
+      // light.castShadow = false;
+      //
+      // light.add(new THREE.Mesh(geometry, material));
+      particle = new THREE.Mesh(geometry, material);
+      particle.position.x = Math.random() * 2000 - 1000;
+      particle.position.y = Math.random() * 700 - 150;
+      particle.position.z = zPos;
+      this.scene.add(particle);
+      this.particles.push(particle);
     }
 
-    this.zInc = 2;
   },
 
-  updateParticles: function() {
-    if ((this.lowFreq < 1600) ||
-        ((this.midFreq < 8500) && (this.lowFreq > 1600))) {
-      this.zInc -= 1;
-    } else {
-      this.zInc += 5;
-    }
-    if (this.zInc < 2) {
-      this.zInc = 2;
-    } else if (this.zInc > 60) {
-      this.zInc = 60;
-    }
+  createBars: function() {
+    var light, bar;
+    var geometry = new THREE.BoxGeometry(50, 50, 50);
+    var material = new THREE.MeshNormalMaterial();
+    // var material = new THREE.MeshPhongMaterial({
+    //    color: 0xffffff,
+    //    shininess: 50,
+    //    specular: 0xffffff
+    //  });
 
-    this.requestId = window.requestAnimationFrame(this.updateParticles);
+    var xPos = -925;
+    for (var i=0; i<32; i++) {
+      light = new THREE.PointLight(0xffffff, 1, 600, 1);
+      bar = new THREE.Mesh(geometry, material);
 
+      light.position.x = xPos + 25;
+      light.position.y = -390;
+      // light.position.z = -100;
+
+      bar.position.x = xPos;
+      bar.position.y = -390;
+
+      xPos += 60;
+
+      this.scene.add(light);
+      this.scene.add(bar);
+      this.lights.push(light);
+      this.bars.push(bar);
+    }
+  },
+
+  updateObjects: function() {
+    window.requestAnimationFrame(this.updateObjects);
+    this.updateParticles();
+    this.updateBars();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth/window.innerHeight;
+  },
+  updateParticles: function() {
+    // if ((this.lowFreq < 1600) ||
+    //     ((this.midFreq < 8500) && (this.lowFreq > 1600))) {
+    //   this.zInc -= 1;
+    // } else {
+    //   this.zInc += 5;
+    // }
+    // if (this.zInc < 2) {
+    //   this.zInc = 2;
+    // } else if (this.zInc > 60) {
+    //   this.zInc = 60;
+    // }
+
+    var zInc = 2;
     for (var i=0; i<this.particles.length; i++) {
 
-      if (this.midFreq > 10000) {
-        this.particles[i].intensity = 0.2 + Math.sin(this.highFreq) * Math.sin(this.highFreq);
-        // this.particles[i].intensity += 0.01;
-      } else {
-        this.particles[i].intensity += 0.01;
-      }
+      // if (this.particles[i].intensity > 1) {
+      //   this.particles[i].intensity = 1;
+      // } else if (this.particles[i].intensity < 0.4) {
+      //   this.particles[i].intensity = 0.4;
+      // }
 
-      if (this.particles[i].intensity > 1) {
-        this.particles[i].intensity = 1;
-      } else if (this.particles[i].intensity < 0.4) {
-        this.particles[i].intensity = 0.4;
-      }
-
-      var r, g, b;
-      if ((this.midFreq < 8000) || !this.midFreq) {
-        this.particles[i].color = new THREE.Color(0x06ee01);
-        //  this.particles[i].color = new THREE.Color(0x06ee01);
-      } else {
-        r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
-        g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
-        b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
-        this.particles[i].color =
-          new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
-      }
+      // var r, g, b;
+      // if ((this.midFreq < 8000) || !this.midFreq) {
+      //   this.particles[i].color = new THREE.Color(0x06ee01);
+      //   //  this.particles[i].color = new THREE.Color(0x06ee01);
+      // } else {
+      //   r = Math.floor(Math.sin(this.highFreq) * Math.sin(this.highFreq) * 255);
+      //   g = Math.floor(Math.cos(this.midFreq) * Math.cos(this.midFreq) * 128);
+      //   b = Math.floor((Math.cos(this.lowFreq) + 1) * 100);
+      //   this.particles[i].color =
+      //     new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
+      // }
 
 
-      this.particles[i].position.z += this.zInc;
+      this.particles[i].position.z += zInc;
 
       if (this.particles[i].position.z > 1000) {
         this.particles[i].position.x = Math.random() * 2000 - 1000;
@@ -139,15 +168,20 @@ var Visualizer = React.createClass({
     this.renderer.render(this.scene, this.camera);
   },
 
-  componentDidMount: function() {
-    this.listenerToken = VisualizerStore.addListener(this._onSongStart);
+  updateBars: function() {
+    if (this.dataArray) {
+      for (var i=0; i<this.bars.length; i++) {
+        var yScale = (this.dataArray[i] / 255) * 40 + 1;
+        var lightInt = (this.dataArray[i] / 255) * 1;
+        this.bars[i].scale.set(1, yScale, 1);
+        this.lights[i].position.y = yScale;
+        this.lights[i].intensity = lightInt;
+      }
+    }
   },
 
-  componentWillUnmount: function() {
-    this.listenerToken.remove();
-    window.cancelAnimationFrame(this.requestId);
-    clearInterval(this.refreshIntervalId);
-    document.body.removeChild(this.renderer.domElement);
+  componentDidMount: function() {
+    this.listenerToken = VisualizerStore.addListener(this._onSongStart);
   },
 
   _onSongStart: function() {
@@ -158,7 +192,7 @@ var Visualizer = React.createClass({
     var audioCtx = new (window.AudioContext || window.webkitAudioContext);
     var analyser = audioCtx.createAnalyser();
     //Fast Fourier Transform size, must be power of 2
-    analyser.fftSize = 256;
+    analyser.fftSize = 64;
     //half the fft size, number of bins
     var bufferLength = analyser.frequencyBinCount;
 
@@ -167,39 +201,11 @@ var Visualizer = React.createClass({
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
-    //continously sample audio
-    this.refreshIntervalId = setInterval(function() {
-      //samples the audio data and
-      //updates the dataArray and volume in real time
+    setInterval(function() {
       analyser.getByteFrequencyData(this.dataArray);
-
-      var low = 0;
-      var mid = 0;
-      var high = 0;
-      //volume of first 80 bins, play around with this
-
-      for (var i=0; i<10; i++) {
-        low += this.dataArray[i];
-      }
-
-      for (var i=10; i<80; i++) {
-        mid += this.dataArray[i];
-      }
-
-      for (var i=80; i<this.dataArray.length; i++) {
-        high += this.dataArray[i];
-      }
-
-      this.lowFreq = low;
-      this.midFreq = mid;
-      this.highFreq = high;
     }.bind(this), 20);
-    //use these in animations
-    //size is fftSize/2
+
     this.dataArray = new window.Uint8Array(bufferLength);
-    this.lowFreq = 0;
-    this.midFreq = 0;
-    this.highFreq = 0;
   },
 
   render: function() {
