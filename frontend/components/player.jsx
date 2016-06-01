@@ -140,6 +140,7 @@ var Player = React.createClass({
                 onTimeUpdate={this._onTimeUpdate}
                 onEnded={this._onSongEnd}
                 src={this.state.currentSong.audio_url}
+                crossOrigin = "anonymous"
                 autoPlay
               />);
     } else {
