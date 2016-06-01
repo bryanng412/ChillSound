@@ -126,11 +126,12 @@ var Visualizer = React.createClass({
     var light, bar;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
     // var material = new THREE.MeshNormalMaterial();
-    var material = new THREE.MeshPhongMaterial({
-       color: colors[i],
-       shininess: 50,
-       specular: 0xffffff
-     });
+    var material = new THREE.MeshStandardMaterial({color: colors[i]});
+    // var material = new THREE.MeshPhongMaterial({
+    //    color: colors[i],
+    //    shininess: 50,
+    //    specular: 0xffffff
+    //  });
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
