@@ -83,6 +83,7 @@ var Visualizer = React.createClass({
       this.particles.push(particle);
     }
 
+    this.zInc = 5;
   },
 
   createBars: function() {
@@ -164,8 +165,21 @@ var Visualizer = React.createClass({
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   },
+
   updateParticles: function() {
-    var zInc = this.volume > 6000 ? 40 : 5;
+    if (this.volume > 6000)
+      this.zInc += 1;
+    else {
+      this.zInc -= 1;
+    }
+
+    if (this.zInc > 40) {
+      this.zInc = 40;
+    }
+
+    if (this.zInc < 5) {
+      this.zInc = 5;
+    }
 
     for (var i=0; i<this.particles.length; i++) {
 
