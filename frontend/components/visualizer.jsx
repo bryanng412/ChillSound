@@ -186,7 +186,7 @@ var Visualizer = React.createClass({
   updateBars: function() {
     if (this.dataArray) {
       for (var i=0; i<this.bars.length; i++) {
-        var dataVal = this.dataArray[i+16];
+        var dataVal = this.dataArray[i+12];
         var yScale = (dataVal / 255) * 40 + 1;
         var lightInt = (dataVal / 255) * 1 + 0.2;
         this.bars[i].scale.set(1, yScale, 1);
