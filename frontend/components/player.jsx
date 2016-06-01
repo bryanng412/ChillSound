@@ -132,6 +132,7 @@ var Player = React.createClass({
 
   render: function() {
     var song, playPauseButton, player;
+    // crossOrigin="anonymous"
     if (this.state.currentSong) {
       song = (<audio
                 id="player"
@@ -139,7 +140,6 @@ var Player = React.createClass({
                 onTimeUpdate={this._onTimeUpdate}
                 onEnded={this._onSongEnd}
                 src={this.state.currentSong.audio_url}
-                crossOrigin="anonymous"
                 autoPlay
               />);
     } else {
@@ -154,7 +154,9 @@ var Player = React.createClass({
       var audioEl = document.getElementById('player');
       if (audioEl && audioEl.paused &&
           audioEl.src === this.state.currentSong.audio_url) {
-        audioEl.play();
+        setTimeout(function() {
+          audioEl.play();
+        }, 150);
       }
     } else {
       if (this.state.currentSong) {
