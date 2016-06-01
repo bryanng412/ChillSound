@@ -127,7 +127,7 @@ var Visualizer = React.createClass({
     var geometry = new THREE.BoxGeometry(50, 50, 50);
     // var material = new THREE.MeshNormalMaterial();
     var material = new THREE.MeshPhongMaterial({
-       color: 0xffffff,
+       color: colors[i],
        shininess: 50,
        specular: 0xffffff
      });
