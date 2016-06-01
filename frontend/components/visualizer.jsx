@@ -143,7 +143,7 @@ var Visualizer = React.createClass({
       for (var i=0; i<this.bars.length; i++) {
         var dataVal = this.dataArray[i+16];
         var yScale = (dataVal / 255) * 40 + 1;
-        var lightInt = (dataVal / 255) * 1 + 0.1;
+        var lightInt = (dataVal / 255) * 1 + 0.05;
         this.bars[i].scale.set(1, yScale, 1);
         this.lights[i].position.y = yScale;
         this.lights[i].intensity = lightInt;
