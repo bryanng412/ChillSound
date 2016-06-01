@@ -62,7 +62,7 @@ var Player = React.createClass({
       var player = document.getElementById('player');
       player.pause();
       player.currentTime = 0;
-      this.setState({ isPlaying: false });
+      this.setState({ currentTime: 0, percentPlayed: 0, isPlaying: false });
       // PlayerActions.playSong(null);
     } else {
       PlayerActions.playNextSong();
