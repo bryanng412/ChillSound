@@ -3,13 +3,14 @@ var Jumbotron = require('react-bootstrap').Jumbotron;
 var Button = require('react-bootstrap').Button;
 var SongStore = require('../stores/song_store.js');
 var PlayerActions = require('../actions/player_actions.js');
+var FullScreenActions = require('../actions/fullscreen_actions.js');
 
 var Banner = React.createClass({
 
   handleClick: function(e) {
     e.preventDefault();
     PlayerActions.playSong(SongStore.all()[0]);
-    PlayerActions.toggleFullScreen();
+    FullScreenActions.toggleFullScreen();
   },
 
   render: function() {

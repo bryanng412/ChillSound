@@ -154,7 +154,7 @@ var Player = React.createClass({
                         </NavItem>);
 
       var audioEl = document.getElementById('player');
-      if (audioEl && audioEl.paused &&
+      if (audioEl && audioEl.paused && this.state.currentSong &&
           audioEl.src === this.state.currentSong.audio_url) {
         setTimeout(function() {
           audioEl.play();

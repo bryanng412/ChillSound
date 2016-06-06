@@ -123,7 +123,7 @@ var Visualizer = React.createClass({
     var light, bar, material;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
 
-    var xPos = -950;
+    var xPos = -1000;
     // var xPos = -450;
     var zRot = 0;
     for (var i=0; i<32; i++) {
@@ -202,7 +202,7 @@ var Visualizer = React.createClass({
       for (var i=0; i<this.bars.length; i++) {
         var dataVal = this.dataArray[i+12];
         //var yScale = (dataVal / 255) * 40 + 1;
-        var yScale = (dataVal / 255) * 20;
+        var yScale = (dataVal / 255) * 20 + 1;
         var lightInt = (dataVal / 255) * 1 + 0.2;
         //this.bars[i].scale.set(1, yScale, 1);
         this.bars[i].position.x = xPos;

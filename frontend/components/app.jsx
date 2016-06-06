@@ -1,5 +1,4 @@
 var React = require('react');
-var HashHistory = require('react-router').hashHistory;
 var Navbar = require('./navbar.jsx');
 var PlaylistBar = require('./playlist_bar.jsx');
 var SidebarStore = require('../stores/sidebar_store.js');
@@ -25,9 +24,6 @@ var App = React.createClass({
   },
 
   toggleFullScreen: function() {
-    if (FullScreenStore.showFullScreen()) {
-      HashHistory.push("visualzer");
-    }
     this.setState({ showFullScreen: FullScreenStore.showFullScreen() });
   },
 
