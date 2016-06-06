@@ -9,6 +9,44 @@ var Visualizer = React.createClass({
     this.lights = [];
     this.bars = [];
 
+    this.colors = [
+      0xD40502,
+      0xD82707,
+      0xDD490C,
+      0xE26B11,
+      0xE78E16,
+      0xECB01B,
+      0xF1D220,
+      0xF6F526,
+
+      0xD9F43A,
+      0xBDF44E,
+      0xA1F363,
+      0x85F377,
+      0x69F38B,
+      0x4DF2A0,
+      0x31F2B4,
+      0x15F2C9,
+
+      0x1AD8CB,
+      0x20BFCD,
+      0x26A6CF,
+      0x2C8DD1,
+      0x3173D3,
+      0x375AD5,
+      0x3D41D7,
+      0x4328DA,
+
+      0x4524CD,
+      0x4820C1,
+      0x4A1CB5,
+      0x4D18A9,
+      0x4F149C,
+      0x521090,
+      0x540C84,
+      0x540C84
+    ];
+
     this.camera = new THREE.PerspectiveCamera(
       80,
       window.innerWidth/window.innerHeight,
@@ -25,10 +63,37 @@ var Visualizer = React.createClass({
 
     this.createWalls();
     this.createParticles();
+    this.createLights();
     this.createBars();
     this.updateObjects();
 
+    document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+    document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
+    document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
+
+
     return { songUrl: VisualizerStore.songUrl() };
+  },
+
+  onDocumentMouseMove: function(e) {
+    this.mouseX = e.clientX - window.innerWidth/2;
+    this.mouseY = e.clientY - window.innerHeight/2;
+  },
+
+  onDocumentTouchStart: function(e) {
+    if ( e.touches.length === 1 ) {
+    	e.preventDefault();
+    	this.mouseX = e.touches[ 0 ].pageX - window.innerWidth/2;
+    	this.mouseY = e.touches[ 0 ].pageY - window.innerHeight/2;
+    }
+  },
+
+  onDocumentTouchMove: function(e) {
+    if ( e.touches.length === 1 ) {
+      e.preventDefault();
+      this.mouseX = e.touches[ 0 ].pageX - window.innerWidth/2;
+      this.mouseY = e.touches[ 0 ].pageY - window.innerHeight/2;
+    }
   },
 
   createWalls: function() {
@@ -81,90 +146,70 @@ var Visualizer = React.createClass({
     this.zInc = 5;
   },
 
-  createBars: function() {
-    var colors = [
-      0xD40502,
-      0xD82707,
-      0xDD490C,
-      0xE26B11,
-      0xE78E16,
-      0xECB01B,
-      0xF1D220,
-      0xF6F526,
-
-      0xD9F43A,
-      0xBDF44E,
-      0xA1F363,
-      0x85F377,
-      0x69F38B,
-      0x4DF2A0,
-      0x31F2B4,
-      0x15F2C9,
-
-      0x1AD8CB,
-      0x20BFCD,
-      0x26A6CF,
-      0x2C8DD1,
-      0x3173D3,
-      0x375AD5,
-      0x3D41D7,
-      0x4328DA,
-
-      0x4524CD,
-      0x4820C1,
-      0x4A1CB5,
-      0x4D18A9,
-      0x4F149C,
-      0x521090,
-      0x540C84,
-      0x540C84
-    ];
-
-    var light, bar, material;
-    var geometry = new THREE.BoxGeometry(50, 50, 50);
-
-    var xPos = -1000;
-    // var xPos = -450;
-    var zRot = 0;
-    for (var i=0; i<32; i++) {
-      material = new THREE.MeshStandardMaterial({color: colors[i]});
-      light = new THREE.PointLight(colors[i], 1, 600);
-
-      bar = new THREE.Mesh(geometry, material);
-
-      light.position.x = xPos + 60;
+  createLights: function() {
+    var light;
+    var xPos = -950;
+    for (var i=0; i<16; i++) {
+      light = new THREE.PointLight(this.colors[i*2], 1, 650);
+      light.position.x = xPos;
       light.position.y = -390;
 
       light.position.z = 150;
+      this.scene.add(light);
+      this.lights.push(light);
 
-      // bar.position.x = xPos;
-      // bar.position.y = -390;
+      xPos += 130;
+    }
+  },
+
+  createBars: function() {
+    var bar, material;
+    var geometry = new THREE.BoxGeometry(45, 45, 45);
+
+    var xPos = -925;
+    for (var i=0; i<32; i++) {
+      material = new THREE.MeshStandardMaterial({color: this.colors[i]});
+      bar = new THREE.Mesh(geometry, material);
+
       bar.position.x = xPos;
-      bar.position.y = -100;
-      bar.rotation.z = zRot;
-
-      zRot -= Math.PI/16;
-      xPos += 60;
+      bar.position.y = -400;
+      // bar.position.z = -(i+1);
+      // if (i > 15) {
+      //   bar.rotation.x = Math.PI / 2.0;
+      // }
+      // bar.rotation.z = zRot;
+      //
+      // zRot -= Math.PI / 32;
 
       // if (zRot > Math.PI) {
       //   xPos = -450;
       //   zRot = -Math.PI/2;
       // }
 
-      this.scene.add(light);
+      xPos += 60;
       this.scene.add(bar);
-      this.lights.push(light);
       this.bars.push(bar);
     }
   },
 
   updateObjects: function() {
     window.requestAnimationFrame(this.updateObjects);
+
     this.updateParticles();
+    this.updateLights();
     this.updateBars();
     this.camera.aspect = window.innerWidth/window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    if (this.mouseX && this.mouseY) {
+      this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.05;
+      this.camera.position.y += (-this.mouseY - this.camera.position.y) * 0.05;
+    }
+
+    if (this.camera.position.y < 0) {
+      this.camera.position.y = 0;
+    }
   },
 
   updateParticles: function() {
@@ -196,27 +241,32 @@ var Visualizer = React.createClass({
     this.renderer.render(this.scene, this.camera);
   },
 
-  updateBars: function() {
+  updateLights: function() {
     if (this.dataArray) {
-      var xPos = -950;
-      for (var i=0; i<this.bars.length; i++) {
-        var dataVal = this.dataArray[i+12];
-        //var yScale = (dataVal / 255) * 40 + 1;
-        var yScale = (dataVal / 255) * 20 + 1;
+      for (var i=0; i<this.lights.length; i++) {
+
+        var dataVal = this.dataArray[(i*2)+12];
+        var yScale = (dataVal / 255) * 50 + 1;
         var lightInt = (dataVal / 255) * 1 + 0.2;
-        //this.bars[i].scale.set(1, yScale, 1);
-        this.bars[i].position.x = xPos;
-        this.bars[i].position.y = -100;
-        this.bars[i].scale.y = yScale;
-        this.bars[i].translateY(yScale);
 
         this.lights[i].position.y = yScale + 100;
         this.lights[i].intensity = lightInt;
+      }
+    }
+  },
 
-
-        xPos += 60;
-        // this.bars[i].rotation.x += 0.1;
-        // this.bars[i].rotation.y += 0.1;
+  updateBars: function() {
+    if (this.dataArray) {
+      for (var i=0; i<this.bars.length; i++) {
+        var dataVal = this.dataArray[i+12];
+        //var yScale = (dataVal / 255) * 40 + 1;
+        var yScale = (dataVal / 255) * 50 + 1;
+        this.bars[i].scale.set(1, yScale, 1);
+        // this.bars[i].position.y = -100;
+        // this.bars[i].translateY(yScale);
+        // this.bars[i].rotation.x += 0.02;
+        // this.bars[i].rotation.y += 0.02;
+        // this.bars[i].rotation.z += 0.01;
       }
     }
   },
