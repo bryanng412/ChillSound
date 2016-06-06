@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var UserStore = require('../stores/user_store.js');
-var PlayerStore = require('../stores/player_store.js');
+var FullScreenStore = require('../stores/fullscreen_store.js');
 var ClientActions = require('../actions/client_actions.js');
-var PlayerActions = require('../actions/player_actions.js');
+var FullScreenActions = require('../actions/fullscreen_actions.js');
 var HashHistory = require('react-router').hashHistory;
 var CurrentUserState = require('../mixins/current_user_state.js');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
@@ -27,6 +27,9 @@ module.exports = React.createClass({
     switch (eventKey) {
       case 1:
         HashHistory.push("profile");
+        if (FullScreenStore.showFullScreen()) {
+          FullScreenActions.toggleFullScreen();
+        }
         break;
       case 2:
         HashHistory.push("/");
@@ -37,8 +40,8 @@ module.exports = React.createClass({
 
   splashPage: function(e) {
     e.preventDefault();
-    if (PlayerStore.showFullScreen()) {
-      PlayerActions.toggleFullScreen();
+    if (FullScreenStore.showFullScreen()) {
+      FullScreenActions.toggleFullScreen();
     }
     HashHistory.push("/");
   },

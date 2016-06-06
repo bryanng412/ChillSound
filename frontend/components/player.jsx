@@ -1,6 +1,8 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
-var PlayerActions = require('../actions/player_actions.js');
+var PlayerActions  = require('../actions/player_actions.js');
+var SidebarActions = require('../actions/sidebar_actions.js');
+var FullScreenActions = require('../actions/fullscreen_actions.js');
 var VisualizerActions = require('../actions/visualizer_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Nav = require('react-bootstrap').Nav;
@@ -120,12 +122,14 @@ var Player = React.createClass({
 
   toggleSidebar: function(e) {
     e.preventDefault();
-    PlayerActions.toggleSidebar();
+    SidebarActions.toggleSidebar();
+    // PlayerActions.toggleSidebar();
   },
 
   showFullScreen: function(e) {
     e.preventDefault();
-    PlayerActions.toggleFullScreen();
+    FullScreenActions.toggleFullScreen();
+    // PlayerActions.toggleFullScreen();
   },
 
   render: function() {
@@ -174,8 +178,6 @@ var Player = React.createClass({
         <NavItem onClick={this.toggleMute}><Glyphicon glyph="volume-up"/></NavItem>
       );
     }
-
-    var sidebarContent = <div>asdf</div>;
 
     if (this.state.currentSong) {
       player = (

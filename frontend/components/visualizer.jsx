@@ -123,7 +123,9 @@ var Visualizer = React.createClass({
     var light, bar, material;
     var geometry = new THREE.BoxGeometry(50, 50, 50);
 
-    var xPos = -900;
+    var xPos = -950;
+    // var xPos = -450;
+    var zRot = 0;
     for (var i=0; i<32; i++) {
       material = new THREE.MeshStandardMaterial({color: colors[i]});
       light = new THREE.PointLight(colors[i], 1, 600);
@@ -132,12 +134,22 @@ var Visualizer = React.createClass({
 
       light.position.x = xPos + 60;
       light.position.y = -390;
+
       light.position.z = 150;
 
+      // bar.position.x = xPos;
+      // bar.position.y = -390;
       bar.position.x = xPos;
-      bar.position.y = -390;
+      bar.position.y = -100;
+      bar.rotation.z = zRot;
 
+      zRot -= Math.PI/16;
       xPos += 60;
+
+      // if (zRot > Math.PI) {
+      //   xPos = -450;
+      //   zRot = -Math.PI/2;
+      // }
 
       this.scene.add(light);
       this.scene.add(bar);
@@ -179,19 +191,32 @@ var Visualizer = React.createClass({
         this.particles[i].position.y = Math.random() * 700 - 150;
         this.particles[i].position.z -= 2500;
       }
+
     }
     this.renderer.render(this.scene, this.camera);
   },
 
   updateBars: function() {
     if (this.dataArray) {
+      var xPos = -950;
       for (var i=0; i<this.bars.length; i++) {
         var dataVal = this.dataArray[i+12];
-        var yScale = (dataVal / 255) * 40 + 1;
+        //var yScale = (dataVal / 255) * 40 + 1;
+        var yScale = (dataVal / 255) * 20;
         var lightInt = (dataVal / 255) * 1 + 0.2;
-        this.bars[i].scale.set(1, yScale, 1);
+        //this.bars[i].scale.set(1, yScale, 1);
+        this.bars[i].position.x = xPos;
+        this.bars[i].position.y = -100;
+        this.bars[i].scale.y = yScale;
+        this.bars[i].translateY(yScale);
+
         this.lights[i].position.y = yScale + 100;
         this.lights[i].intensity = lightInt;
+
+
+        xPos += 60;
+        // this.bars[i].rotation.x += 0.1;
+        // this.bars[i].rotation.y += 0.1;
       }
     }
   },

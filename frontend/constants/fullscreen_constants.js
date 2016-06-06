@@ -1,0 +1,3 @@
+module.exports = {
+  TOGGLE_FULLSCREEN: "TOGGLE_FULLSCREEN"
+};

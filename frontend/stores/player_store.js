@@ -8,8 +8,6 @@ var _player = {
   nowPlaying: null,
   queue: [],
 };
-var _showPlaylistBar = false;
-var _showFullScreen = false;
 
 function setNowPlaying(song) {
   _player.nowPlaying = song;
@@ -31,15 +29,6 @@ PlayerStore.queue = function() {
   return _player.queue.slice();
 };
 
-PlayerStore.showPlaylistBar = function() {
-  return _showPlaylistBar;
-};
-
-PlayerStore.showFullScreen = function() {
-  return _showFullScreen;
-};
-
-
 PlayerStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PlayerConstants.AUDIO_URL_RECEIVED:
@@ -57,10 +46,6 @@ PlayerStore.__onDispatch = function(payload) {
     case PlayerConstants.PLAY_NEXT_SONG:
       setNowPlaying(_player.queue[0]);
       deleteFromQueue(0);
-      this.__emitChange();
-      break;
-    case PlayerConstants.TOGGLE_SIDEBAR:
-      _showPlaylistBar ^= true;
       this.__emitChange();
       break;
     case PlayerConstants.TOGGLE_FULLSCREEN:

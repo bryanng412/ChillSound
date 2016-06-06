@@ -1,7 +1,9 @@
 var React = require('react');
+var HashHistory = require('react-router').hashHistory;
 var Navbar = require('./navbar.jsx');
 var PlaylistBar = require('./playlist_bar.jsx');
-var PlayerStore = require('../stores/player_store.js');
+var SidebarStore = require('../stores/sidebar_store.js');
+var FullScreenStore = require('../stores/fullscreen_store.js');
 var Visualizer = require('./visualizer.jsx');
 
 var App = React.createClass({
@@ -10,8 +12,8 @@ var App = React.createClass({
   },
 
   componentDidMount: function() {
-    this.playlistBarListenerToken = PlayerStore.addListener(this.togglePlaylistBar);
-    this.fullScreenListenerToken = PlayerStore.addListener(this.toggleFullScreen);
+    this.playlistBarListenerToken = SidebarStore.addListener(this.togglePlaylistBar);
+    this.fullScreenListenerToken = FullScreenStore.addListener(this.toggleFullScreen);
   },
 
   componentWillUnmount: function() {
@@ -19,11 +21,14 @@ var App = React.createClass({
   },
 
   togglePlaylistBar: function() {
-    this.setState({ showPlaylistBar: PlayerStore.showPlaylistBar() });
+    this.setState({ showPlaylistBar: SidebarStore.showPlaylistBar() });
   },
 
   toggleFullScreen: function() {
-    this.setState({ showFullScreen: PlayerStore.showFullScreen() });
+    if (FullScreenStore.showFullScreen()) {
+      HashHistory.push("visualzer");
+    }
+    this.setState({ showFullScreen: FullScreenStore.showFullScreen() });
   },
 
   render: function() {
