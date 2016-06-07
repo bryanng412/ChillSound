@@ -48,10 +48,6 @@ PlayerStore.__onDispatch = function(payload) {
       deleteFromQueue(0);
       this.__emitChange();
       break;
-    case PlayerConstants.TOGGLE_FULLSCREEN:
-      _showFullScreen ^= true;
-      this.__emitChange();
-      break;
   }
 };
 
