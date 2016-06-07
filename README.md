@@ -4,7 +4,7 @@
 
 [heroku]: http://chillsound.audio/
 
-ChillSound is a full-stack web application inspired by SoundCloud.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
+ChillSound is a full-stack web application inspired by SoundCloud.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend. Music is visualized with a bar spectrum made with Three.js and the Web Audio API.
 
 ### Single-Page App
 
