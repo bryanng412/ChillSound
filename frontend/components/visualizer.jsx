@@ -164,7 +164,7 @@ var Visualizer = React.createClass({
 
   createBars: function() {
     var bar, material;
-    var geometry = new THREE.BoxGeometry(45, 45, 45);
+    var geometry = new THREE.BoxGeometry(50, 50, 50);
 
     var xPos = -925;
     for (var i=0; i<32; i++) {
@@ -173,18 +173,6 @@ var Visualizer = React.createClass({
 
       bar.position.x = xPos;
       bar.position.y = -400;
-      // bar.position.z = -(i+1);
-      // if (i > 15) {
-      //   bar.rotation.x = Math.PI / 2.0;
-      // }
-      // bar.rotation.z = zRot;
-      //
-      // zRot -= Math.PI / 32;
-
-      // if (zRot > Math.PI) {
-      //   xPos = -450;
-      //   zRot = -Math.PI/2;
-      // }
 
       xPos += 60;
       this.scene.add(bar);
@@ -262,11 +250,6 @@ var Visualizer = React.createClass({
         //var yScale = (dataVal / 255) * 40 + 1;
         var yScale = (dataVal / 255) * 50 + 1;
         this.bars[i].scale.set(1, yScale, 1);
-        // this.bars[i].position.y = -100;
-        // this.bars[i].translateY(yScale);
-        // this.bars[i].rotation.x += 0.02;
-        // this.bars[i].rotation.y += 0.02;
-        // this.bars[i].rotation.z += 0.01;
       }
     }
   },
