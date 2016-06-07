@@ -247,8 +247,7 @@ var Visualizer = React.createClass({
     if (this.dataArray) {
       for (var i=0; i<this.bars.length; i++) {
         var dataVal = this.dataArray[i+12];
-        //var yScale = (dataVal / 255) * 40 + 1;
-        var yScale = (dataVal / 255) * 50 + 1;
+        var yScale = (dataVal / 255) * 40 + 1;
         this.bars[i].scale.set(1, yScale, 1);
       }
     }
