@@ -15,6 +15,7 @@ ChillSound is a single-page app; all content is delivered on one static page.
 * Log in to like and upload songs. View these songs in your profile page
 * Audio player supports rewind, next song, pause, play, mute, and a movable stream bar
 * Songs are sorted by number of plays. Watch your song bubble up to the top as you keep playing it
+* Visulize your music through a classic bar spectrum. Made with Three.js and the Web Audio API.
 
 
 ## Languages, Libraries, Frameworks, Etc
@@ -27,11 +28,16 @@ ChillSound is a single-page app; all content is delivered on one static page.
 * Figaro
 * Bcrypt
 * JBuilder
+* Web Audio API
+* Three.js
 
 ## Screen Shots
 
 ### Splash
 ![splash]
+
+### Visualizer
+![visualizer]
 
 ### Player
 ![player]
@@ -40,5 +46,6 @@ ChillSound is a single-page app; all content is delivered on one static page.
 ![userProfile]
 
 [splash]: ./docs/screenshots/splash.png
+[visualizer]: ./docs/screenshots/visualizer.png
 [player]: ./docs/screenshots/player.png
 [userProfile]:./docs/screenshots/userProfile.png
