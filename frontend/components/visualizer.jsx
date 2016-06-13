@@ -68,8 +68,8 @@ var Visualizer = React.createClass({
     this.updateObjects();
 
     document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
-    document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
-    document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
+    //document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
+    //document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
 
 
     return { songUrl: VisualizerStore.songUrl() };
