@@ -68,9 +68,6 @@ var Visualizer = React.createClass({
     this.updateObjects();
 
     document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
-    //document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
-    //document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
-
 
     return { songUrl: VisualizerStore.songUrl() };
   },
@@ -78,22 +75,6 @@ var Visualizer = React.createClass({
   onDocumentMouseMove: function(e) {
     this.mouseX = e.clientX - window.innerWidth/2;
     this.mouseY = e.clientY - window.innerHeight/2;
-  },
-
-  onDocumentTouchStart: function(e) {
-    if ( e.touches.length === 1 ) {
-    	e.preventDefault();
-    	this.mouseX = e.touches[ 0 ].pageX - window.innerWidth/2;
-    	this.mouseY = e.touches[ 0 ].pageY - window.innerHeight/2;
-    }
-  },
-
-  onDocumentTouchMove: function(e) {
-    if ( e.touches.length === 1 ) {
-      e.preventDefault();
-      this.mouseX = e.touches[ 0 ].pageX - window.innerWidth/2;
-      this.mouseY = e.touches[ 0 ].pageY - window.innerHeight/2;
-    }
   },
 
   createWalls: function() {
