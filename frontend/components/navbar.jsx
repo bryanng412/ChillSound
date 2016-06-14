@@ -4,7 +4,7 @@ var UserStore = require('../stores/user_store.js');
 var FullScreenStore = require('../stores/fullscreen_store.js');
 var ClientActions = require('../actions/client_actions.js');
 var FullScreenActions = require('../actions/fullscreen_actions.js');
-var HashHistory = require('react-router').hashHistory;
+var BrowserHistory = require('react-router').browserHistory;
 var CurrentUserState = require('../mixins/current_user_state.js');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var Navbar = require('react-bootstrap').Navbar;
@@ -26,13 +26,13 @@ module.exports = React.createClass({
   handleSelect: function(eventKey) {
     switch (eventKey) {
       case 1:
-        HashHistory.push("profile");
+        BrowserHistory.push("profile");
         if (FullScreenStore.showFullScreen()) {
           FullScreenActions.toggleFullScreen();
         }
         break;
       case 2:
-        HashHistory.push("/");
+        BrowserHistory.push("/");
         ClientActions.logout();
         break;
     }
@@ -43,7 +43,7 @@ module.exports = React.createClass({
     if (FullScreenStore.showFullScreen()) {
       FullScreenActions.toggleFullScreen();
     }
-    HashHistory.push("/");
+    BrowserHistory.push("/");
   },
 
   render: function() {

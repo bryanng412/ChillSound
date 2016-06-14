@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
-var HashHistory = require('react-router').hashHistory;
+var BrowserHistory = require('react-router').browserHistory;
 
 var App = require('./components/app.jsx');
 var SplashPage = require('./components/splash_page.jsx');
@@ -18,7 +18,7 @@ var routes = (
 
 document.addEventListener("DOMContentLoaded", function() {
   ReactDOM.render((
-    <Router history={HashHistory}>
+    <Router history={BrowserHistory}>
       {routes}
     </Router>
   ), document.getElementById("root"));
