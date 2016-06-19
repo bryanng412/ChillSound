@@ -164,15 +164,6 @@ var Visualizer = React.createClass({
   updateObjects: function() {
     window.requestAnimationFrame(this.updateObjects);
 
-    if (this.dataArray) {
-      this.analyser.getByteFrequencyData(this.dataArray);
-      var total = 0;
-      for(var i=0; i<40; i++) {
-        total += this.dataArray[i];
-      }
-      this.volume = total;
-    }
-
     this.updateParticles();
     this.updateLights();
     this.updateBars();
@@ -253,25 +244,25 @@ var Visualizer = React.createClass({
     // player.crossOrigin = "anonymous";
     //different for multiple browsers
     var audioCtx = new (window.AudioContext || window.webkitAudioContext);
-    this.analyser = audioCtx.createAnalyser();
+    var analyser = audioCtx.createAnalyser();
     //Fast Fourier Transform size, must be power of 2
-    this.analyser.fftSize = 128;
+    analyser.fftSize = 128;
     //half the fft size, number of bins
-    var bufferLength = this.analyser.frequencyBinCount;
+    var bufferLength = analyser.frequencyBinCount;
 
     //hook <audio> element up with ctx
     var source = audioCtx.createMediaElementSource(player);
-    source.connect(this.analyser);
-    this.analyser.connect(audioCtx.destination);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
 
-    // setInterval(function() {
-    //   analyser.getByteFrequencyData(this.dataArray);
-    //   var total = 0;
-    //   for(var i=0; i<40; i++) {
-    //     total += this.dataArray[i];
-    //   }
-    //   this.volume = total;
-    // }.bind(this), 20);
+    setInterval(function() {
+      analyser.getByteFrequencyData(this.dataArray);
+      var total = 0;
+      for(var i=0; i<40; i++) {
+        total += this.dataArray[i];
+      }
+      this.volume = total;
+    }.bind(this), 20);
 
     this.volume = 0;
     this.dataArray = new window.Uint8Array(bufferLength);
