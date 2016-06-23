@@ -39,7 +39,6 @@ SidebarStore.__onDispatch = function(payload) {
       this.__emitChange();
       break;
     case SidebarConstants.PLAY_NEXT_SONG:
-      PlayerActions.playSong(_queue[0]);
       deleteFromQueue(0);
       this.__emitChange();
       break;
