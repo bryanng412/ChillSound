@@ -61,8 +61,8 @@ var Player = React.createClass({
 
   _onSongEnd: function() {
     if (SidebarStore.queue().length !== 0) {
+      PlayerActions.playSong(SidebarStore.queue()[0]);
       SidebarActions.playNextSong();
-      PlayerActions.playSong(SidebarStore.queue[0]);
       this.backward();
     }
   },
