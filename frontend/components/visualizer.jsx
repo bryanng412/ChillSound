@@ -69,7 +69,7 @@ var Visualizer = React.createClass({
 
     document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 
-    this.cursorTimer = undefined;
+    this.cursorTimer = null;
 
     return { songUrl: VisualizerStore.songUrl() };
   },
@@ -83,8 +83,8 @@ var Visualizer = React.createClass({
 
     this.cursorTimer = setTimeout(function() {
       $('canvas').css({ cursor: 'none' });
-      this.cursorTimer = undefined;
-    }, 5000);
+      this.cursorTimer = null;
+    }, 3000);
 
     this.mouseX = e.clientX - window.innerWidth/2;
     this.mouseY = e.clientY - window.innerHeight/2;
