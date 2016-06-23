@@ -1,16 +1,16 @@
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var PlayerStore = require('../stores/player_store.js');
+var SidebarStore = require('../stores/sidebar_store.js');
 var PlaylistBarItem = require('./playlist_bar_item.jsx');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var PlaylistBar = React.createClass({
   getInitialState: function() {
-    return { show: this.props.show, playlistItems: PlayerStore.queue() };
+    return { show: this.props.show, playlistItems: SidebarStore.queue() };
   },
 
   componentDidMount: function() {
-    this.listenerToken = PlayerStore.addListener(this.onPlaylistChange);
+    this.listenerToken = SidebarStore.addListener(this.onPlaylistChange);
     this.updateSize();
     $(window).resize(this.updateSize);
   },
@@ -28,7 +28,7 @@ var PlaylistBar = React.createClass({
   },
 
   onPlaylistChange: function() {
-    this.setState({ playlistItems: PlayerStore.queue() });
+    this.setState({ playlistItems: SidebarStore.queue() });
   },
 
   render: function() {

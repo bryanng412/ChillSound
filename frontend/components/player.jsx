@@ -1,5 +1,6 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store.js');
+var SidebarStore = require('../stores/sidebar_store.js');
 var PlayerActions  = require('../actions/player_actions.js');
 var SidebarActions = require('../actions/sidebar_actions.js');
 var FullScreenActions = require('../actions/fullscreen_actions.js');
@@ -57,12 +58,8 @@ var Player = React.createClass({
   },
 
   _onSongEnd: function() {
-    // if (PlayerStore.showFullScreen()) {
-    //   PlayerActions.toggleFullScreen();
-    // }
-  // } else {
-    if (PlayerStore.queue().length !== 0) {
-      PlayerActions.playNextSong();
+    if (SidebarStore.queue().length !== 0) {
+      SidebarActions.playNextSong();
       this.backward();
     }
   },
@@ -123,13 +120,11 @@ var Player = React.createClass({
   toggleSidebar: function(e) {
     e.preventDefault();
     SidebarActions.toggleSidebar();
-    // PlayerActions.toggleSidebar();
   },
 
   showFullScreen: function(e) {
     e.preventDefault();
     FullScreenActions.toggleFullScreen();
-    // PlayerActions.toggleFullScreen();
   },
 
   render: function() {
@@ -195,7 +190,7 @@ var Player = React.createClass({
             {playPauseButton}
             <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
             <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
-            <Badge className="queueBadge">{PlayerStore.queue().length}</Badge>
+            <Badge className="queueBadge">{SidebarStore.queue().length}</Badge>
             <Image
               className="playerIcon"
               src={this.state.currentSong.image_url}

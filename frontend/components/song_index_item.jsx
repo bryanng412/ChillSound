@@ -1,6 +1,7 @@
 var React = require('react');
 var ClientActions = require('../actions/client_actions.js');
 var PlayerActions = require('../actions/player_actions.js');
+var SidebarActions = require('../actions/sidebar_actions.js');
 var AuthActions = require('../actions/auth_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 var Modal = require('react-bootstrap').Modal;
@@ -24,7 +25,7 @@ var SongIndexItem = React.createClass({
 
   addToQueue: function(e) {
     e.preventDefault();
-    PlayerActions.addToQueue(this.props.song);
+    SidebarActions.addToQueue(this.props.song);
   },
 
   like: function(e) {

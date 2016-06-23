@@ -1,11 +1,11 @@
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var PlayerActions = require('../actions/player_actions.js');
+var SidebarActions = require('../actions/sidebar_actions.js');
 var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var PlaylistBarItem = React.createClass({
   deleteFromQueue: function() {
-    PlayerActions.deleteFromQueue(this.props.index);
+    SidebarActions.deleteFromQueue(this.props.index);
   },
 
   render: function() {
