@@ -10,6 +10,8 @@ var Nav = require('react-bootstrap').Nav;
 var NavItem = require('react-bootstrap').NavItem;
 var Image = require('react-bootstrap').Image;
 var Badge = require('react-bootstrap').Badge;
+var Tooltip = require('react-bootstrap').Tooltip;
+var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var Player = React.createClass({
@@ -174,7 +176,14 @@ var Player = React.createClass({
       );
     }
 
+
     if (this.state.currentSong) {
+      var tooltip = (
+        <Tooltip id="tooltip">
+          {this.state.currentSong.artist} - {this.state.currentSong.title}
+        </Tooltip>
+      );
+
       player = (
         <ReactCSSTransitionGroup
           transitionName="translate"
@@ -191,10 +200,14 @@ var Player = React.createClass({
             <NavItem onClick={this.forward}><Glyphicon glyph="forward"/></NavItem>
             <NavItem onClick={this.toggleSidebar}><Glyphicon glyph="list"/></NavItem>
             <Badge className="queueBadge">{SidebarStore.queue().length}</Badge>
-            <Image
-              className="playerIcon"
-              src={this.state.currentSong.image_url}
+
+            <OverlayTrigger placement="bottom" overlay={tooltip}>
+              <Image
+                className="playerIcon"
+                src={this.state.currentSong.image_url}
               />
+            </OverlayTrigger>
+
             <NavItem disabled>
               <p className="songTime">{this.state.currentTime}</p>
             </NavItem>
